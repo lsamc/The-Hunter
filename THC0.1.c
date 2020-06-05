@@ -112,36 +112,36 @@ void main() {
 					default: {
 						goto loop2;
 					}
-					clrscr();
-					print("————————（难得的晴天）船坞里————————");
-					print("Wilson：准备好了，我的朋友？选一艘你喜欢的潜艇吧！\n");
-					print(player);
-					print("：我要Type ");
-					print(type);
-					print("的！这艘怎么样？(指向旁边的一艘U艇）\n");
-					print("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type ");
-					print(type);
-					print("的艇。这艘船归你了我的艇长\n");
-					break;
 				}
-				case 1940: {
-					if(month<1||month>12)goto loop1;
-					break;
-				}
-				case 1941: {
-					if(month<1||month>12)goto loop1;
-					break;
-				}
-				case 1942: {
-					if(month<1||month>12)goto loop1;
-					break;
-				}
-				case 1943: {
-					if(month>6||month>12)goto loop1;
-					break;
-				}
-				default: goto loop1;
+				clrscr();
+				print("————————（难得的晴天）船坞里————————");
+				print("Wilson：准备好了，我的朋友？选一艘你喜欢的潜艇吧！\n");
+				print(player);
+				print("：我要Type ");
+				print(type);
+				print("的！这艘怎么样？(指向旁边的一艘U艇）\n");
+				print("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type ");
+				print(type);
+				print("的艇。这艘船归你了我的艇长\n");
+				break;
 			}
+			case 1940: {
+				if(month<1||month>12)goto loop1;
+				break;
+			}
+			case 1941: {
+				if(month<1||month>12)goto loop1;
+				break;
+			}
+			case 1942: {
+				if(month<1||month>12)goto loop1;
+				break;
+			}
+			case 1943: {
+				if(month>6||month>12)goto loop1;
+				break;
+			}
+			default: goto loop1;
 		}
 	}
 }
