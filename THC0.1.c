@@ -1,124 +1,147 @@
 #include<conio.h>
 #include<stdio.h>
-
-int isID(char *s){
-			int flag=0;
-		int i=0;
-		for(i=0;s[i];i++){
-			if(!isdigit(s[i])) return 0;
-		}
-		return 1;
+int isID(char *s) {
+	int flag=0;
+	int i=0;
+	for (i=0;s[i];i++) {
+		if(!isdigit(s[i])) return 0;
+	}
+	return 1;
 }
-
-int timeIsAvailable£¨int y,int m£©{
-    if()return 0;
-  	else return 1;
+int timeIsAvailable(int y,int m) {
+	if()return 0; else return 1;
 }
-void main()
-{
-    printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª»¶Ó­À´µ½¡¶Ç±É±ÁÔº½¡·¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n*********************************\n");
-    printf("ÉÚ±øÇ°Ì¨:ÕâÀïÊÇ´óµÂÒâÖ¾´óÎ÷Ñóº£¾üË¾Áî²¿£¬Çë³öÊ¾Éí·İÖ¤Ã÷(ĞÕÃû»òID):\n");
-
+void print(char* s) {
+	int i=0;
+	for (;s[i];i++) {
+		printf("%c",s[i]);
+		Sleep(10);
+	}
+}
+void main() {
+	print("â€”â€”â€”â€”â€”â€”â€”â€”æ¬¢è¿æ¥åˆ°ã€Šæ½œæ€çŒèˆªã€‹â€”â€”â€”â€”â€”â€”â€”â€”\n*********************************\n");
+	print("å“¨å…µå‰å°:è¿™é‡Œæ˜¯å¤§å¾·æ„å¿—å¤§è¥¿æ´‹æµ·å†›å¸ä»¤éƒ¨ï¼Œè¯·å‡ºç¤ºèº«ä»½è¯æ˜(å§“åæˆ–ID):\n");
 	char player[50];
-    scanf("%s",&player);
-			
-	  	if(isID(player))
-	 		{
-	    			printf("ÉÚ±øÇ°Ì¨:ÄãºÃ,%sÖ¸»Ó¹Ù",player);
-	 		}
-  		else 
-  		    {
-	     		printf("ÉÚ±øÇ°Ì¨:Å¶£¡ÊÇ%sÏÈÉú°¡£¬ÄãÖÕÓÚÀ´ÁË£¬Wilson²¿³¤ÔÚµÈÄã!\n",player);
-      		    printf("        ½øÃÅ×ó×ª£¬½«»áÓĞÈË´øÄãÈ¥¼û²¿³¤ÏÈÉú\n");
-        
-        		getch();
-     		    getch();
-      		    clrscr();
-       
-      		    printf("ßËßËßË...\n");sleep(3);
-	     		printf("Wilson:Çë½ø\n");sleep(1);
-      		    printf("%sÇ°À´±¨µÀ!\n",player);
-        
-      		    printf("press any key to continue.(Maybe two time)")getch£¨£©;getch£¨£©;
-      		    clrscr£¨£©;
-        
-				printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª²¿³¤°ì¹«ÊÒ¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n");
-				printf("Wilson:Å¶£¿ÊÇ%dÏÈÉú°¡£¬»¶Ó­»¶Ó­£¬Çë×ø¡£\n");sleep(1);
-				printf("Wilson:ÔªÊ×ÏòÎÒÌáµ½¹ıÄã£¬Ò»ÃûÓÅĞãµÄº£¾ü¾ü¹Ù£¬ÏÖÔÚÏë×öÒ»ÃûUÍ§Ö¸»Ó¹ÙÁË£¿\n");sleep(1);
-				printf("\nÄãÏëÊ²Ã´Ê±¼ä¼ÓÈëÎÒÃÇÇ±Í§¼Æ»®£¿£¨1939.09-1943.06£©\n");
-			
-				int year,month;
-				
-					if(0)loop1: printf("(Èç¹ûÕâÊÇµÚ2´Î¼°ÒÔÉÏÎÊÄã£¬ÄÇÓ¦¸ÃÊÇÄãÖ®Ç°ÊäÈëÁË²»ºÏÒªÇóµÄÊ±¼ä)\n")£»
-					
-					printf("Äê·İ£¿£¨1939-1943£©:");
-					scanf("%d",&year);
-					printf("\nÔÂ·İ£¿£¨1-12,×¢Òâ´Ó1939Äê9ÔÂ¿ªÊ¼£¬ÖÁ1943Äê6ÔÂ½áÊø£©:");
-					scanf("%d",&month);
-				
-				//while(year<1939||year>1943||(year==1939&&month<9)||(year==1943&&month>6))
-				
-				switch(year)
-				{
-					case 1939:
-						{
-							if(month<9||month>12)goto(loop1);
-							
-							printf("Wilson:ÕâÃ´ĞÄ¼±£¿ºÃ£¡µÛ¹úÕıĞèÒªÄãÕâÑùµÄÈÈĞÄÈË²Å£¡\n");sleep(1);
-							printf("Wilson:ÄãÕıÊÇÎÒËùÆÚÅÎµÄÄÇÑù£¡ÄÇÃ´£¬ÉÔ×÷ĞİÕû£¬¾Í³öÕ÷°É¡£µÛ¹úÒÔÄãÎª°Á£¡\n");sleep(1);
-							printf("%s:Heil Hitler!£¨¸ß¾Ù×óÊÖ£©\n"£¬player);
-							printf("press any key to continue.(Maybe two time)");getch();getch();
-							clrscr();
-							if(month>9)printf("%d¸öÔÂºó...",month-9);sleep(1);
-							
-							if(0) loop2: printf("(Èç¹ûÕâÊÇµÚ2´Î¼°ÒÔÉÏÎÊÄã£¬ÄÇÓ¦¸ÃÊÇÄãÖ®Ç°ÊäÈëÁË²»ºÏÒªÇóµÄÊ±¼ä)\n")£»
-					
-							printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª£¨ÄÑµÃµÄÇçÌì£©´¬ÎëÀï¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
-							printf("Wilson£º×¼±¸ºÃÁË£¬ÎÒµÄÅóÓÑ£¿Ñ¡Ò»ËÒÄãÏ²»¶µÄÇ±Í§°É£¡\n");
-							printf("´¬ÎëÀïÓĞÈıÖÖĞÍºÅµÄÇ±Í§£ºVIIA£¬VIIB£¬IXA\n");sleep(1);
-							printf("(1.VIIA	2.VIIB	3.IXA)\n");
-							
-							int choose;
-							char type[6];
-							scanf("%d",&choose);
-							switch(choose)
-							{
-								case 1:{type="VIIA";break;}
-								case 2:{type="VIIB";break;}
-								case 3:{type="IXA";break;}
-								default£º{goto(loop2);}
-							)
-							
-							clrscr();
-							printf("¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª£¨ÄÑµÃµÄÇçÌì£©´¬ÎëÀï¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª");
-							printf("Wilson£º×¼±¸ºÃÁË£¬ÎÒµÄÅóÓÑ£¿Ñ¡Ò»ËÒÄãÏ²»¶µÄÇ±Í§°É£¡\n");
-							printf("%s£ºÎÒÒªType %sµÄ£¡ÕâËÒÔõÃ´Ñù£¿(Ö¸ÏòÅÔ±ßµÄÒ»ËÒUÍ§£©\n",player,);
-							printf("Wilson:ºÃÂïÎÒµÄÅóÓÑ£¬ÄãÍ¦ÓĞÑÛ¹âµÄÂï£¬ÎÒÒ²ºÜÏ²»¶Type %sµÄÍ§¡£ÕâËÒ´¬¹éÄãÁËÎÒµÄÍ§³¤\n");
-							
-							break;
-						}
-					case 1940:
-						{
-							if(month<1||month>12)goto(loop1);
-							break;
-						}
-					case 1941:
-						{
-							if(month<1||month>12)goto(loop1);
-							break;
-						}
-					case 1942:
-						{
-							if(month<1||month>12)goto(loop1);
-							break;
-						}
-					case 1943:
-						{
-							if(month>6||month>12)goto(loop1);
-							
-							break;
-						}
-					default: goto(loop1);
+	scanf("%s",&player);
+	if(isID(player)) {
+		print("å“¨å…µå‰å°:ä½ å¥½,");
+		print(player);
+		print("æŒ‡æŒ¥å®˜");
+	} else {
+		print("å“¨å…µå‰å°:å“¦ï¼æ˜¯");
+		print(player);
+		print("å…ˆç”Ÿå•Šï¼Œä½ ç»ˆäºæ¥äº†ï¼ŒWilsonéƒ¨é•¿åœ¨ç­‰ä½ !\n");
+		print("        è¿›é—¨å·¦è½¬ï¼Œå°†ä¼šæœ‰äººå¸¦ä½ å»è§éƒ¨é•¿å…ˆç”Ÿ\n");
+		getch();
+		getch();
+		clrscr();
+		print("å’šå’šå’š...\n");
+		sleep(3);
+		print("Wilson:è¯·è¿›\n");
+		sleep(1);
+		print(player);
+		print("å‰æ¥æŠ¥é“!\n");
+		print("press any key to continue.(Maybe two times)");
+		getch();
+		getch();
+		clrscr();
+		print("â€”â€”â€”â€”â€”â€”â€”â€”éƒ¨é•¿åŠå…¬å®¤â€”â€”â€”â€”â€”â€”â€”â€”\n");
+		print("Wilson:å“¦ï¼Ÿæ˜¯");
+		print(player);
+		print("å…ˆç”Ÿå•Šï¼Œæ¬¢è¿æ¬¢è¿ï¼Œè¯·åã€‚\n");
+		sleep(1);
+		print("Wilson:å…ƒé¦–å‘æˆ‘æåˆ°è¿‡ä½ ï¼Œä¸€åä¼˜ç§€çš„æµ·å†›å†›å®˜ï¼Œç°åœ¨æƒ³åšä¸€åUè‰‡æŒ‡æŒ¥å®˜äº†ï¼Ÿ\n");
+		sleep(1);
+		print("\nä½ æƒ³ä»€ä¹ˆæ—¶é—´åŠ å…¥æˆ‘ä»¬æ½œè‰‡è®¡åˆ’ï¼Ÿï¼ˆ1939.09-1943.06ï¼‰\n");
+		int year,month;
+		if(0)loop1: print("(å¦‚æœè¿™æ˜¯ç¬¬2æ¬¡åŠä»¥ä¸Šé—®ä½ ï¼Œé‚£åº”è¯¥æ˜¯ä½ ä¹‹å‰è¾“å…¥äº†ä¸åˆè¦æ±‚çš„æ—¶é—´)\n");
+		print("å¹´ä»½ï¼Ÿï¼ˆ1939-1943ï¼‰:");
+		scanf("%d",&year);
+		print("\næœˆä»½ï¼Ÿï¼ˆ1-12,æ³¨æ„ä»1939å¹´9æœˆå¼€å§‹ï¼Œè‡³1943å¹´6æœˆç»“æŸï¼‰:");
+		scanf("%d",&month);
+		//while(year<1939||year>1943||(year==1939&&month<9)||(year==1943&&month>6))
+		switch(year) {
+			case 1939: {
+				if(month<9||month>12)goto loop1;
+				print("Wilson:è¿™ä¹ˆå¿ƒæ€¥ï¼Ÿå¥½ï¼å¸å›½æ­£éœ€è¦ä½ è¿™æ ·çš„çƒ­å¿ƒäººæ‰ï¼\n");
+				sleep(1);
+				print("Wilson:ä½ æ­£æ˜¯æˆ‘æ‰€æœŸç›¼çš„é‚£æ ·ï¼é‚£ä¹ˆï¼Œç¨ä½œä¼‘æ•´ï¼Œå°±å‡ºå¾å§ã€‚å¸å›½ä»¥ä½ ä¸ºå‚²ï¼\n");
+				sleep(1);
+				print(player);
+				print(":Heil Hitler!ï¼ˆé«˜ä¸¾å·¦æ‰‹ï¼‰\n");
+				print("press any key to continue.(Maybe two times)");
+				getch();
+				getch();
+				clrscr();
+				if(month>9) {
+					printf("%d",month-9);
+					sleep(1);
+					print("ä¸ªæœˆå...");
+					sleep(1);
 				}
-  		    }
+				if(0) loop2: print("(å¦‚æœè¿™æ˜¯ç¬¬2æ¬¡åŠä»¥ä¸Šé—®ä½ ï¼Œé‚£åº”è¯¥æ˜¯ä½ ä¹‹å‰è¾“å…¥äº†ä¸åˆè¦æ±‚çš„æ—¶é—´)\n");
+				print("â€”â€”â€”â€”â€”â€”â€”â€”ï¼ˆéš¾å¾—çš„æ™´å¤©ï¼‰èˆ¹åé‡Œâ€”â€”â€”â€”â€”â€”â€”â€”");
+				print("Wilsonï¼šå‡†å¤‡å¥½äº†ï¼Œæˆ‘çš„æœ‹å‹ï¼Ÿé€‰ä¸€è‰˜ä½ å–œæ¬¢çš„æ½œè‰‡å§ï¼\n");
+				print("èˆ¹åé‡Œæœ‰ä¸‰ç§å‹å·çš„æ½œè‰‡ï¼šVIIAï¼ŒVIIBï¼ŒIXA\n");
+				sleep(1);
+				print("(1.VIIA	2.VIIB	3.IXA)\n");
+				int choose;
+				char type[6];
+				scanf("%d",&choose);
+				switch(choose) {
+					case 1: {
+						type[0]='V';
+						type[1]='I';
+						type[2]='I';
+						type[3]='A';
+						break;
+					}
+					case 2: {
+						type[0]='V';
+						type[1]='I';
+						type[2]='I';
+						type[3]='B';
+						break;
+					}
+					case 3: {
+						type[0]='I';
+						type[1]='X';
+						type[2]='A';
+						break;
+					}
+					default: {
+						goto loop2;
+					}
+					clrscr();
+					print("â€”â€”â€”â€”â€”â€”â€”â€”ï¼ˆéš¾å¾—çš„æ™´å¤©ï¼‰èˆ¹åé‡Œâ€”â€”â€”â€”â€”â€”â€”â€”");
+					print("Wilsonï¼šå‡†å¤‡å¥½äº†ï¼Œæˆ‘çš„æœ‹å‹ï¼Ÿé€‰ä¸€è‰˜ä½ å–œæ¬¢çš„æ½œè‰‡å§ï¼\n");
+					print(player);
+					print("ï¼šæˆ‘è¦Type ");
+					print(type);
+					print("çš„ï¼è¿™è‰˜æ€ä¹ˆæ ·ï¼Ÿ(æŒ‡å‘æ—è¾¹çš„ä¸€è‰˜Uè‰‡ï¼‰\n");
+					print("Wilson:å¥½å˜›æˆ‘çš„æœ‹å‹ï¼Œä½ æŒºæœ‰çœ¼å…‰çš„å˜›ï¼Œæˆ‘ä¹Ÿå¾ˆå–œæ¬¢Type ");
+					print(type);
+					print("çš„è‰‡ã€‚è¿™è‰˜èˆ¹å½’ä½ äº†æˆ‘çš„è‰‡é•¿\n");
+					break;
+				}
+				case 1940: {
+					if(month<1||month>12)goto loop1;
+					break;
+				}
+				case 1941: {
+					if(month<1||month>12)goto loop1;
+					break;
+				}
+				case 1942: {
+					if(month<1||month>12)goto loop1;
+					break;
+				}
+				case 1943: {
+					if(month>6||month>12)goto loop1;
+					break;
+				}
+				default: goto loop1;
+			}
+		}
+	}
 }
