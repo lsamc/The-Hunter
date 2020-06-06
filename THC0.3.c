@@ -1,13 +1,34 @@
 #include<conio.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 #define LINE 20
 #define COLUMN 150
 
 char TextBuff[LINE][COLUMN],player[50],type[6];
-int line=0,choose;
+char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
+char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
+int line=0,choose,year,month,typeNumber;
+/*1.VIIA
+ *2.VIIB
+ *3.IXA
+ *4.IXB
+ *5.VIIC
+ *6.IXC
+ *7.VIID
+ *8.VIICFk
+*/
 
+int roll(int dies)
+{
+    int re=0;
+    for(int i=0;i<dies;i++)
+    {
+        re+=(rand()%6+1);
+    }
+    return re;
+}
 int isID(char *s) 
 {
 	int flag=0;
@@ -65,7 +86,7 @@ void clean()
 	line=0;
 }
 
-void introduce(char* type,int year,int first)
+void introduce(char* type,int first)
 {
 	if(first==1) goto loop3;
 	
@@ -84,18 +105,19 @@ void introduce(char* type,int year,int first)
 				print("这是因为G7E 型号的鱼雷需要额外的保养，不能长时间放在发射管中，因此第一枚鱼雷往往是 G7A\n");
 				goto helploop;
 			}
-		case 2：
+		case 2:
 			{	
 				print("有护航的船只和护航舰队不是一回事，\n");
-	  			print("前者是你遭遇的普通船只的状态，后者是你遭遇了一个叫CONVOY 的东西，\n");
+	  	print("前者是你遭遇的普通船只的状态，后者是你遭遇了一个叫CONVOY 的东西，\n");
 				print("CONVOY 没有比较好地中文对应词，它的意思是大型的护航运输船队。\n");
 				print("两者在游戏中处理方式是不一样的。后者用 CONVOY护航舰队来代之以防混淆\n");
+    clean();
 				print("与有护航船只和 convoy 护航舰队的遭遇一般而言是很危险的，尤其是当你决定近距离攻击（这时敌方的侦查先手于你的鱼雷）\n");
-			 	print("护航敌军有一定几率侦查到你的潜艇，一旦被侦查，你的潜艇会被反复的深水攻击直到你逃离他们的侦查范围。\n");
+			 print("护航敌军有一定几率侦查到你的潜艇，一旦被侦查，你的潜艇会被反复的深水攻击直到你逃离他们的侦查范围。\n");
 				print("你也可以试着深潜来摆脱追踪。但潜艇和人员的受伤会让你更加危险。\n");
 				goto helploop;
 			}
-		case 3：
+		case 3:
 			{	
 				print("你可能会问为什么潜艇只被允许攻击商船而不能攻击护航。\n");
 				print("其实这只是大西洋上的特有现象，在太平洋上美军潜艇大战驱逐舰是很常见的。\n");
@@ -105,7 +127,7 @@ void introduce(char* type,int year,int first)
 	  			print("对于驱逐舰或者其他护航船只的攻击，一方面很危险，一方面很浪费\n");
 				goto helploop;
 			}
-		case 4：
+		case 4:
 			{	
 				print("U 型潜艇经常以一种有组织的狼群战术来攻击护航的船队， \n");
 				print("当一个潜艇发现了护航船队时会首先向舰队的总指挥汇报，总指挥召集附近的所有潜艇同时发动更为猛烈的打击\n");
@@ -113,11 +135,26 @@ void introduce(char* type,int year,int first)
 			}
 		loop3:case 5:
 			{
+    switch(typeNumber)
+    {
+        case 1:
+            {
+                print("VIIA是德军第一批潜艇型号，乘员44人，\n");
+	               print("共携带鱼雷11发，前鱼雷管4发，前鱼雷装填区5发，后鱼雷管1发，后鱼雷装填区1发。\n");
+                break;
+            }
+        //其他型号
+        default:printf("型号错误");
+    }
+    
+    
+    clean();
 				print("作为一个德军 U 型潜艇的指挥官，你的目的在于实施大量的巡航并且击沉敌舰。\n");
 				print("每一次出击是否成功由你击沉的总吨位决定，进而决定你的升职和艇员的经验积累，最终可以获得你垂涎已久的骑士铁十字勋章。\n");
 				print("你的潜艇将面临无情的危险，因为巡航任务会变得愈加的艰难（包括比斯开湾和直布罗陀海峡）。\n");
 				print("你最终的成功很大程度上取决于你职业生涯中巡逻时刻所做的每一个抉择。\n");
 				print("游戏最终的胜利等级取决于你总共击沉的吨位数，如果你在一次行动中死了，那就死后立即结算吧。\n");
+    clean();
 				print("一般而言，剧本围绕实行大量的巡逻任务，解决遭遇战，直到安全的返回港口为止。\n");
 				print("每次任务完成，你用航海日志评估自己所取得的成就，决定自己的升职与奖励，以及艇员的晋升。\n");
 				print("两次任务之间，潜艇会被修正一个或几个月，这要视受损情况而决定。\n");
@@ -133,28 +170,148 @@ void introduce(char* type,int year,int first)
 
 	}
 	clean();
-
-}
-void patrol(){		//working...
-	
 }
 
-void event1939(int month){
+void day(char* place,int times)
+{
+    int pl;                             
+   /*1.北极
+    *2.大西洋
+    *3.英吉利海峡
+    *4.加勒比海
+    *5.西非海岸
+    *6.地中海
+    *7.北美
+    *8.挪威
+    *9.西班牙海岸
+    *10.途中
+    */
+    if(strcmp(place,"比斯开湾")||strcmp(place,"路上"))pl=10;
+    else if(strcmp(place,"西班牙海岸"))pl=9;
+    else if(strcmp(place,"挪威"))pl=8;
+    else if(strcmp(place,"北美"))pl=7;
+    else if(strcmp(place,"地中海"))pl=6;
+    else if(strcmp(place,"西非海岸"))pl=5;
+    else if(strcmp(place,"加勒比海"))pl=4;
+    else if(strcmp(place,"英吉利海峡"))pl=3;
+    else if(strcmp(place,"大西洋"))pl=2;
+    else if(strcmp(place,"北极"))pl=1;
+    else printf("程序故障");
+    
+    int meet=roll(2);
+    switch(pl)
+    {
+        case 10:
+            {
+            }
+    }
+}
+void execMission(int mN,int mT)
+{
+    switch(mN)
+    {
+        case 0:
+        {
+            switch(typeNumber)
+            {
+                case 1:
+                    {
+                        process[0]=0;
+                        process[1]=7;
+                        day("比斯开湾"，1);
+                        day("路上"，1);
+                        day("西班牙海岸"，1);
+                        day("西班牙海岸"，1);
+                        day("西班牙海岸"，1);
+                        day("路上"，1);
+                        day("比斯开湾"，1);
+                        break;
+                    }
+            }
+        }
+    }
+    if(month==12){month=1;year++;}
+    else month++;
+}
+void patrol()
+{		//working...
+    int mNumber=roll(2);
+    int mName;
+    int mType;
+    
+	    if(year==1939||((year==1940)&&(month<4)))
+        {
+            switch(mNumber)
+            {
+                case 2:
+                    {
+                        mName=0;
+                        mType=3;
+                        break;
+                    }
+                case 3:;
+                case 4:;
+                case 5:;
+                case 6:;
+                case 7:;
+                case 8:;
+                case 9:
+                    {
+                        mName=1;
+                        mType=3;
+                        break;
+                    }
+                case 10:;
+                case 11:
+                    {
+                        mName=1;
+                        mType=0;
+                        break;
+                    }
+                case 12:
+                    {
+                        mName=4;
+                        mType=3;
+                        break;
+                    }
+                default:
+                    {
+                        printf("程序故障,报错");
+                    }
+            }
+        }
+        else
+        {
+            //待一会做
+            
+            
+            
+            
+        }
+        printf("我：我们要去%s执行%s任务了！\n",mission[mName],missionType[mType]);
+        printf("Eric:是！（敬礼）\n");
+        clean();
+        
+        execMission(mNumber,mType);
+        rest();
+}
+
+void event1939(){
 	clrscr();
 	printBuff();
 	printf("我:我打算1939年%d月在这里服役\n",month);sleep(1);
 	print("Wilson:这么心急？好！帝国正需要你这样的热心人才！\n");
 	print("你正是我所期盼的那样！");
 	print("这是你的潜艇军官证，好好保管！这是属于你的荣耀！\n\n");
-	srand(time(0));
-	int ID = rand() % (9000)+999;
+	int ID = rand() % (9000)+1000;
 
-	printf("****************************\n");
-	printf("**名字\tID\t服役时间\t**\n");
+	printf("**************************\n");
+	printf("**名字\tID\t服役时间**\n");
 	printf("**%s\t%d\t1939.%d\t**\n",player,ID,month);
-	printf("****************************\n");
-
-	print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
+	printf("**************************\n");
+ printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
+	sleep(5);
+ print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
 	print("我:Heil Hitler!（高举左手）\n");
 	clean();
 	if(month>9) 
@@ -172,24 +329,19 @@ void event1939(int month){
 	scanf("%d",&choose);
 	switch(choose) {
 		case 1: {
-			type[0]='V';
-			type[1]='I';
-			type[2]='I';
-			type[3]='A';
+			strcpy(type,"VIIA");
+   typeNumber=1;
 			break;
 		}
 		case 2: {
-			type[0]='V';
-			type[1]='I';
-			type[2]='I';
-			type[3]='B';
+			strcpy(type,"VIIB");
+   typeNumber=2;
 			break;
 		}
 		case 3: {
-			type[0]='I';
-			type[1]='X';
-			type[2]='A';
-			break;
+   strcpy(type,"IXA");
+   typeNumber=3;
+		 break;
 		}
 		default: {
 			goto loop2;
@@ -200,9 +352,10 @@ void event1939(int month){
 	printf("我：我要Type %s！这艘怎么样？(指向旁边的一艘U艇）\n",type);sleep(2);
 	printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n",type);sleep(3);
 	print("这艘船归你了我的艇长\n");
+ clean();
 	print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
 	printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
-	print("Eric,Leo,Tommy:Hi!");
+	print("Eric,Leo,Tommy:Hi!\n");
 	print("Dr:我知道你记不下来那么多名字，你就叫我Dr吧，我是这艘艇的医生\n");
 	print("1WO:我是这艘艇的大副\n");
 	print("2WO:我是这艘艇的二副\n");
@@ -210,23 +363,23 @@ void event1939(int month){
 	print("Wilson:够多人了？要不是有那4个士官长，你还需要和39个其他艇员打招呼！\n");
 	print("好了别担心，你们航程上有的是时间互相熟悉！\n");
 	print("这些将是要和你一起战斗的伙伴,记住，就连最基础的每一个艇员，都将是你们在大西洋底生存的保障\n");
-	printf("好了我的朋友，出征吧，祝你好运！");
+	printf("好了我的朋友，出征吧，祝你好运！\n");
 	print("众：Heil Hitler！\n");
 	clean();
 
 	print("————————————潜艇里————————————\n");
 	print("Eric:先生，请允许我来为您介绍一下这艘艇。\n");
-	print("我：好，你说吧。");
-	print("Eric:VIIA是德军第一批潜艇型号，乘员44人，\n");
-	print("共携带鱼雷11发，前鱼雷管4发，前鱼雷装填区5发，后鱼雷管1发，后鱼雷装填区1发。\n");
-	introduce(type,1939,1);
-	print("好吧，我清楚了，起航！");
-	patrol();
+	print("我：好，你说吧。\n");
+	introduce(type,1);
+	print("我：好吧，我清楚了，起航！");
 
+	do{patrol();}while(year<1943||((year==1943)&&(month<7)));
+ theEnd();
 }
 void main() 
 {
-	print("————————————欢迎来到《潜杀猎航》————————————\n*********************************\n");
+ srand((unsigned)time(NULL));
+	print("————————————欢迎来到《潜杀猎航》————————————\n********************************************\n");
 	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明(姓名或ID):\n");
 	scanf("%s",&player);
 	if(isID(player))
@@ -255,7 +408,7 @@ void main()
 		print("现在想做一名U艇指挥官了？\n");
 		sleep(1);
 		print("你想什么时间加入我们潜艇计划？（1939.09-1943.06）\n");
-		int year,month;
+		
 		if(0)loop1: printf("(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");		
 		print("年份？（1939-1943）:");decreaseLine();
 		scanf("%d",&year);
@@ -267,7 +420,7 @@ void main()
 			case 1939: 
 				{
 					if(month<9||month>12)goto loop1;
-					event1939(month);
+					event1939();
 					break;
 				}
 			case 1940: 
@@ -294,3 +447,4 @@ void main()
 		}
 	}
 }
+    
