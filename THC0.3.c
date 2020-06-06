@@ -65,12 +65,13 @@ void clean()
 	line=0;
 }
 
-void introduce(char* type,int year,int first){
-	clean();
+void introduce(char* type,int year,int first)
+{
 	if(first==1) goto loop3;
-
-
-	helploop:printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\t4.狼群战是什么\n5.综述\t6.没问题了\t更新中...\n");
+	
+	helploop:clean();	
+	
+	printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\t4.狼群战是什么\n5.综述\t6.没问题了\t更新中...");
 	scanf("%d",&choose);
 	switch(choose)
 	{
@@ -81,6 +82,33 @@ void introduce(char* type,int year,int first){
 				print("后者速度慢，射不远，但是没有气泡尾迹，让护航船只不能顺藤摸瓜找到潜艇，适合白天使用降低被侦查到的可能。\n");
 				print("初始的装载鱼雷总是G7A 型号；VII 只能装载最多 5 个G7E；\n");
 				print("这是因为G7E 型号的鱼雷需要额外的保养，不能长时间放在发射管中，因此第一枚鱼雷往往是 G7A\n");
+				goto helploop;
+			}
+		case 2：
+			{	
+				print("有护航的船只和护航舰队不是一回事，\n");
+	  			print("前者是你遭遇的普通船只的状态，后者是你遭遇了一个叫CONVOY 的东西，\n");
+				print("CONVOY 没有比较好地中文对应词，它的意思是大型的护航运输船队。\n");
+				print("两者在游戏中处理方式是不一样的。后者用 CONVOY护航舰队来代之以防混淆\n");
+				print("与有护航船只和 convoy 护航舰队的遭遇一般而言是很危险的，尤其是当你决定近距离攻击（这时敌方的侦查先手于你的鱼雷）\n");
+			 	print("护航敌军有一定几率侦查到你的潜艇，一旦被侦查，你的潜艇会被反复的深水攻击直到你逃离他们的侦查范围。\n");
+				print("你也可以试着深潜来摆脱追踪。但潜艇和人员的受伤会让你更加危险。\n");
+				goto helploop;
+			}
+		case 3：
+			{	
+				print("你可能会问为什么潜艇只被允许攻击商船而不能攻击护航。\n");
+				print("其实这只是大西洋上的特有现象，在太平洋上美军潜艇大战驱逐舰是很常见的。\n");
+				print("在大西洋上，每一枚没有命中商船的鱼雷都是一种浪费，\n");
+				print("因为德国高层知道他们搞不过英国海军，因此即便击沉了几艘小军舰也没什么意义。\n");
+				print("但是对于 capitalship 大型军舰而言， 由于巨大的宣传效应，所以是被允许的。\n");
+	  			print("对于驱逐舰或者其他护航船只的攻击，一方面很危险，一方面很浪费\n");
+				goto helploop;
+			}
+		case 4：
+			{	
+				print("U 型潜艇经常以一种有组织的狼群战术来攻击护航的船队， \n");
+				print("当一个潜艇发现了护航船队时会首先向舰队的总指挥汇报，总指挥召集附近的所有潜艇同时发动更为猛烈的打击\n");
 				goto helploop;
 			}
 		loop3:case 5:
@@ -107,6 +135,9 @@ void introduce(char* type,int year,int first){
 	clean();
 
 }
+void patrol(){		//working...
+	
+}
 
 void event1939(int month){
 	clrscr();
@@ -118,10 +149,10 @@ void event1939(int month){
 	srand(time(0));
 	int ID = rand() % (9000)+999;
 
-	printf("**************************\n");
-	printf("**名字\tID\t服役时间**\n");
+	printf("****************************\n");
+	printf("**名字\tID\t服役时间\t**\n");
 	printf("**%s\t%d\t1939.%d\t**\n",player,ID,month);
-	printf("**************************\n");
+	printf("****************************\n");
 
 	print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
 	print("我:Heil Hitler!（高举左手）\n");
@@ -170,7 +201,6 @@ void event1939(int month){
 	printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n",type);sleep(3);
 	print("这艘船归你了我的艇长\n");
 	print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
- clean();
 	printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
 	print("Eric,Leo,Tommy:Hi!");
 	print("Dr:我知道你记不下来那么多名字，你就叫我Dr吧，我是这艘艇的医生\n");
@@ -190,12 +220,13 @@ void event1939(int month){
 	print("Eric:VIIA是德军第一批潜艇型号，乘员44人，\n");
 	print("共携带鱼雷11发，前鱼雷管4发，前鱼雷装填区5发，后鱼雷管1发，后鱼雷装填区1发。\n");
 	introduce(type,1939,1);
-	
+	print("好吧，我清楚了，起航！");
+	patrol();
 
 }
 void main() 
 {
-	print("————————————欢迎来到《潜杀猎航》————————————\n********************************************\n");
+	print("————————————欢迎来到《潜杀猎航》————————————\n*********************************\n");
 	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明(姓名或ID):\n");
 	scanf("%s",&player);
 	if(isID(player))
