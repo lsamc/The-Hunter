@@ -7,6 +7,24 @@
 #define COLUMN 150
 int id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process;
 char names[110][110],junxian[110];
+void write_data(){
+	FILE *fp;
+	fp=fopen("1.txt", "r+");
+	fprintf(fp,"ID: %d\n",id_);
+	fprintf(fp,"year: %d\n",year_);
+	fprintf(fp,"month: %d\n",month_);
+	fprintf(fp,"tons: %d\n",tons);
+	fprintf(fp,"names: ");
+	int i=0;
+	for(;names[i][0];i++) fprintf(fp,"%s%c",names[i],"\n,"[names[i+1][0]]);
+	fprintf(fp,"damage_status: %d\n",damage_status);
+	fprintf(fp,"junxian: %s\n",junxian);
+	fprintf(fp,"level: %d\n",level_);
+	fprintf(fp,"expert_level: %d\n",expert_level);
+	fprintf(fp,"Tingyuan_level: %d\n",Tingyuan_level);
+	fprintf(fp,"xunhang_process: %d\n",xunhang_process);
+	fclose(fp);
+}
 void read_data(){
 	FILE *fp;
 	fp=fopen("1.txt", "r+");
