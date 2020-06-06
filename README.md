@@ -1,5 +1,5 @@
 # The-Hunter   
-a solo command line game   
+<font color=gold>a solo command line game</font>   
 author: lsamc    
 modified:charley-xiao     
 working...    
