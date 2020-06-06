@@ -5,11 +5,86 @@
 
 #define LINE 20
 #define COLUMN 150
-
+int id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process;
+char names[110][110],junxian[110];
+void read_data(){
+	FILE *fp;
+	fp=fopen("1.txt", "r+");
+	if(fp==NULL){printf("数据库错误！");return;}
+	char tmp[110],data[110];
+	int nmsl=0;
+	while(nmsl<11){
+		nmsl++;
+		fscanf(fp,"%s",tmp);
+		fscanf(fp,"%s",data);
+		if(!tmp[0]) break;
+		if(tmp[0]=='I'){
+			int i=0;
+			id_=0;
+			for(;data[i];i++)id_=id_*10+(data[i]^48);
+		}
+		else if(tmp[0]=='y'){
+			int i=0;
+			year_=0;
+			for(;data[i];i++)year_=year_*10+(data[i]^48);
+		}
+		else if(tmp[0]=='m'){
+			int i=0;
+			month_=0;
+			for(;data[i];i++)month_=month_*10+(data[i]^48);
+		}
+		else if(tmp[0]=='t'){
+			int i=0;
+			tons=0;
+			for(;data[i];i++)tons=tons*10+(data[i]^48);
+		}
+		else if(tmp[0]=='n'){
+			int lst=0;
+			int i=0,j=0;
+			for(;data[i];i++,j++){
+				if(data[i]==',')lst++,j=0;
+				else names[lst][j]=data[i];
+			}
+		}
+		else if(tmp[0]=='d'){
+			int i=0;
+			damage_status=0;
+			for(;data[i];i++)damage_status=damage_status*10+(data[i]^48);
+		}
+		else if(tmp[0]=='j'){
+			int i=0;
+			for(;data[i];i++)junxian[i]=data[i];
+		}
+		else if(tmp[0]=='l'){
+			int i=0;
+			level_=0;
+			for(;data[i];i++)level_=level_*10+(data[i]^48);
+		}
+		else if(tmp[0]=='e'){
+			int i=0;
+			expert_level=0;
+			for(;data[i];i++)expert_level=expert_level*10+(data[i]^48);
+		}
+		else if(tmp[0]=='T'){
+			int i=0;
+			Tingyuan_level=0;
+			for(;data[i];i++)Tingyuan_level=Tingyuan_level*10+(data[i]^48);
+		}
+		else if(tmp[0]=='x'){
+			int i=0;
+			xunhang_process=0;
+			for(;data[i];i++)xunhang_process=xunhang_process*10+(data[i]^48);
+		}
+	}
+	fclose(fp);
+}
+void Debug(){
+	printf("%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process);
+}
 char TextBuff[LINE][COLUMN],player[50],type[6];
 char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
 char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
-int line=0,choose,year,month,typeNumber,process[2];
+int line=0,choose,year,month,typeNumber;
 /*1.VIIA
  *2.VIIB
  *3.IXA
@@ -172,16 +247,6 @@ void introduce(char* type,int first)
 	clean();
 }
 
-void rest()
-{
-//等待施工
-}
-
-void theEnd()
-{
-//等待施工
-}
-
 void day(char* place,int times)
 {
     int pl;                             
@@ -313,7 +378,6 @@ void event1939(){
 	print("Wilson:这么心急？好！帝国正需要你这样的热心人才！\n");
 	print("你正是我所期盼的那样！");
 	print("这是你的潜艇军官证，好好保管！这是属于你的荣耀！\n\n");
-	int ID = rand() % (9000)+1000;
 
 	printf("**************************\n");
 	printf("**名字\tID\t服役时间**\n");
@@ -388,10 +452,12 @@ void event1939(){
 }
 void main() 
 {
+	read_data();
+	year=year_;month=month_;
  srand((unsigned)time(NULL));
 	print("————————————欢迎来到《潜杀猎航》————————————\n********************************************\n");
 	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明(姓名或ID):\n");
-	scanf("%s",&player);
+	scanf("%s",player);
 	if(isID(player))
 	{
 		printf("哨兵前台:你好,%s指挥官",player);sleep(1);
@@ -457,4 +523,3 @@ void main()
 		}
 	}
 }
-    
