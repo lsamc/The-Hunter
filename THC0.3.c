@@ -170,7 +170,7 @@ void event1939(int month){
 	printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n",type);sleep(3);
 	print("这艘船归你了我的艇长\n");
 	print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
-	printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n"，player);sleep(2);
+	printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
 	print("Eric,Leo,Tommy:Hi!");
 	print("Dr:我知道你记不下来那么多名字，你就叫我Dr吧，我是这艘艇的医生\n");
 	print("1WO:我是这艘艇的大副\n");
