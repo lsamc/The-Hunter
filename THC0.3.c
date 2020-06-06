@@ -119,7 +119,7 @@ void event1939(int month){
 	int ID = rand() % (9000)+999;
 
 	printf("****************************\n");
-	printf("**名字\tID\t服役时间\t\t**\n");
+	printf("**名字\tID\t服役时间\t**\n");
 	printf("**%s\t%d\t1939.%d\t**\n",player,ID,month);
 	printf("****************************\n");
 
