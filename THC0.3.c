@@ -70,7 +70,7 @@ void introduce(char* type,int year,int first){
 	if(first==1) goto loop3;
 
 
-	helploop:printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\t4.狼群战是什么\n5.综述\t6.没问题了\t更新中...");
+	helploop:printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\t4.狼群战是什么\n5.综述\t6.没问题了\t更新中...\n");
 	scanf("%d",&choose);
 	switch(choose)
 	{
@@ -118,10 +118,10 @@ void event1939(int month){
 	srand(time(0));
 	int ID = rand() % (9000)+999;
 
-	printf("****************************\n");
-	printf("**名字\tID\t服役时间\t**\n");
+	printf("**************************\n");
+	printf("**名字\tID\t服役时间**\n");
 	printf("**%s\t%d\t1939.%d\t**\n",player,ID,month);
-	printf("****************************\n");
+	printf("**************************\n");
 
 	print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
 	print("我:Heil Hitler!（高举左手）\n");
@@ -170,6 +170,7 @@ void event1939(int month){
 	printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n",type);sleep(3);
 	print("这艘船归你了我的艇长\n");
 	print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
+ clean();
 	printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
 	print("Eric,Leo,Tommy:Hi!");
 	print("Dr:我知道你记不下来那么多名字，你就叫我Dr吧，我是这艘艇的医生\n");
@@ -194,7 +195,7 @@ void event1939(int month){
 }
 void main() 
 {
-	print("————————————欢迎来到《潜杀猎航》————————————\n*********************************\n");
+	print("————————————欢迎来到《潜杀猎航》————————————\n********************************************\n");
 	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明(姓名或ID):\n");
 	scanf("%s",&player);
 	if(isID(player))
