@@ -148,12 +148,12 @@ void introduce(char* type,int first)
 		case 2:
 			{	
 				print("有护航的船只和护航舰队不是一回事，\n");
-	  	print("前者是你遭遇的普通船只的状态，后者是你遭遇了一个叫CONVOY 的东西，\n");
+	  			print("前者是你遭遇的普通船只的状态，后者是你遭遇了一个叫CONVOY 的东西，\n");
 				print("CONVOY 没有比较好地中文对应词，它的意思是大型的护航运输船队。\n");
 				print("两者在游戏中处理方式是不一样的。后者用 CONVOY护航舰队来代之以防混淆\n");
-    clean();
+    			clean();
 				print("与有护航船只和 convoy 护航舰队的遭遇一般而言是很危险的，尤其是当你决定近距离攻击（这时敌方的侦查先手于你的鱼雷）\n");
-			 print("护航敌军有一定几率侦查到你的潜艇，一旦被侦查，你的潜艇会被反复的深水攻击直到你逃离他们的侦查范围。\n");
+				print("护航敌军有一定几率侦查到你的潜艇，一旦被侦查，你的潜艇会被反复的深水攻击直到你逃离他们的侦查范围。\n");
 				print("你也可以试着深潜来摆脱追踪。但潜艇和人员的受伤会让你更加危险。\n");
 				goto helploop;
 			}
@@ -175,26 +175,25 @@ void introduce(char* type,int first)
 			}
 		loop3:case 5:
 			{
-    switch(typeNumber)
-    {
-        case 1:
-            {
-                print("VIIA是德军第一批潜艇型号，乘员44人，\n");
-	               print("共携带鱼雷11发，前鱼雷管4发，前鱼雷装填区5发，后鱼雷管1发，后鱼雷装填区1发。\n");
-                break;
-            }
-        //其他型号
-        default:printf("型号错误");
-    }
+				switch(typeNumber)
+				{
+					case 1:
+						{
+							print("VIIA是德军第一批潜艇型号，乘员44人，\n");
+							   print("共携带鱼雷11发，前鱼雷管4发，前鱼雷装填区5发，后鱼雷管1发，后鱼雷装填区1发。\n");
+							break;
+						}
+					//其他型号
+					default:printf("型号错误");
+				}
     
-    
-    clean();
+				clean();
 				print("作为一个德军 U 型潜艇的指挥官，你的目的在于实施大量的巡航并且击沉敌舰。\n");
 				print("每一次出击是否成功由你击沉的总吨位决定，进而决定你的升职和艇员的经验积累，最终可以获得你垂涎已久的骑士铁十字勋章。\n");
 				print("你的潜艇将面临无情的危险，因为巡航任务会变得愈加的艰难（包括比斯开湾和直布罗陀海峡）。\n");
 				print("你最终的成功很大程度上取决于你职业生涯中巡逻时刻所做的每一个抉择。\n");
 				print("游戏最终的胜利等级取决于你总共击沉的吨位数，如果你在一次行动中死了，那就死后立即结算吧。\n");
-    clean();
+				clean();
 				print("一般而言，剧本围绕实行大量的巡逻任务，解决遭遇战，直到安全的返回港口为止。\n");
 				print("每次任务完成，你用航海日志评估自己所取得的成就，决定自己的升职与奖励，以及艇员的晋升。\n");
 				print("两次任务之间，潜艇会被修正一个或几个月，这要视受损情况而决定。\n");
@@ -202,14 +201,15 @@ void introduce(char* type,int first)
 				print("想要了解更多吗？你在以后回港时也可以输入'help'来查看帮助\n");
 				goto helploop;
 			}
-  case 6:{
-    print("Oberleutnant起始阶，没能力\n");
-print("Kapitänleutnant第二阶，每次分配任务时:\n你可以有1/6的几率你可以自己选任务，除非你被永久性地指配到了北极或地中海");
-print("Korvettenkapitän第三阶，同上，但是几率变成1/3。\n此外因为你比较有权利，可以让工人修潜艇修的更快一点，提前潜艇的一个月出港\n（但是如果是1-2个月或者五个月以上，这个能力失效）");
-print("Fregattenkapitän第四阶，同上，但是任务分配几率变成1/2你也有修潜艇 Buff\n");
-print("KapitänzurSee第五阶你获得了荣耀和更大的办公室\n");
-goto helploop;
-}
+  		case 6:{
+				print("Oberleutnant起始阶，没能力\n");
+				print("Kapitänleutnant第二阶，每次分配任务时:\n你可以有1/6的几率你可以自己选任务，除非你被永久性地指配到了北极或地中海");
+				print("Korvettenkapitän第三阶，同上，但是几率变成1/3。\n此外因为你比较有权利，可以让工人修潜艇修的更快一点，提前潜艇的一个月出港\n");
+	  			print("（但是如果是1-2个月或者五个月以上，这个能力失效）\n");
+				print("Fregattenkapitän第四阶，同上，但是任务分配几率变成1/2你也有修潜艇 Buff\n");
+				print("KapitänzurSee第五阶你获得了荣耀和更大的办公室\n");
+				goto helploop;
+		}
 		default:
 			{
 				break;
@@ -251,6 +251,43 @@ void day(char* place,int times)
     {
         case 10:
             {
+				break;
+            }
+		case 9:
+            {
+				break;
+            }
+		case 8:
+            {
+				break;
+            }
+		case 7:
+            {
+				break;
+            }
+		case 6:
+            {
+				break;
+            }
+		case 5:
+            {
+				break;
+            }
+		case 4:
+            {
+				break;
+            }
+		case 3:
+            {
+				break;
+            }
+		case 2:
+            {
+				break;
+            }
+		case 1:
+            {
+				break;
             }
     }
 }
@@ -258,6 +295,11 @@ void day(char* place,int times)
 void promotionKmdt()
 {
     
+}
+
+void promotion()
+{
+	
 }
 
 void rest(){
@@ -396,12 +438,12 @@ void main()
 		if(0)
   {
 loop1: clrscr();
-printf("Wilson:哦，看清楚要求！现在已经是1939年9月了，战局万变，你不能在1943年6月后才来为帝国效力\n(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");}		
+		printf("Wilson:哦，看清楚要求！现在已经是1939年9月了，战局万变，你不能在1943年6月后才来为帝国效力\n(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");}		
 		print("年份？（1939-1943）:");decreaseLine();
 		scanf("%d",&year);
 		print("月份？（1-12,注意从1939年9月开始，至1943年6月结束）:");decreaseLine();
 		scanf("%d",&month);
-promotionMonth=month;
+		promotionMonth=month;
 
 		clrscr();
 		printBuff();
@@ -412,7 +454,8 @@ promotionMonth=month;
 			case 1939: 
 				{
 					if(month<9||month>12)goto loop1;
-					print("Wilson:这么心急？好！帝国正需要你这样的热心人才！现在，编制人数不多，你直接被任命为Kapitänleutnant.\n趁着英国佬还没什么对我们的准备，我们想想办法好好干他一炮！");
+					print("Wilson:这么心急？好！帝国正需要你这样的热心人才！现在，编制人数不多，你直接被任命为Kapitänleutnant.\n");
+					print("趁着英国佬还没什么对我们的准备，我们想想办法好好干他一炮！");
 					break;
 				}
 			case 1940: 
