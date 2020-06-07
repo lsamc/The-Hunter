@@ -8,12 +8,11 @@
 #define id_ id
 #define year_ year
 #define month_ month
-#define level_ rank
 
-int tons=0,damage_status,level,expert_level,Tingyuan_level,xunhang_process;
-char names[110][110],junxian[110];
+int tons=0,damage_status,expert_level,Tingyuan_level,xunhang_process;
+char names[110][110],junxian[20];
 
-char TextBuff[LINE][COLUMN],player[50],type[6],;
+char TextBuff[LINE][COLUMN],player[50],type[6];
 char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
 char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
 int line=0,choose,year,month,typeNumber,id,process[2];
@@ -61,7 +60,6 @@ void write_data()
 	for(;names[i][0];i++) fprintf(fp,"%s%c",names[i],"\n,"[names[i+1][0]]);
 	fprintf(fp,"damage_status: %d\n",damage_status);
 	fprintf(fp,"junxian: %s\n",junxian);
-	fprintf(fp,"level: %d\n",level_);
 	fprintf(fp,"expert_level: %d\n",expert_level);
 	fprintf(fp,"Tingyuan_level: %d\n",Tingyuan_level);
 	fprintf(fp,"xunhang_process: %d\n",xunhang_process);
@@ -74,7 +72,7 @@ void read_data(char *PATH)
 	if(fp==NULL){printf("数据库错误！");return;}
 	char tmp[110],data[110];
 	int nmsl=0;
-	while(nmsl<11)
+	while(nmsl<9)
 	{
 		nmsl++;
 		fscanf(fp,"%s",tmp);
@@ -120,12 +118,6 @@ void read_data(char *PATH)
 			int i=0;
 			for(;data[i];i++)junxian[i]=data[i];
 		}
-		else if(tmp[0]=='l')
-		{
-			int i=0;
-			level_=0;
-			for(;data[i];i++)level_=level_*10+(data[i]^48);
-		}
 		else if(tmp[0]=='e')
 		{
 			int i=0;
@@ -149,9 +141,9 @@ void read_data(char *PATH)
 }
 void Debug()
 {
-	printf("%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process);
+	printf("%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",id_,year_,month_,tons,damage_status,expert_level,Tingyuan_level,xunhang_process);
 }
-
+*
 int roll(int dies)
 {
     int re=0;
@@ -233,7 +225,7 @@ void introduce(char* type,int first)
 	
 	helploop:clean();	
 	
-	printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\t4.狼群战是什么\n5.综述\t6.没问题了\t更新中...");
+	printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\t4.狼群战是什么\n5.综述\t6.关于军衔\t7.没问题了\t更新中...");
 	scanf("%d",&choose);
 	switch(choose)
 	{
@@ -303,6 +295,17 @@ void introduce(char* type,int first)
 				print("想要了解更多吗？你在以后回港时也可以输入'help'来查看帮助\n");
 				goto helploop;
 			}
+  case 6:{
+    print("Oberleutnant起始阶，
+没能力
+\n");
+print("Kapitänleutnant第二阶，每次分配任务时:\n你可以有1/6的几率你可以自己选任务，除非你被永久性地指配到了北极或地中海");
+
+print("Korvettenkapitän第三阶，同上，但是几率变成1/3。\n此外因为你比较有权利，可以让工人修潜艇修的更快一点，提前潜艇的一个月出港\n（但是如果是1-2个月或者五个月以上，这个能力失效）");
+print("Fregattenkapitän第四阶，同上，但是任务分配几率变成1/2你也有修潜艇 Buff
+\n");
+print("KapitänzurSee第五阶你获得了荣耀和更大的办公室\n");
+}
 		default:
 			{
 				break;
@@ -458,11 +461,12 @@ void main()
 
 		char *PATH;
 		PATH=player;
-		for(;PATH[i];i++);
-		PATH[i]='.';
-		PATH[i+1]='t';
-		PATH[i+2]='x';
-		PATH[i+3]='t';
+  int it=0;
+		for(;PATH[it];it++);
+		PATH[it]='.';
+		PATH[it+1]='t';
+		PATH[it+2]='x';
+		PATH[it+3]='t';
 		read_data(PATH);
 		printf("哨兵前台:你好,%s指挥官",player);sleep(1);
 		//working...
@@ -490,50 +494,61 @@ void main()
 		sleep(1);
 		print("你想什么时间加入我们潜艇计划？（1939.09-1943.06）\n");
 		
-		if(0)loop1: printf("(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");		
+		if(0)
+  {
+loop1: clrscr();
+printf("Wilson:哦，看清楚要求！现在已经是1939年9月了，战局万变，你不能在1943年6月后才来为帝国效力\n(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");}		
 		print("年份？（1939-1943）:");decreaseLine();
 		scanf("%d",&year);
-		print("\n月份？（1-12,注意从1939年9月开始，至1943年6月结束）:");decreaseLine();
+		print("月份？（1-12,注意从1939年9月开始，至1943年6月结束）:");decreaseLine();
 		scanf("%d",&month);
 
 		clrscr();
 		printBuff();
+  printf("我:我打算%d年%d月在这里服役\n",year,month);sleep(1);
 		
 		switch(year)
 		{
 			case 1939: 
 				{
 					if(month<9||month>12)goto loop1;
-					printf("我:我打算1939年%d月在这里服役\n",month);sleep(1);
-					print("Wilson:这么心急？好！帝国正需要你这样的热心人才！\n");
+					print("Wilson:这么心急？好！帝国正需要你这样的热心人才！现在，编制人数不多，你直接被任命为Kapitänleutnant.\n趁着英国佬还没什么对我们的准备，我们想想办法好好干他一炮！");
 					break;
 				}
 			case 1940: 
 				{
 					if(month<1||month>12)goto loop1;
+     print("Wilson:也行，那么帝国潜艇部队明年等候你的到来!\n");
 					break;
 				}
 			case 1941: 
 				{
 					if(month<1||month>12)goto loop1;
+     print("Wilson:哈？想等我们有了更成熟的装备和技巧再来？\n不愧是你，成熟而又稳重，对吧？");
 					break;
 				}
 			case 1942: 
 				{
 					if(month<1||month>12)goto loop1;
+     print("最近手上有些项目忙不过来？嗯，你要记住，帝国利益要放在第一位！\n好机会可不是年年有的。你有点保守？好吧，我们部队会给你展现他的实力\n");
 					break;
 				}
 			case 1943: 
 				{
 					if(month>6||month>12)goto loop1;
+     printf("有点过于慎重了？我们没法预测到那时的战局，祝我们共同好运吧！\n");
 					break;
 				}
 			default: goto loop1;
 		}
 		
 		
-		print("你正是我所期盼的那样！");
-		
+		print("你正是我所期盼的那样！\n");
+
+  int ra=roll(1);
+  if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6))strcpy(junxian,"Kapitänleutnant");
+		else strcpy(junxian,"Oberleutnant");
+
 		id=rand()%900+100;
 		
 		show_card();		//创档
@@ -645,6 +660,7 @@ void main()
 		print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
 		printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
 		print("Eric,Leo,Tommy:Hi!\n");
+
 		print("Dr:我知道你记不下来那么多名字，你就叫我Dr吧，我是这艘艇的医生\n");
 		print("1WO:我是这艘艇的大副\n");
 		print("2WO:我是这艘艇的二副\n");
