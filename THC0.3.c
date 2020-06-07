@@ -10,10 +10,10 @@
 #define month_ month
 #define level_ rank
 
-int tons,damage_status,level,expert_level,Tingyuan_level,xunhang_process;
+int tons=0,damage_status,level,expert_level,Tingyuan_level,xunhang_process;
 char names[110][110],junxian[110];
 
-char TextBuff[LINE][COLUMN],player[50],type[6];
+char TextBuff[LINE][COLUMN],player[50],type[6],;
 char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
 char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
 int line=0,choose,year,month,typeNumber,id,rank,process[2];
@@ -41,8 +41,17 @@ void create_text(int target)
 void write_data()
 {
 	FILE *fp;
-	fp=fopen("1.txt", "r+");
-	fprintf(fp,"ID: %d\n",id_);
+	
+	char *ID;
+	int i;
+	itoa(id,ID,10);
+	for(;ID[i];i++);
+	ID[i]='.';
+	ID[i+1]='t';
+	ID[i+2]='x';
+	ID[i+3]='t';
+	
+	fp=fopen(ID, "r+");
 	fprintf(fp,"year: %d\n",year_);
 	fprintf(fp,"month: %d\n",month_);
 	fprintf(fp,"tons: %d\n",tons);
@@ -57,10 +66,10 @@ void write_data()
 	fprintf(fp,"xunhang_process: %d\n",xunhang_process);
 	fclose(fp);
 }
-void read_data()
+void read_data(char *PATH)
 {
 	FILE *fp;
-	fp=fopen("1.txt", "r+");
+	fp=fopen(PATH, "r+");
 	if(fp==NULL){printf("数据库错误！");return;}
 	char tmp[110],data[110];
 	int nmsl=0;
@@ -70,13 +79,8 @@ void read_data()
 		fscanf(fp,"%s",tmp);
 		fscanf(fp,"%s",data);
 		if(!tmp[0]) break;
-		if(tmp[0]=='I')
-		{
-			int i=0;
-			id_=0;
-			for(;data[i];i++)id_=id_*10+(data[i]^48);
-		}
-		else if(tmp[0]=='y')
+		
+		if(tmp[0]=='y')
 		{
 			int i=0;
 			year_=0;
@@ -447,6 +451,8 @@ void event1939(){
 	printf("**************************\n");
  	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
 	create_text(id);
+	write_data();
+	
 	sleep(5);
 	print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
 	print("我:Heil Hitler!（高举左手）\n");
@@ -522,7 +528,15 @@ void main()
 	scanf("%s",player);
 	if(isID(player))
 	{
+
+		char *PATH;
+		PATH=player;
+		for(;PATH[i];i++);
+		PATH[i]='.';PATH[i+1]='t';PATH[i+2]='x';
+		PATH[i+3]='t';
+		read_data(PATH);
 		printf("哨兵前台:你好,%s指挥官",player);sleep(1);
+		
 
 	} 
 
