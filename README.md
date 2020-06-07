@@ -16,3 +16,5 @@ id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_p
 具体：damage_status为多元数组，expert_level为4元数组，xunhang_process为2元数组
 另外，需要增加player（玩家姓名字段），person_name（人物名称，后期使用，多元数组），join_time服役时间,missionName,missionType，award,achievement(这是个多元数组）字段
 lsamc已更新文件查找，文件创建，删除数据库ID字段
+
+2020/06/08:BOOX不能进行FILE操作，存档系统大改：退出时程序输出加密存档码，并以此在下次体验时解密读档
