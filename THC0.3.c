@@ -5,8 +5,27 @@
 
 #define LINE 20
 #define COLUMN 150
-int id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process;
+#define id_ id
+#define year_ year
+#define month_ month
+#define level_ rank
+
+int tons,damage_status,level,expert_level,Tingyuan_level,xunhang_process;
 char names[110][110],junxian[110];
+
+char TextBuff[LINE][COLUMN],player[50],type[6];
+char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
+char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
+int line=0,choose,year,month,typeNumber,id,rank;
+/*1.VIIA
+ *2.VIIB
+ *3.IXA
+ *4.IXB
+ *5.VIIC
+ *6.IXC
+ *7.VIID
+ *8.VIICFk
+*/
 void write_data(){
 	FILE *fp;
 	fp=fopen("1.txt", "r+");
@@ -99,19 +118,6 @@ void read_data(){
 void Debug(){
 	printf("%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process);
 }
-char TextBuff[LINE][COLUMN],player[50],type[6];
-char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
-char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
-int line=0,choose,year,month,typeNumber;
-/*1.VIIA
- *2.VIIB
- *3.IXA
- *4.IXB
- *5.VIIC
- *6.IXC
- *7.VIID
- *8.VIICFk
-*/
 
 int roll(int dies)
 {
@@ -397,9 +403,10 @@ void event1939(){
 	print("你正是我所期盼的那样！");
 	print("这是你的潜艇军官证，好好保管！这是属于你的荣耀！\n\n");
 
+	id=rand()%900+100;
 	printf("**************************\n");
 	printf("**名字\tID\t服役时间**\n");
-	printf("**%s\t%d\t1939.%d\t**\n",player,ID,month);
+	printf("**%s\t%d\t1939.%d\t**\n",player,id,month);
 	printf("**************************\n");
  printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
 	sleep(5);
