@@ -26,7 +26,20 @@ int line=0,choose,year,month,typeNumber,id,rank,process[2];
  *7.VIID
  *8.VIICFk
 */
-void write_data(){
+void create_text(int target)
+{
+	char wcnm[110];
+	FILE *fnmdp;
+	itoa(target,wcnm,10);
+	int wei=0;
+	for(;wcnm[wei];wei++);
+	wcnm[wei]='.';wcnm[wei+1]='t';wcnm[wei+2]='x';wcnm[wei+3]='t';
+	fnmdp=fopen(wcnm,"w+");
+	fclose(fnmdp);
+}
+
+void write_data()
+{
 	FILE *fp;
 	fp=fopen("1.txt", "r+");
 	fprintf(fp,"ID: %d\n",id_);
@@ -44,70 +57,84 @@ void write_data(){
 	fprintf(fp,"xunhang_process: %d\n",xunhang_process);
 	fclose(fp);
 }
-void read_data(){
+void read_data()
+{
 	FILE *fp;
 	fp=fopen("1.txt", "r+");
 	if(fp==NULL){printf("数据库错误！");return;}
 	char tmp[110],data[110];
 	int nmsl=0;
-	while(nmsl<11){
+	while(nmsl<11)
+	{
 		nmsl++;
 		fscanf(fp,"%s",tmp);
 		fscanf(fp,"%s",data);
 		if(!tmp[0]) break;
-		if(tmp[0]=='I'){
+		if(tmp[0]=='I')
+		{
 			int i=0;
 			id_=0;
 			for(;data[i];i++)id_=id_*10+(data[i]^48);
 		}
-		else if(tmp[0]=='y'){
+		else if(tmp[0]=='y')
+		{
 			int i=0;
 			year_=0;
 			for(;data[i];i++)year_=year_*10+(data[i]^48);
 		}
-		else if(tmp[0]=='m'){
+		else if(tmp[0]=='m')
+		{
 			int i=0;
 			month_=0;
 			for(;data[i];i++)month_=month_*10+(data[i]^48);
 		}
-		else if(tmp[0]=='t'){
+		else if(tmp[0]=='t')
+		{
 			int i=0;
 			tons=0;
 			for(;data[i];i++)tons=tons*10+(data[i]^48);
 		}
-		else if(tmp[0]=='n'){
+		else if(tmp[0]=='n')
+		{
 			int lst=0;
 			int i=0,j=0;
-			for(;data[i];i++,j++){
+			for(;data[i];i++,j++)
+			{
 				if(data[i]==',')lst++,j=0;
 				else names[lst][j]=data[i];
 			}
 		}
-		else if(tmp[0]=='d'){
+		else if(tmp[0]=='d')
+		{
 			int i=0;
 			damage_status=0;
 			for(;data[i];i++)damage_status=damage_status*10+(data[i]^48);
 		}
-		else if(tmp[0]=='j'){
+		else if(tmp[0]=='j')
+		{
 			int i=0;
 			for(;data[i];i++)junxian[i]=data[i];
 		}
-		else if(tmp[0]=='l'){
+		else if(tmp[0]=='l')
+		{
 			int i=0;
 			level_=0;
 			for(;data[i];i++)level_=level_*10+(data[i]^48);
 		}
-		else if(tmp[0]=='e'){
+		else if(tmp[0]=='e')
+		{
 			int i=0;
 			expert_level=0;
 			for(;data[i];i++)expert_level=expert_level*10+(data[i]^48);
 		}
-		else if(tmp[0]=='T'){
+		else if(tmp[0]=='T')
+		{
 			int i=0;
 			Tingyuan_level=0;
 			for(;data[i];i++)Tingyuan_level=Tingyuan_level*10+(data[i]^48);
 		}
-		else if(tmp[0]=='x'){
+		else if(tmp[0]=='x')
+		{
 			int i=0;
 			xunhang_process=0;
 			for(;data[i];i++)xunhang_process=xunhang_process*10+(data[i]^48);
@@ -115,7 +142,8 @@ void read_data(){
 	}
 	fclose(fp);
 }
-void Debug(){
+void Debug()
+{
 	printf("%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process);
 }
 
@@ -417,9 +445,10 @@ void event1939(){
 	printf("**名字\tID\t服役时间**\n");
 	printf("**%s\t%d\t1939.%d\t**\n",player,id,month);
 	printf("**************************\n");
- printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
+ 	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
+	create_text(id);
 	sleep(5);
- print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
+	print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
 	print("我:Heil Hitler!（高举左手）\n");
 	clean();
 	if(month>9) 
@@ -486,9 +515,8 @@ void event1939(){
 }
 void main() 
 {
-	read_data();
-	year=year_;month=month_;
- srand((unsigned)time(NULL));
+
+ 	srand((unsigned)time(NULL));
 	print("————————————欢迎来到《潜杀猎航》————————————\n********************************************\n");
 	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明(姓名或ID):\n");
 	scanf("%s",player);
