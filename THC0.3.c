@@ -305,6 +305,15 @@ void day(char* place,int times)
             }
     }
 }
+
+void rest(){
+	
+}
+
+void theEnd(){
+	
+}
+
 void execMission(int mN,int mT)
 {
     switch(mN)
