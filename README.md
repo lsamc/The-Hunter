@@ -11,3 +11,7 @@ working...
 **注意！！任何一个需要存档的地方都需要调用write_data()！！！**  
 **一共有这么几个参数，需要用的时候直接调用即可，注意下划线！！！！**  
 id_,year_,month_,tons,damage_status,level_,expert_level,Tingyuan_level,xunhang_process
+
+目标：更新数据库部分字段改为数组，更新write_data和read_data
+具体：damage_status为多元数组，expert_level为4元数组，xunhang_process为2元数组
+另外，需要增加player（玩家姓名字段），lsamc已更新文件查找，文件创建，删除数据库ID字段
