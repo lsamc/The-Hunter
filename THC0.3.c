@@ -16,7 +16,7 @@ char names[110][110],junxian[110];
 char TextBuff[LINE][COLUMN],player[50],type[6];
 char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
 char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
-int line=0,choose,year,month,typeNumber,id,rank;
+int line=0,choose,year,month,typeNumber,id,rank,process[2];
 /*1.VIIA
  *2.VIIB
  *3.IXA
