@@ -26,6 +26,30 @@ int line=0,choose,year,month,typeNumber,id,process[2];
  *7.VIID
  *8.VIICFk
 */
+char* itoa(int value, char* result, int base) {
+		// check that the base if valid
+		if (base < 2 || base > 36) { *result = '\0'; return result; }
+
+		char* ptr = result, *ptr1 = result, tmp_char;
+		int tmp_value;
+
+		do {
+			tmp_value = value;
+			value /= base;
+			*ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz" [35 + (tmp_value - value * base)];
+		} while ( value );
+
+		// Apply negative sign
+		if (tmp_value < 0) *ptr++ = '-';
+		*ptr-- = '\0';
+		while(ptr1 < ptr) {
+			tmp_char = *ptr;
+			*ptr--= *ptr1;
+			*ptr1++ = tmp_char;
+		}
+		return result;
+	}
+
 void create_text(int target)
 {
 	char wcnm[110];
@@ -43,13 +67,13 @@ void write_data()
 	FILE *fp;
 	
 	char *ID;
-	int i;
+	int ij;
 	itoa(id,ID,10);
-	for(;ID[i];i++);
-	ID[i]='.';
-	ID[i+1]='t';
-	ID[i+2]='x';
-	ID[i+3]='t';
+	for(;ID[ij];ij++);
+	ID[ij]='.';
+	ID[ij+1]='t';
+	ID[ij+2]='x';
+	ID[ij+3]='t';
 	
 	fp=fopen(ID, "r+");
 	fprintf(fp,"year: %d\n",year_);
@@ -143,7 +167,7 @@ void Debug()
 {
 	printf("%d\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n",id_,year_,month_,tons,damage_status,expert_level,Tingyuan_level,xunhang_process);
 }
-*
+
 int roll(int dies)
 {
     int re=0;
@@ -213,10 +237,10 @@ void clean()
 void show_card(){
 	print("这是你的潜艇军官证，好好保管！这是属于你的荣耀！\n\n");
 
-	printf("**********************************\n");
-	printf("**名字\tID\t军衔\t服役时间**\n");
-	printf("**%s\t%d\t%s\t%d.%d\t**\n",player,id,junxian,year,month);
-	printf("**********************************\n");
+	printf("******************************************\n");
+	printf("**名字\tID\t军衔\t\t服役时间**\n");
+	printf("**%s\t%d\t%s\t%d.%d\t\t**\n",player,id,junxian,year,month);
+	printf("******************************************\n");
 	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
 }
 void introduce(char* type,int first)
@@ -296,15 +320,12 @@ void introduce(char* type,int first)
 				goto helploop;
 			}
   case 6:{
-    print("Oberleutnant起始阶，
-没能力
-\n");
+    print("Oberleutnant起始阶，没能力\n");
 print("Kapitänleutnant第二阶，每次分配任务时:\n你可以有1/6的几率你可以自己选任务，除非你被永久性地指配到了北极或地中海");
-
 print("Korvettenkapitän第三阶，同上，但是几率变成1/3。\n此外因为你比较有权利，可以让工人修潜艇修的更快一点，提前潜艇的一个月出港\n（但是如果是1-2个月或者五个月以上，这个能力失效）");
-print("Fregattenkapitän第四阶，同上，但是任务分配几率变成1/2你也有修潜艇 Buff
-\n");
+print("Fregattenkapitän第四阶，同上，但是任务分配几率变成1/2你也有修潜艇 Buff\n");
 print("KapitänzurSee第五阶你获得了荣耀和更大的办公室\n");
+goto helploop;
 }
 		default:
 			{
@@ -544,12 +565,10 @@ printf("Wilson:哦，看清楚要求！现在已经是1939年9月了，战局万
 		
 		
 		print("你正是我所期盼的那样！\n");
+    strcpy(junxian,"---");
+  
 
-  int ra=roll(1);
-  if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6))strcpy(junxian,"Kapitänleutnant");
-		else strcpy(junxian,"Oberleutnant");
-
-		id=rand()%900+100;
+		id=rand()%9000+1000;
 		
 		show_card();		//创档
 		create_text(id);
@@ -654,8 +673,13 @@ printf("Wilson:哦，看清楚要求！现在已经是1939年9月了，战局万
 		clrscr();
 		printBuff();
 		printf("我：我要Type %s！这艘怎么样？(指向旁边的一艘U艇）\n",type);sleep(2);
-		printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n",type);sleep(3);
+		printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n顺带说一句，IX系列指挥官都是Kapitänleutnant喔\n",type);sleep(3);
 		print("这艘船归你了我的艇长\n");
+
+  int ra=roll(1);
+  if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6)||type[0]=='I')strcpy(junxian,"Kapitänleutnant");
+		else strcpy(junxian,"Oberleutnant");
+show_card();
 	 	clean();
 		print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
 		printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
@@ -682,3 +706,4 @@ printf("Wilson:哦，看清楚要求！现在已经是1939年9月了，战局万
 		theEnd();
 	}
 }
+    
