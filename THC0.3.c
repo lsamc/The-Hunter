@@ -16,8 +16,9 @@ char names[110][110],junxian[110];
 char TextBuff[LINE][COLUMN],player[50],type[6],;
 char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
 char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
-int line=0,choose,year,month,typeNumber,id,rank,process[2];
-/*1.VIIA
+int line=0,choose,year,month,typeNumber,id,process[2];
+/*typrNumber
+ *1.VIIA
  *2.VIIB
  *3.IXA
  *4.IXB
@@ -217,6 +218,15 @@ void clean()
 	line=0;
 }
 
+void show_card(){
+	print("这是你的潜艇军官证，好好保管！这是属于你的荣耀！\n\n");
+
+	printf("**********************************\n");
+	printf("**名字\tID\t军衔\t服役时间**\n");
+	printf("**%s\t%d\t%s\t%d.%d\t**\n",player,id,junxian,year,month);
+	printf("**********************************\n");
+	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
+}
 void introduce(char* type,int first)
 {
 	if(first==1) goto loop3;
@@ -436,89 +446,6 @@ void patrol()
         rest();
 }
 
-void event1939(){
-	clrscr();
-	printBuff();
-	printf("我:我打算1939年%d月在这里服役\n",month);sleep(1);
-	print("Wilson:这么心急？好！帝国正需要你这样的热心人才！\n");
-	print("你正是我所期盼的那样！");
-	print("这是你的潜艇军官证，好好保管！这是属于你的荣耀！\n\n");
-
-	id=rand()%900+100;
-	printf("**************************\n");
-	printf("**名字\tID\t服役时间**\n");
-	printf("**%s\t%d\t1939.%d\t**\n",player,id,month);
-	printf("**************************\n");
- 	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
-	create_text(id);
-	write_data();
-	
-	sleep(5);
-	print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
-	print("我:Heil Hitler!（高举左手）\n");
-	clean();
-	if(month>9) 
-	{
-		printf("%d",month-9);
-		printf("个月后...\n");
-		sleep(3);
-	}
-	if(0) loop2: print("(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");
-	print("————————————（难得的晴天）船坞里————————————\n");
-	print("Wilson：准备好了，我的朋友？选一艘你喜欢的潜艇吧！\n");
-	print("船坞里有三种型号的潜艇：VIIA，VIIB，IXA\n");
-	sleep(1);
-	print("(1.VIIA	2.VIIB	3.IXA)\n");decreaseLine();
-	scanf("%d",&choose);
-	switch(choose) {
-		case 1: {
-			strcpy(type,"VIIA");
-   typeNumber=1;
-			break;
-		}
-		case 2: {
-			strcpy(type,"VIIB");
-   typeNumber=2;
-			break;
-		}
-		case 3: {
-   strcpy(type,"IXA");
-   typeNumber=3;
-		 break;
-		}
-		default: {
-			goto loop2;
-		}
-	}
-	clrscr();
-	printBuff();
-	printf("我：我要Type %s！这艘怎么样？(指向旁边的一艘U艇）\n",type);sleep(2);
-	printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n",type);sleep(3);
-	print("这艘船归你了我的艇长\n");
- clean();
-	print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
-	printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
-	print("Eric,Leo,Tommy:Hi!\n");
-	print("Dr:我知道你记不下来那么多名字，你就叫我Dr吧，我是这艘艇的医生\n");
-	print("1WO:我是这艘艇的大副\n");
-	print("2WO:我是这艘艇的二副\n");
-	print("LI:我是这艘艇的随舰工程师\n");
-	print("Wilson:够多人了？要不是有那4个士官长，你还需要和39个其他艇员打招呼！\n");
-	print("好了别担心，你们航程上有的是时间互相熟悉！\n");
-	print("这些将是要和你一起战斗的伙伴,记住，就连最基础的每一个艇员，都将是你们在大西洋底生存的保障\n");
-	printf("好了我的朋友，出征吧，祝你好运！\n");
-	print("众：Heil Hitler！\n");
-	clean();
-
-	print("————————————潜艇里————————————\n");
-	print("Eric:先生，请允许我来为您介绍一下这艘艇。\n");
-	print("我：好，你说吧。\n");
-	introduce(type,1);
-	print("我：好吧，我清楚了，起航！");
-
-	do{patrol();}while(year<1943||((year==1943)&&(month<7)));
- theEnd();
-}
 void main() 
 {
 
@@ -532,11 +459,13 @@ void main()
 		char *PATH;
 		PATH=player;
 		for(;PATH[i];i++);
-		PATH[i]='.';PATH[i+1]='t';PATH[i+2]='x';
+		PATH[i]='.';
+		PATH[i+1]='t';
+		PATH[i+2]='x';
 		PATH[i+3]='t';
 		read_data(PATH);
 		printf("哨兵前台:你好,%s指挥官",player);sleep(1);
-		
+		//working...
 
 	} 
 
@@ -567,12 +496,16 @@ void main()
 		print("\n月份？（1-12,注意从1939年9月开始，至1943年6月结束）:");decreaseLine();
 		scanf("%d",&month);
 
+		clrscr();
+		printBuff();
+		
 		switch(year)
 		{
 			case 1939: 
 				{
 					if(month<9||month>12)goto loop1;
-					event1939();
+					printf("我:我打算1939年%d月在这里服役\n",month);sleep(1);
+					print("Wilson:这么心急？好！帝国正需要你这样的热心人才！\n");
 					break;
 				}
 			case 1940: 
@@ -597,5 +530,139 @@ void main()
 				}
 			default: goto loop1;
 		}
+		
+		
+		print("你正是我所期盼的那样！");
+		
+		id=rand()%900+100;
+		
+		show_card();		//创档
+		create_text(id);
+		write_data();
+
+		sleep(5);
+		//print("那么，稍作休整，就出征吧。帝国以你为傲！\n");
+		print("我:Heil Hitler!（高举左手）\n");
+		clean();
+		
+		if(year==1939&&month>9)printf("%d个月后...\n",month-9);
+		else if(year==1940&&month<9)printf("%d个月后...\n",month+3);
+		else if(month>9)printf("%d年%d个月后...\n",year-1939,month-9);
+		else if(month<9)printf("%d年%d个月后...\n",year-1940,month+3);
+		else if(year!=1939)printf("%d年后...\n",year-1939);
+		else printf("程序故障");
+		
+		if(year>1939||month>9)sleep(3);
+		if(0) loop2: print("(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");
+		print("————————————（难得的晴天）船坞里————————————\n");
+		print("Wilson：准备好了，我的朋友？选一艘你喜欢的潜艇吧！\n");
+		print("船坞里有几种型号的潜艇:VIIA,VIIB,IXA");		//潜艇型号随时间更新
+		if(year>1940||(year==1940&&month>3))print(",IXB");
+		if(year>1940||(year==1940&&month>9))print(",VIIC");
+		if(year>1941||(year==1941&&month>4))print(",IXC");
+		if(year>1941)print(",VIID ");
+		if(year==1943&&month>4)print(",VIICFk");
+		print("\n");
+		sleep(1);
+		
+		print("1.VIIA 2.VIIB 3.IXA ");
+		if(year>1940||(year==1940&&month>3))print("4.IXB ");
+		if(year>1940||(year==1940&&month>9))print("5.VIIC ");
+		if(year>1941||(year==1941&&month>4))print("6.IXC ");
+		if(year>1941)print("7.VIID ");
+		if(year==1943&&month>4)print("8.VIICFk");
+		print("\n");
+		//decreaseLine();视情况使用
+		decreaseLine();
+		
+		scanf("%d",&choose);
+		switch(choose) 
+		{
+			case 1: 
+			{
+				 strcpy(type,"VIIA");
+	  			 typeNumber=1;
+				 break;
+			}
+			case 2: 
+			{
+				 strcpy(type,"VIIB");
+	  			 typeNumber=2;
+				 break;
+			}
+			case 3: 
+			{
+				 strcpy(type,"IXA");
+				 typeNumber=3;
+			 	 break;
+			}
+			case 4: 
+			{
+				if(!(year>1940||(year==1940&&month>3)))goto loop2;
+				strcpy(type,"IXB");
+				typeNumber=4;
+			 	break;
+			}
+			case 5: 
+			{
+				if(!(year>1940||(year==1940&&month>9)))goto loop2;
+				 strcpy(type,"VIIC");
+				 typeNumber=5;
+			 	 break;
+			}
+			case 6: 
+			{
+				if(!(year>1941||(year==1941&&month>4)))goto loop2;
+				 strcpy(type,"IXC");
+				 typeNumber=6;
+			 	 break;
+			}
+			case 7: 
+			{
+				if(!(year>1941))goto loop2;
+				 strcpy(type,"VIID");
+				 typeNumber=7;
+			 	 break;
+			}
+			case 8: 
+			{
+				if(!(year==1943&&month>4))goto loop2;
+				 strcpy(type,"VIICFk");
+				 typeNumber=8;
+			 	 break;
+			}
+			default: 
+			{
+				goto loop2;
+			}
+		}
+		clrscr();
+		printBuff();
+		printf("我：我要Type %s！这艘怎么样？(指向旁边的一艘U艇）\n",type);sleep(2);
+		printf("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type %s的艇。\n",type);sleep(3);
+		print("这艘船归你了我的艇长\n");
+	 	clean();
+		print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
+		printf("Peter:你好，%s先生哦不艇长,我和Eric,Leo,Tommy是这艘艇的士官长\n",player);sleep(2);
+		print("Eric,Leo,Tommy:Hi!\n");
+		print("Dr:我知道你记不下来那么多名字，你就叫我Dr吧，我是这艘艇的医生\n");
+		print("1WO:我是这艘艇的大副\n");
+		print("2WO:我是这艘艇的二副\n");
+		print("LI:我是这艘艇的随舰工程师\n");
+		print("Wilson:够多人了？要不是有那4个士官长，你还需要和39个其他艇员打招呼！\n");
+		print("好了别担心，你们航程上有的是时间互相熟悉！\n");
+		print("这些将是要和你一起战斗的伙伴,记住，就连最基础的每一个艇员，都将是你们在大西洋底生存的保障\n");
+		printf("好了我的朋友，出征吧，祝你好运！\n");
+		print("众：Heil Hitler！\n");
+		clean();
+
+		print("————————————潜艇里————————————\n");
+		print("Eric:先生，请允许我来为您介绍一下这艘艇。\n");
+		print("我：好，你说吧。\n");
+		introduce(type,1);
+		print("我：好吧，我清楚了，起航！");
+
+		do{patrol();}while(year<1943||((year==1943)&&(month<7)));
+		theEnd();
 	}
 }
