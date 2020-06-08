@@ -9,13 +9,13 @@
 	
 struct shipSort
 {
-	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker,4.North America
+	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
 	unsigned int shipTon;
 	char shipName[20];
 };
 
-struct shipSort ship[4][100]={
+struct shipSort ship[3][100]={
 	{
 				{1,1,1800,"Bosnia"},			{1,26,3600,"Aenos"},			{1,51,3500,"Baron Pentland"},		{1,76,2600,"City of Oxford"},
 				{1,2,4100,"Rio Claro"},			{1,27,3100,"Clintonia"},		{1,52,2000 ,"Scania"},				{1,77,2600,"Thurso"},
@@ -74,13 +74,128 @@ struct shipSort ship[4][100]={
 	},
 	
 	{
-		
-	},
-	
-	{
-		
+				{3,1,9400,"Inverliffey"},			{3,26,6700,"La Brea"},				{3,51,12000,"Cadillac"},		{3,76,6200,"Ensis"},
+				{3,2,10000,"Regent Tiger"},			{3,27,7500,"Pecten"},				{3,52,6600,"Athelbeach"},		{3,77,9500,"Kongsgaard"},
+				{3,3,8500,"British Influence"},		{3,28,8400,"British Fame"},			{3,53,6200,"Erodona"},			{3,78,8800,"Maasdam"},
+				{3,4,8800,"Cheyenne"},				{3,29,5800,"Sarita"},				{3,54,9300,"Franche Comte"},	{3,79,8700,"Malaya II"},
+				{3,5,14000,"Emile-Miguet"},			{3,30,9200,"Invershannon"},			{3,55,6600,"Fern"},				{3,80,8000,"Anadara"},
+				{3,6,11000,"Arne Kjode"},			{3,31,10000,"Torinia"},				{3,56,8100,"Beduin"},			{3,81,7500,"Bulysses"},
+				{3,7,7400,"San Alberto"},			{3,32,10000,"Frederick S. Fales"},	{3,57,5700,"Venetia"},			{3,82,6500,"Tahchee"},
+				{3,8,5000,"Vaclite"},				{3,33,7000,"British General"},		{3,58,8700,"Castor"},			{3,83,12800,"San Florentino"},
+				{3,9,5200,"Chastine Maersk"},		{3,34,7000,"Nina Borthen"},			{3,59,7000,"British Reliance"},	{3,84,8200,"T.J. Williams"},
+				{3,0,8000,"Ceronia"},				{3,35,7100,"Davanger"},				{3,60,6900,"British Viscount"},	{3,85,6300,"Barbro"},
+				{3,11,7800,"Caroni River"},			{3,36,9500,"Languedoc"},			{3,61,8000,"Chama"},			{3,86,15000," Svend Foyn"},
+				{3,12,9000,"Den Haag"},				{3,37,13900,"New Sevilla"},			{3,62,8100,"Conus"},			{3,87,9600,"W.C. Teagle"},
+				{3,13,8000,"Imperial Transport"},	{3,38,5400,"Casanare"},				{3,63,5600,"Lincoln Ellsworth"},{3,88,6600,"Erviken"},
+				{3,14,5700,"Daghestan"},			{3,39,7000,"Scottish Maiden"},		{3,64,8500,"Duffield"},			{3,89,9800,"Barfonn"},
+				{3,15,2600,"Leticia"},				{3,40,5000,"Congonian"},			{3,65,8200,"Capulet"},			{3,90,9000,"Salinas"},
+				{3,16,13000,"San Fernando"},		{3,41,7600,"Havbor"},				{3,66,8900,"Oilfield"},			{3,91,7000,"I.C. White"},
+				{3,17,10000,"Italia"},				{3,42,8800,"Appalachee"},			{3,67,9900,"Caledonia"},		{3,92,9200,"Inverlee"},
+				{3,18,9000,"Eli Knudsen"},			{3,43,12200,"Victor Ross"},			{3,68,6100,"John P. Pederson"},	{3,93,7500,"Sagona"},
+				{3,19,12000,"Saranac"},				{3,44,5900,"British Premier"},		{3,69,8500,"British Security"},	{3,94,8100,"Darkdale"},
+				{3,20,7500,"Moerdrecht"},			{3,45,9000,"Charles Pratt"},		{3,70,8100,"Cairndale"},		{3,95,7000,"British Mariner"},
+				{3,21,9000,"Athellaird"},			{3,46,10500,"W.B. Walker"},			{3,71,6900,"British Grenadier"},{3,96,11900,"Astral"},
+				{3,22,8600,"Yarraville"},			{3,47,10500,"A.F. Corwin"},			{3,72,8800,"Alfred Olsen"},		{3,97,8100,"San Demetrio"},
+				{3,23,2600,"Lucretia"},				{3,48,10500,"E.R. Brown"},			{3,73,9500,"Inversuir"},		{3,98,7200,"British Resource"},
+				{3,24,7000,"Scottish Minstrel"},	{3,49,7000,"Scottish Standard"},	{3,74,6000,"Wellfield"},		{3,99,8600,"Winamac"},
+				{3,25,6800,"Athelcrest"},			{3,50,6900,"British Gunner"},		{3,75,10700," Pendrecht"},		{3,100,10400,"Narragansett"}
+
 	}
 };
+struct NorthAmericashipSort
+{
+	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
+	int shipId;
+	unsigned int shipTon;
+	char shipName[20];
+};
+struct NorthAmericashipSort NAship[3][20]={
+	{
+		{1,1,3800,"Ciltvaira"}			
+		{1,2,2300,"Norvana"}			
+		{1,3,1600,"Frisco"}				
+		{1,4,2600,"Frances Salman"}		
+		{1,5,5000,"Ocean Venture"}		
+		{1,6,2400,"Orangesta"}			
+		{1,7,1100,"Acacia"}				
+		{1,8,1900,"Tolten"}				
+		{1,9,3400,"Esparta"}			
+		{1,0,4900,"Christina Knudsen"}	
+		{1,11,1000,"Cythera"}			
+		{1,12,4800,"Reinholt"}			
+		{1,13,1300,"Taborfjell"}		
+		{1,14,3500,"Delisle "}			
+		{1,15,4700,"Leto"}				
+		{1,16,2100<"Skottland"}			
+		{1,17,3300<"Plow City"}			
+		{1,18,4500<"Margot"}			
+		{1,19,4500<"Zurichmoor"}	
+		{1,20,2700<"Norlindo"}			
+	},
+	{
+		{2,1,8000,"Lady Hawkins"},						
+		{2,2,8000,"Venore"},							
+		{2,3,5700,"West Ivis"},							
+		{2,4,5400,"Friar Rock"},						
+		{2,5,9600,"Gandia"},						
+		{2,6,8000,"Tacoma Star"},						
+		{2,7,15400,"Amerikaland 07 9300 Varanger"},	
+		{2,8,7000,"Lihue"},
+		{2,9,7900,"Arabutan"},							
+		{2,10,5200,"Caryu"},							
+		{2,11,8300,"City of New York"},					
+		{2,12,11000,"Hertford"},						
+		{2,13,5400,"Nicoya"},							
+		{2,14,7500,"Greylock"},							
+		{2,15,7000,"Kronprinsen"},						
+		{2,16,7100,"Qu’Appelle"},						
+		{2,17,6200,"Peisander"},						
+		{2,18,9000,"Westmoreland"},						
+		{2,19,6800,"Alcoa Puritan"},					
+		{2,20,7200,"George Calvert"}
+	},
+	{
+		{3,1,9100,"Norness"},
+		{3,2,6800,"Coimbra"},
+		{3,3,6600,"Allan Jackson"},
+		{3,4,8200,"Malay"},
+		{3,5,8100,"Empire Gem"},
+		{3,6,9100,"Diala"},
+		{3,7,9300,"Varange"},		
+		{3,8,7100,"Francis E. Powell"},
+		{3,9,7000,"Halo"},
+		{3,10,11300,"Montrolite"},
+		{3,11,8300,"India Arrow"},
+		{3,12,8400,"China Arrow"},
+		{3,13,6200,"W.L. Steed"},
+		{3,14,5300,"Republic"},
+		{3,15,10200,"W.D. Anderson"},
+		{3,16,8200,"Pan Massachusetts"},
+		{3,17,11000,"O.A. Knudsen"},
+		{3,18,8000,"Esso Nashville"},
+		{3,19,11400,"Atlantic Sun"},
+		{3,20,8000,"Dixie Arrow"}
+	}
+}
+struct CapitalShipSort
+{
+	int awardKC;
+	int shipId;
+	unsigned int shipTon;
+	char shipName[20];
+};
+struct CapitalShipSort Cship[10]={
+	{1,1,22000,"CV Ark Royal*"},
+	{1,2,29100,"BB Royal Oak*"},
+	{0,3,18600,"CV Courageous"},
+	{0,4,10000,"CA Belfast"},
+	{1,5,31100,"BB Barham*"},
+	{1,6,34000,"BB Nelson*"},
+	{1,7,31300,"BB Malaya*"},
+	{1,8,22600,"CV Eagle*"},
+	{0,9,12800,"CVE Avenger"},
+	{0,10,11000,"CVE Audacity"}
+}
 
 int tons=0,promotionMonth,damage_status,expert_level,Tingyuan_level,xunhang_process;
 
@@ -205,7 +320,7 @@ void introduce(char* type,int first)
 
 	helploop:clean();	
 
-	printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\n4.狼群战是什么\t5.综述\t6.关于军衔\t7.没问题了\t更新中...");
+	printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\n4.狼群战是什么\t5.综述\t6.关于军衔\n7.大型军舰名字后的*是什么意思\t8.获得勋章的好处\t9.没问题了\t更新中...");
 	scanf("%d",&choose);
 	switch(choose)
 	{
@@ -274,7 +389,8 @@ void introduce(char* type,int first)
 				print("想要了解更多吗？你在以后回港时也可以输入'help'来查看帮助\n");
 				goto helploop;
 			}
-		case 6:{
+		case 6:
+			{
 			print("Oberleutnant起始阶，没能力\n");
 			print("Kapitänleutnant第二阶，每次分配任务时:\n你可以有1/6的几率你可以自己选任务，除非你被永久性地指配到了北极或地中海");
 			print("Korvettenkapitän第三阶，同上，但是几率变成1/3。\n此外因为你比较有权利，可以让工人修潜艇修的更快一点，提前潜艇的一个月出港\n");
@@ -282,7 +398,34 @@ void introduce(char* type,int first)
 			print("Fregattenkapitän第四阶，同上，但是任务分配几率变成1/2你也有修潜艇 Buff\n");
 			print("KapitänzurSee第五阶你获得了荣耀和更大的办公室\n");
 			goto helploop;
-		}
+			}
+		case 7:
+			{
+			print("与大型军舰非常危险，他们都随时存在护航。\n");
+			print("但是，富贵险中求，如果你得以击沉带有*的军舰，你将获得极大的荣耀\n");
+			print("具体地说，你将因此获得十字勋章，或者获得更高级的勋章\n");
+			goto helploop;
+			}
+		case 8:
+			{
+				print("铁十字章炙手可热。历史上只有125 名潜艇指挥官获得过铁十字章.\n");
+				print("但是只要 29 位获得了橡树叶子，更少的人获得了剑，只有两位获得了带有橡树叶子、剑和钻石的潜艇指挥官。\n");
+				print("沉 100,000 吨 船 或 击 沉 一 些Capital 主要军舰 你才能获得骑士勋章。\n");
+				print("有勋章的人可以获得一些骰子修正。你只能在在港的时候获得勋章。\n");
+				print("想获得铁十字你要沉 100,000吨或者沉了相应的主要军舰\n");
+				print("获得橡树叶铁十字需要沉175000吨，或者获得KC后沉相应的Capital Ship或沉75000 吨\n");
+				print("获得橡树剑十字需要沉250000或者获得KCO后沉相应的 Capital ships 或沉75000吨\n");
+				print("获得橡剑钻骑士铁十字,你要沉300000或者获得剑后沉相应的主要军舰，或沉50000吨\n");
+				print("当你每获得一次勋章，你就可以要求换个潜艇\n");
+				clean();
+				print("修正:\n");
+				print("Knight’s Cross (KC)夜战后管齐射时没有+1 的不利修正\n");
+				print("Oakleaves (KCO)夜战齐射不仅没有+1 的不利修正,还有个-1 的有利修正\n");
+				print("Oakleaves  and  Swords(KCO&S)除了上述以外，有-1 的敌方船只侦测修正\n");
+				print("Oakleaves and Swords, andDiamonds(KCOS&D)除了上述以外，追踪自动成功\n");
+				goto helploop;
+			}
+			
 		default:
 			{
 				break;
