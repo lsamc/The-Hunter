@@ -111,25 +111,25 @@ struct NorthAmericashipSort
 };
 struct NorthAmericashipSort NAship[3][20]={
 	{
-		{1,1,3800,"Ciltvaira"}			
-		{1,2,2300,"Norvana"}			
-		{1,3,1600,"Frisco"}				
-		{1,4,2600,"Frances Salman"}		
-		{1,5,5000,"Ocean Venture"}		
-		{1,6,2400,"Orangesta"}			
-		{1,7,1100,"Acacia"}				
-		{1,8,1900,"Tolten"}				
-		{1,9,3400,"Esparta"}			
-		{1,0,4900,"Christina Knudsen"}	
-		{1,11,1000,"Cythera"}			
-		{1,12,4800,"Reinholt"}			
-		{1,13,1300,"Taborfjell"}		
-		{1,14,3500,"Delisle "}			
-		{1,15,4700,"Leto"}				
-		{1,16,2100,"Skottland"}			
-		{1,17,3300,"Plow City"}			
-		{1,18,4500,"Margot"}			
-		{1,19,4500,"Zurichmoor"}	
+		{1,1,3800,"Ciltvaira"},			
+		{1,2,2300,"Norvana"},			
+		{1,3,1600,"Frisco"},				
+		{1,4,2600,"Frances Salman"},		
+		{1,5,5000,"Ocean Venture"},		
+		{1,6,2400,"Orangesta"},			
+		{1,7,1100,"Acacia"},				
+		{1,8,1900,"Tolten"},				
+		{1,9,3400,"Esparta"},			
+		{1,0,4900,"Christina Knudsen"},	
+		{1,11,1000,"Cythera"},			
+		{1,12,4800,"Reinholt"},			
+		{1,13,1300,"Taborfjell"},		
+		{1,14,3500,"Delisle "},			
+		{1,15,4700,"Leto"},				
+		{1,16,2100,"Skottland"},			
+		{1,17,3300,"Plow City"},			
+		{1,18,4500,"Margot"},			
+		{1,19,4500,"Zurichmoor"},	
 		{1,20,2700,"Norlindo"}			
 	},
 	{
@@ -176,7 +176,7 @@ struct NorthAmericashipSort NAship[3][20]={
 		{3,19,11400,"Atlantic Sun"},
 		{3,20,8000,"Dixie Arrow"}
 	}
-}
+};
 struct CapitalShipSort
 {
 	int awardKC;
@@ -195,7 +195,7 @@ struct CapitalShipSort Cship[10]={
 	{1,8,22600,"CV Eagle*"},
 	{0,9,12800,"CVE Avenger"},
 	{0,10,11000,"CVE Audacity"}
-}
+};
 
 int tons=0,promotionMonth,damage_status,expert_level,Tingyuan_level,xunhang_process;
 
