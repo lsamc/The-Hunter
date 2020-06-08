@@ -14,12 +14,12 @@ struct shipSort
 	char shipName[15];
 	unsigned int shipTon;
 	
-}
+};
 
 struct shipSort ship[4][100]={
 	{
-				{1,01,1800,"Bosnia"},			{1,26,3600,"Aenos"},			{1,51,3500,"Baron Pentland"},,		{1,76,2600,"City of Oxford"},
-				{1,02,4100,"Rio Claro"},		{1,27,3100,"Clintonia"},		{1,52,2000 ,"Scania 	"},			{1,77,2600,"Thurso"},
+				{1,01,1800,"Bosnia"},			{1,26,3600,"Aenos"},			{1,51,3500,"Baron Pentland"},		{1,76,2600,"City of Oxford"},
+				{1,02,4100,"Rio Claro"},		{1,27,3100,"Clintonia"},		{1,52,2000 ,"Scania"},			{1,77,2600,"Thurso"},
 				{1,03,1800,"Gartavon"}, 		{1,28,4700,"Stratford"},		{1,53,4700 ,"Tuva"}, 				{1,78,4400,"Frederika Lensen"},
 				{1,04,4800,"Royal Sceptre"},	{1,29,2700,"Vingaland"} ,		{1,54,3200 ,"Hatasu"}, 				{1,79,2100,"Bluefields"},
 				{1,05,4500,"Blairlogie"}, 		{1,30,3700,"Kyleglen"}, 		{1,55,5000 ,"Lehigh"},				{1,80,4800,"Navarino"},
