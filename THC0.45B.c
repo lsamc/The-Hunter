@@ -11,8 +11,8 @@ struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker,4.North America
 	int shipId;
+        unsigned int shipTon;
 	char shipName[15];
-	unsigned int shipTon;
 	
 };
 
