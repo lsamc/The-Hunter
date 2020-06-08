@@ -13,19 +13,19 @@ struct shipSort
 	int shipId;
 	unsigned int shipTon;
 	char shipName[20];
-}
+};
 
 struct shipSort ship[4][100]={
 	{
-				{1,01,1800,"Bosnia"},			{1,26,3600,"Aenos"},			{1,51,3500,"Baron Pentland"},		{1,76,2600,"City of Oxford"},
-				{1,02,4100,"Rio Claro"},		{1,27,3100,"Clintonia"},		{1,52,2000 ,"Scania"},				{1,77,2600,"Thurso"},
-				{1,03,1800,"Gartavon"}, 		{1,28,4700,"Stratford"},		{1,53,4700 ,"Tuva"}, 				{1,78,4400,"Frederika Lensen"},
-				{1,04,4800,"Royal Sceptre"},	{1,29,2700,"Vingaland"} ,		{1,54,3200 ,"Hatasu"}, 				{1,79,2100,"Bluefields"},
-				{1,05,4500,"Blairlogie"}, 		{1,30,3700,"Kyleglen"}, 		{1,55,5000 ,"Lehigh"},				{1,80,4800,"Navarino"},
-				{1,06,4900,"Firby"}, 			{1,31,4800,"Bassano"},			{1,56,4900 ,"Ashby"}, 				{1,81,1100,"Viking"},
-				{1,07,4000,"Aviemore"},			{1,32,4900,"Thirlby"},			{1,57,5000 ,"Empire Barracuda "},	{1,82,5000,"Broompark"},
-				{1,08,5000,"Kafiristan"}, 		{1,33,2000,"Daphne"}, 			{1,58,4800 ,"Cassequel "},			{1,83,4400,"Condylis"},
-				{1,09,1000,"Truro"}, 			{1,34,2700,"Tweed"},			{1,59,3300 ,"Annavore "},			{1,84,3300,"Balladier"},
+				{1,1,1800,"Bosnia"},			{1,26,3600,"Aenos"},			{1,51,3500,"Baron Pentland"},		{1,76,2600,"City of Oxford"},
+				{1,2,4100,"Rio Claro"},			{1,27,3100,"Clintonia"},		{1,52,2000 ,"Scania"},				{1,77,2600,"Thurso"},
+				{1,3,1800,"Gartavon"}, 			{1,28,4700,"Stratford"},		{1,53,4700 ,"Tuva"}, 				{1,78,4400,"Frederika Lensen"},
+				{1,4,4800,"Royal Sceptre"},		{1,29,2700,"Vingaland"} ,		{1,54,3200 ,"Hatasu"}, 				{1,79,2100,"Bluefields"},
+				{1,5,4500,"Blairlogie"}, 		{1,30,3700,"Kyleglen"}, 		{1,55,5000 ,"Lehigh"},				{1,80,4800,"Navarino"},
+				{1,6,4900,"Firby"}, 			{1,31,4800,"Bassano"},			{1,56,4900 ,"Ashby"}, 				{1,81,1100,"Viking"},
+				{1,7,4000,"Aviemore"},			{1,32,4900,"Thirlby"},			{1,57,5000 ,"Empire Barracuda "},	{1,82,5000,"Broompark"},
+				{1,8,5000,"Kafiristan"}, 		{1,33,2000,"Daphne"}, 			{1,58,4800 ,"Cassequel "},			{1,83,4400,"Condylis"},
+				{1,9,1000,"Truro"}, 			{1,34,2700,"Tweed"},			{1,59,3300 ,"Annavore "},			{1,84,3300,"Balladier"},
 				{1,10,2700,"Akenside"}, 		{1,35,5000,"Esmond"}, 			{1,60,3000 ,"Thorstrand "},			{1,85,1600,"Trolla"},
 				{1,11,5000,"Stonepool"}, 		{1,36,2600,"Bengore Head"}, 	{1,61,3000 ,"Culebra"}, 			{1,86,4600,"Shaftesbury"},
 				{1,12,5000,"Winkleigh"}, 		{1,37,4700,"Starcross"}, 		{1,62,4100 ,"Olinda"},			 	{1,87,3300,"Arlyn"},
@@ -43,15 +43,16 @@ struct shipSort ship[4][100]={
 				{1,24,1800,"Trevisa"}, 			{1,49,1200,"Clantara"},			{1,74,5000 ,"Nordal"},			 	{1,99,3700,"Baron Dechmont"},
 				{1,25,3800,"Scoresby"}, 		{1,50,2100,"Spind"},			{1,75,5000 ,"Manuela"}, 			{1,100,4800,"Reedpool"}
 	},
-		{		{2,01,12300,"Sultan Star"},		{2,26,7500,"Moh. Ali-Kebir"},			{2,51,7600,"Kingston Hill"},		{2,76,6200,"Fairport"},
-				{2,02,5300,"SS Browning"},		{2,27,7500,"Ville de Mons"},			{2,52,11000,"Norfolk"},				{2,77,5600,"Seattle Spirit"},
-				{2,03,7200,"Manaar"},			{2,28,9000,"Titan"},					{2,53,5300,"Brockley Hill"},		{2,78,8400,"Port Nicholson"},
-				{2,04,5200,"Fanad Head"},		{2,29,5200,"Neptunian"},				{2,54,6300,"Grayburn"},				{2,79,7100,"Santore"},
-				{2,05,5500,"Kennebec"},			{2,30,5200,"Jose de Larrinaga"},		{2,55,6000,"Anselm"},				{2,80,5900,"Cherokee"},
-				{2,06,7000,"Louisiane"},		{2,31,11100,"City of Benares"},			{2,56,11300,"Abosso"},				{2,81,5500,"West Notus"},
-				{2,07,9200,"Lochavon"},			{2,32,6900,"Corrientes"},				{2,57,5400,"Harlingen"},			{2,82,6300,"Polyphemus"},
-				{2,08,10000,"Bretagne"},		{2,33,9300,"Hurunui"},					{2,58,7500,"Empire Hudson"},		{2,83,6800,"Berganger"},
-				{2,09,5200,"Vermont"},			{2,34,4230," Empress of Britain"},		{2,59,7500,"Empire Wave"},			{2,84,6000,"Raphael Semmes"},
+	{		
+				{2,1,12300,"Sultan Star"},		{2,26,7500,"Moh. Ali-Kebir"},			{2,51,7600,"Kingston Hill"},		{2,76,6200,"Fairport"},
+				{2,2,5300,"SS Browning"},		{2,27,7500,"Ville de Mons"},			{2,52,11000,"Norfolk"},				{2,77,5600,"Seattle Spirit"},
+				{2,3,7200,"Manaar"},			{2,28,9000,"Titan"},					{2,53,5300,"Brockley Hill"},		{2,78,8400,"Port Nicholson"},
+				{2,4,5200,"Fanad Head"},		{2,29,5200,"Neptunian"},				{2,54,6300,"Grayburn"},				{2,79,7100,"Santore"},
+				{2,5,5500,"Kennebec"},			{2,30,5200,"Jose de Larrinaga"},		{2,55,6000,"Anselm"},				{2,80,5900,"Cherokee"},
+				{2,6,7000,"Louisiane"},			{2,31,11100,"City of Benares"},			{2,56,11300,"Abosso"},				{2,81,5500,"West Notus"},
+				{2,7,9200,"Lochavon"},			{2,32,6900,"Corrientes"},				{2,57,5400,"Harlingen"},			{2,82,6300,"Polyphemus"},
+				{2,8,10000,"Bretagne"},			{2,33,9300,"Hurunui"},					{2,58,7500,"Empire Hudson"},		{2,83,6800,"Berganger"},
+				{2,9,5200,"Vermont"},			{2,34,4230," Empress of Britain"},		{2,59,7500,"Empire Wave"},			{2,84,6000,"Raphael Semmes"},
 				{2,10,7200,"City of Mandalay"},	{2,35,5400,"Balzac"},					{2,60,9500,"Vancouver Island"},		{2,85,5900,"City of Birmingham"},
 				{2,11,10000,"Yorkshire"},		{2,36,5400,"Matina"},					{2,61,6700,"Treverbyn"},			{2,86,6800,"Moldanger"},
 				{2,12,7200,"Clan Chisholm"},	{2,37,18700,"Laurentic"},				{2,62,5100,"King Malcolm"},			{2,87,8600,"Surrey"},
@@ -71,12 +72,14 @@ struct shipSort ship[4][100]={
 																													
 		
 	},
+	
 	{
 		
 	},
+	
 	{
 		
-	},
+	}
 };
 
 int tons=0,promotionMonth,damage_status,expert_level,Tingyuan_level,xunhang_process;
@@ -192,7 +195,7 @@ void show_card(){
 
 	printf("******************************************\n");
 	printf("**名字\t潜艇\t军衔\t\t服役时间**\n");
-	printf("**%s\t%s\t%s\t%d.%d\t**\n",player,type,junxian,year,month);
+	printf("**%s\t%s\t%s\t%d.%d\t**\n",player,type,rank,year,month);
 	printf("******************************************\n");
 	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
 }
@@ -664,8 +667,8 @@ void main()
 		print("这艘船归你了我的艇长\n");
 
 		int ra=roll(1);
-		if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6)||type[0]=='I')strcpy(junxian,"Kapitänleutnant");
-		else strcpy(junxian,"Oberleutnant");
+		if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6)||type[0]=='I')strcpy(rank,"Kapitänleutnant");
+		else strcpy(rank,"Oberleutnant");
 		show_card();
 		clean();
 		print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
