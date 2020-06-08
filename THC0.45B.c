@@ -608,7 +608,12 @@ void day(char* place,int times)
 			}
 		case 6:
 			{
-				else if(meet==12&&firstTwelve==1)//working...
+    if(meet==2||meet==3||meet==11||(meet==12&&firstTwelve=0))meetAircraft();
+				else if(meet==4)meetCapitalShip();
+    else if(meet==7)meetShip(1,0);
+    else if(meet==10)meetShip(2,1);
+    else if(meet==8)meetConvoy();
+				else if(meet==12&&firstTwelve==1)
 				{
 					firstTwelve=0;
 					ramdomEvent();
@@ -618,6 +623,11 @@ void day(char* place,int times)
 			}
 		case 5:
 			{
+    if(meet==12&&firstTwelve=0)meetAircraft();
+				else if(meet==2)meetCapitalShip();
+    else if(meet==3||meet==7)meetShip(1,0);
+    else if(meet==6||meet==10)meetConvoy();
+    else if(meet==9)meetShip(1,1);
 				else if(meet==12&&firstTwelve==1)
 				{
 					firstTwelve=0;
@@ -975,7 +985,7 @@ void main()
 		print("1WO:我是这艘艇的大副\n");
 		print("2WO:我是这艘艇的二副\n");
 		print("LI:我是这艘艇的随舰工程师\n");
-		print("Wilson:够多人了？要不是有那4个士官长，你还需要和39个其他艇员打招呼！\n");
+		print("Wilson:够多人了？要不是有那4个士官长，你还需要和40多个其他艇员打招呼！\n");
 		print("好了别担心，你们航程上有的是时间互相熟悉！\n");
 		print("这些将是要和你一起战斗的伙伴,记住，就连最基础的每一个艇员，都将是你们在大西洋底生存的保障\n");
 		printf("好了我的朋友，出征吧，祝你好运！\n");
