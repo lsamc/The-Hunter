@@ -11,64 +11,63 @@ struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker,4.North America
 	int shipId;
-        unsigned int shipTon;
-	char shipName[15];
-	
-};
+	unsigned int shipTon;
+	char shipName[20];
+}
 
 struct shipSort ship[4][100]={
 	{
 				{1,01,1800,"Bosnia"},			{1,26,3600,"Aenos"},			{1,51,3500,"Baron Pentland"},		{1,76,2600,"City of Oxford"},
-				{1,02,4100,"Rio Claro"},		{1,27,3100,"Clintonia"},		{1,52,2000 ,"Scania"},			{1,77,2600,"Thurso"},
-				{1,03,1800,"Gartavon"}, 		{1,28,4700,"Stratford"},		{1,53,4700 ,"Tuva"}, 				{1,78,4400,"Frederika Lensen"},
+				{1,02,4100,"Rio Claro"},		{1,27,3100,"Clintonia"},		{1,52,2000,"Scania"},				{1,77,2600,"Thurso"},
+				{1,03,1800,"Gartavon"}, 		{1,28,4700,"Stratford"},		{1,53,4700,"Tuva"}, 				{1,78,4400,"Frederika Lensen"},
 				{1,04,4800,"Royal Sceptre"},	{1,29,2700,"Vingaland"} ,		{1,54,3200 ,"Hatasu"}, 				{1,79,2100,"Bluefields"},
-				{1,05,4500,"Blairlogie"}, 		{1,30,3700,"Kyleglen"}, 		{1,55,5000 ,"Lehigh"},				{1,80,4800,"Navarino"},
-				{1,06,4900,"Firby"}, 			{1,31,4800,"Bassano"},			{1,56,4900 ,"Ashby"}, 				{1,81,1100,"Viking"},
-				{1,07,4000,"Aviemore"},			{1,32,4900,"Thirlby"},			{1,57,5000 ,"Empire Barracuda "},	{1,82,5000,"Broompark"},
-				{1,08,5000,"Kafiristan"}, 		{1,33,2000,"Daphne"}, 			{1,58,4800 ,"Cassequel "},			{1,83,4400,"Condylis"},
-				{1,09,1000,"Truro"}, 			{1,34,2700,"Tweed"},			{1,59,3300 ,"Annavore "},			{1,84,3300,"Balladier"},
-				{1,10,2700,"Akenside"}, 		{1,35,5000,"Esmond"}, 			{1,60,3000 ,"Thorstrand "},			{1,85,1600,"Trolla,""},
+				{1,05,4500,"Blairlogie"}, 		{1,30,3700,"Kyleglen"}, 		{1,55,5000,"Lehigh"},				{1,80,4800,"Navarino"},
+				{1,06,4900,"Firby"}, 			{1,31,4800,"Bassano"},			{1,56,4900,"Ashby"}, 				{1,81,1100,"Viking"},
+				{1,07,4000,"Aviemore"},			{1,32,4900,"Thirlby"},			{1,57,5000,"Empire Barracuda "},	{1,82,5000,"Broompark"},
+				{1,08,5000,"Kafiristan"}, 		{1,33,2000,"Daphne"}, 			{1,58,4800,"Cassequel "},			{1,83,4400,"Condylis"},
+				{1,09,1000,"Truro"}, 			{1,34,2700,"Tweed"},			{1,59,3300,"Annavore "},			{1,84,3300,"Balladier"},
+				{1,10,2700,"Akenside"}, 		{1,35,5000,"Esmond"}, 			{1,60,3000,"Thorstrand "},			{1,85,1600,"Trolla"},
 				{1,11,5000,"Stonepool"}, 		{1,36,2600,"Bengore Head"}, 	{1,61,3000 ,"Culebra"}, 			{1,86,4600,"Shaftesbury"},
-				{1,12,5000,"Winkleigh"}, 		{1,37,4700,"Starcross"}, 		{1,62,4100 ,"Olinda"},			 	{1,87,3300,"Arlyn"},
-				{1,13,2500,"Stanholme"}, 		{1,38,5000,"Alfred Jones"}, 	{1,63,3100 ,"Ontario"}, 			{1,88,4700,"Aeas"},
-				{1,14,5000,"Arlington Court"},	{1,39,5000,"Pandias"}, 			{1,64,2400 ,"Torny"}, 				{1,89,2200,"Caribou"},
-				{1,15,5000,"Sliedrecht"}, 		{1,40,4000,"Rio Azul"},			{1,65,5000 ,"Ogontz"}, 				{1,90,4700,"Woensdrecht"},
+				{1,12,5000,"Winkleigh"}, 		{1,37,4700,"Starcross"}, 		{1,62,4100,"Olinda"},			 	{1,87,3300,"Arlyn"},
+				{1,13,2500,"Stanholme"}, 		{1,38,5000,"Alfred Jones"}, 	{1,63,3100,"Ontario"}, 			{1,88,4700,"Aeas"},
+				{1,14,5000,"Arlington Court"},	{1,39,5000,"Pandias"}, 			{1,64,2400,"Torny"}, 				{1,89,2200,"Caribou"},
+				{1,15,5000,"Sliedrecht"}, 		{1,40,4000,"Rio Azul"},			{1,65,5000,"Ogontz"}, 				{1,90,4700,"Woensdrecht"},
 				{1,16,5000,"Counsellor"}, 		{1,41,3000,"Robert L. Holt"} ,	{1,66,5000 ,"Carabulle"}, 			{1,91,1200,"Antonico"},
-				{1,17,5000,"Sheaf Mead"}, 		{1,42,4400,"Soloy"},			{1,67,5000 ,"Goncalves Dias"}, 		{1,92,4400,"Bancrest"},
-				{1,18,2100,"Merisaar"},			{1,43,4800,"Vigrid"},			{1,68,4600 ,"Willimantic"}, 		{1,93,4200,"Marcrest"},
-				{1,19,4000,"Stakesby"}, 		{1,44,5000,"Kinross"},			{1,69,3500 ,"Denmark"}, 			{1,94,4800,"Daydawn"},
-				{1,20,4200,"Gro"}, 				{1,45,4400,"Nicolas Pateras"}, 	{1,70,4500 ,"Pontypridd"}, 			{1,95,4100,"Dayrose"},
-				{1,21,2400,"Mardinian"}, 		{1,46,1300,"Erato"},			{1,71,1300 ,"Anna"}, 				{1,96,4600,"Dalcroy"},
-				{1,22,3700,"Baron Blythswod"},	{1,47,5000,"Kumasian"},			{1,72,4900 ,"Rio Tercero"}, 		{1,97,2000,"Sea Glory"},
-				{1,23,3700,"Graigwen"}, 		{1,48,4500,"Cape Rodney "},		{1,73,4600 ,"Leonidas M."},			{1,98,2300,"Sea Venture"},
-				{1,24,1800,"Trevisa"}, 			{1,49,1200,"Clantara"},			{1,74,5000 ,"Nordal"},			 	{1,99,3700,"Baron Dechmont"},
-				{1,25,3800,"Scoresby"}, 		{1,50,2100,"Spind"},			{1,75,5000 ,"Manuela"}, 			{1,100,4800,"Reedpool"},
+				{1,17,5000,"Sheaf Mead"}, 		{1,42,4400,"Soloy"},			{1,67,5000,"Goncalves Dias"}, 		{1,92,4400,"Bancrest"},
+				{1,18,2100,"Merisaar"},			{1,43,4800,"Vigrid"},			{1,68,4600,"Willimantic"}, 		{1,93,4200,"Marcrest"},
+				{1,19,4000,"Stakesby"}, 		{1,44,5000,"Kinross"},			{1,69,3500,"Denmark"}, 			{1,94,4800,"Daydawn"},
+				{1,20,4200,"Gro"}, 				{1,45,4400,"Nicolas Pateras"}, 	{1,70,4500,"Pontypridd"}, 			{1,95,4100,"Dayrose"},
+				{1,21,2400,"Mardinian"}, 		{1,46,1300,"Erato"},			{1,71,1300,"Anna"}, 				{1,96,4600,"Dalcroy"},
+				{1,22,3700,"Baron Blythswod"},	{1,47,5000,"Kumasian"},			{1,72,4900,"Rio Tercero"}, 		{1,97,2000,"Sea Glory"},
+				{1,23,3700,"Graigwen"}, 		{1,48,4500,"Cape Rodney "},		{1,73,4600,"Leonidas M."},			{1,98,2300,"Sea Venture"},
+				{1,24,1800,"Trevisa"}, 			{1,49,1200,"Clantara"},			{1,74,5000,"Nordal"},			 	{1,99,3700,"Baron Dechmont"},
+				{1,25,3800,"Scoresby"}, 		{1,50,2100,"Spind"},			{1,75,5000,"Manuela"}, 			{1,100,4800,"Reedpool"}
 	},
-		{		{2,01,12300,"Sultan Star"},		{2,26,7500,"Moh. Ali-Kebir"},			{51,7600,"Kingston Hill"},		{76,6200,"Fairport"},
-				{2,02,5300,"SS Browning"},		{2,27,7500,"Ville de Mons"},			{52,11000,"Norfolk"},			{77,5600,"Seattle Spirit"},
-				{2,03,7200,"Manaar"},			{2,28,9000,"Titan"},					{53,5300,"Brockley Hill"},		{78,8400,"Port Nicholson"},
-				{2,04,5200,"Fanad Head"},		{2,29,5200,"Neptunian"},				{54,6300,"Grayburn"},			{79,7100,"Santore"},
-				{2,05,5500,"Kennebec"},			{2,30,5200,"Jose de Larrinaga"},		{55,6000,"Anselm"},				{80,5900,"Cherokee"},
-				{2,06,7000,"Louisiane"},		{2,31,11100," City of Benares"},		{56,11300,"Abosso"},			{81,5500,"West Notus"},
-				{2,07,9200,"Lochavon"},			{2,32,6900,"Corrientes"},				{57,5400,"Harlingen"},			{82,6300,"Polyphemus"},
-				{2,08,10000,"Bretagne"},		{2,33,9300,"Hurunui"},					{58,7500,"Empire Hudson"},		{83,6800,"Berganger"},
-				{2,09,5200,"Vermont"},			{2,34,4230," Empress of Britain"},		{59,7500,"Empire Wave"},		{84,6000,"Raphael Semmes"},
-				{2,10,7200,"City of Mandalay"},	{2,35,5400,"Balzac"},					{60,9500,"Vancouver Island"},	{85,5900,"City of Birmingham"},
-				{2,11,10000,"Yorkshire"},		{2,36,5400,"Matina"},					{61,6700,"Treverbyn"},			{86,6800,"Moldanger"},
-				{2,12,7200,"Clan Chisholm"},	{2,37,18700," Laurentic"},				{62,5100,"King Malcolm"},		{87,8600,"Surrey"},
-				{2,13,8000,"Malabar"},			{2,38,7500,"Ville d’ Arlon"},			{63,8500,"Nottingham"},			{88,5900,"Port Montreal"},
-				{2,14,5300,"Bronte"},			{2,39,10900," Rotorua"},				{64,5300,"Silverbelle"},		{89,8400,"Santa Rita"},
-				{2,15,9900,"Beaverburn"},		{2,40,10100," Napier Star"},			{65,6300,"Sagadahoc "},			{90,7200,"Alexander Macomb"},
-				{2,16,7000,"Rothesay Castle"},	{2,41,6000,"Empire Thunder"},			{66,5600,"Thornliebank"},		{91,8300,"Chilore"},
-				{2,17,6300,"Gustaf E. Reuter"},	{2,42,1060," Zealandic"},				{67,14600,"Ulysses"},			{92,7200,"William C Bryant"},
-				{2,18,8800,"Navasota"},			{2,43,7500,"Ville d’ Liege"},			{68,12000,"Llangibbey Castle"},	{93,8100,"Umtata"},
-				{2,19,6700,"Brandon"},			{2,44,5400,"Athenic"},					{69,5200,"Buarque"},			{94,7200,"Thomas McKean"},
-				{2,20,8200,"Tajandoen"},		{2,45,10300," Calchas"},				{70,7000,"Empire Howard"},		{95,5200,"Robert E. Lee"},
-				{2,21,5100,"Royston Grange"},	{2,46,10100," Beacon Grange"},			{71,6900,"Empire Comet"},		{96,6400,"Triglav"},
-				{2,22,5200,"Cedarbank"},		{2,47,8900,"Port Hardy"},				{72,10000,"Jagersfontein"},		{97,6400,"Peiping"},
-				{2,23,9600,"Protesilaus"},		{2,48,10300," Ixion"},					{73,6700,"Parnahyba"},			{98,7500,"Empire Tide"},
-				{2,24,10500,"Brazza"},			{2,49,5900,"Gregalia"},					{74,5700,"Steel Engineer"},		{99,7200,"William Hooper"},
-				{2,25,5200,"Clearton"},			{2,50,11800," Rodney Star"},			{75,8000,"Scottsburg"},			{100,5500,"River Afton"},
+		{		{2,01,12300,"Sultan Star"},		{2,26,7500,"Moh. Ali-Kebir"},			{2,51,7600,"Kingston Hill"},		{2,76,6200,"Fairport"},
+				{2,02,5300,"SS Browning"},		{2,27,7500,"Ville de Mons"},			{2,52,11000,"Norfolk"},				{2,77,5600,"Seattle Spirit"},
+				{2,03,7200,"Manaar"},			{2,28,9000,"Titan"},					{2,53,5300,"Brockley Hill"},		{2,78,8400,"Port Nicholson"},
+				{2,04,5200,"Fanad Head"},		{2,29,5200,"Neptunian"},				{2,54,6300,"Grayburn"},				{2,79,7100,"Santore"},
+				{2,05,5500,"Kennebec"},			{2,30,5200,"Jose de Larrinaga"},		{2,55,6000,"Anselm"},				{2,80,5900,"Cherokee"},
+				{2,06,7000,"Louisiane"},		{2,31,11100,"City of Benares"},			{2,56,11300,"Abosso"},				{2,81,5500,"West Notus"},
+				{2,07,9200,"Lochavon"},			{2,32,6900,"Corrientes"},				{2,57,5400,"Harlingen"},			{2,82,6300,"Polyphemus"},
+				{2,08,10000,"Bretagne"},		{2,33,9300,"Hurunui"},					{2,58,7500,"Empire Hudson"},		{2,83,6800,"Berganger"},
+				{2,09,5200,"Vermont"},			{2,34,4230," Empress of Britain"},		{2,59,7500,"Empire Wave"},			{2,84,6000,"Raphael Semmes"},
+				{2,10,7200,"City of Mandalay"},	{2,35,5400,"Balzac"},					{2,60,9500,"Vancouver Island"},		{2,85,5900,"City of Birmingham"},
+				{2,11,10000,"Yorkshire"},		{2,36,5400,"Matina"},					{2,61,6700,"Treverbyn"},			{2,86,6800,"Moldanger"},
+				{2,12,7200,"Clan Chisholm"},	{2,37,18700,"Laurentic"},				{2,62,5100,"King Malcolm"},			{2,87,8600,"Surrey"},
+				{2,13,8000,"Malabar"},			{2,38,7500,"Ville d’ Arlon"},			{2,63,8500,"Nottingham"},			{2,88,5900,"Port Montreal"},
+				{2,14,5300,"Bronte"},			{2,39,10900,"Rotorua"},					{2,64,5300,"Silverbelle"},			{2,89,8400,"Santa Rita"},
+				{2,15,9900,"Beaverburn"},		{2,40,10100,"Napier Star"},				{2,65,6300,"Sagadahoc"},			{2,90,7200,"Alexander Macomb"},
+				{2,16,7000,"Rothesay Castle"},	{2,41,6000,"Empire Thunder"},			{2,66,5600,"Thornliebank"},			{2,91,8300,"Chilore"},
+				{2,17,6300,"Gustaf E. Reuter"},	{2,42,1060," Zealandic"},				{2,67,14600,"Ulysses"},				{2,92,7200,"William C Bryant"},
+				{2,18,8800,"Navasota"},			{2,43,7500,"Ville d’ Liege"},			{2,68,12000,"Llangibbey Castle"},	{2,93,8100,"Umtata"},
+				{2,19,6700,"Brandon"},			{2,44,5400,"Athenic"},					{2,69,5200,"Buarque"},				{2,94,7200,"Thomas McKean"},
+				{2,20,8200,"Tajandoen"},		{2,45,10300,"Calchas"},					{2,70,7000,"Empire Howard"},		{2,95,5200,"Robert E. Lee"},
+				{2,21,5100,"Royston Grange"},	{2,46,10100,"Beacon Grange"},			{2,71,6900,"Empire Comet"},			{2,96,6400,"Triglav"},
+				{2,22,5200,"Cedarbank"},		{2,47,8900,"Port Hardy"},				{2,72,10000,"Jagersfontein"},		{2,97,6400,"Peiping"},
+				{2,23,9600,"Protesilaus"},		{2,48,10300," Ixion"},					{2,73,6700,"Parnahyba"},			{2,98,7500,"Empire Tide"},
+				{2,24,10500,"Brazza"},			{2,49,5900,"Gregalia"},					{2,74,5700,"Steel Engineer"},		{2,99,7200,"William Hooper"},
+				{2,25,5200,"Clearton"},			{2,50,11800,"Rodney Star"},				{2,75,8000,"Scottsburg"},			{2,100,5500,"River Afton"}
 																													
 		
 	},
@@ -193,7 +192,7 @@ void show_card(){
 
 	printf("******************************************\n");
 	printf("**名字\t潜艇\t军衔\t\t服役时间**\n");
-	printf("**%s\t%s\t%s\t%d.%d\t**\n",player,type,rank,year,month);
+	printf("**%s\t%s\t%s\t%d.%d\t**\n",player,type,junxian,year,month);
 	printf("******************************************\n");
 	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
 }
@@ -665,8 +664,8 @@ void main()
 		print("这艘船归你了我的艇长\n");
 
 		int ra=roll(1);
-		if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6)||type[0]=='I')strcpy(rank,"Kapitänleutnant");
-		else strcpy(rank,"Oberleutnant");
+		if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6)||type[0]=='I')strcpy(junxian,"Kapitänleutnant");
+		else strcpy(junxian,"Oberleutnant");
 		show_card();
 		clean();
 		print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
