@@ -193,7 +193,7 @@ void show_card(){
 
 	printf("******************************************\n");
 	printf("**名字\t潜艇\t军衔\t\t服役时间**\n");
-	printf("**%s\t%s\t%s\t%d.%d\t**\n",player,type,junxian,year,month);
+	printf("**%s\t%s\t%s\t%d.%d\t**\n",player,type,rank,year,month);
 	printf("******************************************\n");
 	printf("系统提示:请一定记住您的ID号!它是您的唯一身份标识!\n");
 }
@@ -665,8 +665,8 @@ void main()
 		print("这艘船归你了我的艇长\n");
 
 		int ra=roll(1);
-		if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6)||type[0]=='I')strcpy(junxian,"Kapitänleutnant");
-		else strcpy(junxian,"Oberleutnant");
+		if(year==1939||(year==1940&&ra>2)||(year==1941&&ra>3)||(year>1941&&ra==6)||type[0]=='I')strcpy(rank,"Kapitänleutnant");
+		else strcpy(rank,"Oberleutnant");
 		show_card();
 		clean();
 		print("（指向旁边）这是我们帝国第一批优秀的艇员——他们都受过足够的训练\n");
