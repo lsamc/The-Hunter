@@ -126,11 +126,11 @@ struct NorthAmericashipSort NAship[3][20]={
 		{1,13,1300,"Taborfjell"}		
 		{1,14,3500,"Delisle "}			
 		{1,15,4700,"Leto"}				
-		{1,16,2100<"Skottland"}			
-		{1,17,3300<"Plow City"}			
-		{1,18,4500<"Margot"}			
-		{1,19,4500<"Zurichmoor"}	
-		{1,20,2700<"Norlindo"}			
+		{1,16,2100,"Skottland"}			
+		{1,17,3300,"Plow City"}			
+		{1,18,4500,"Margot"}			
+		{1,19,4500,"Zurichmoor"}	
+		{1,20,2700,"Norlindo"}			
 	},
 	{
 		{2,1,8000,"Lady Hawkins"},						
