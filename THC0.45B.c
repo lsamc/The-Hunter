@@ -214,6 +214,7 @@ int line=0,choose,year,month,typeNumber,id,process[2];
  *7.VIID
  *8.VIICFk
 */
+int firstTwelve=1;
 char* itoa(int value, char* result, int base) {
 	// check that the base if valid
 	if (base < 2 || base > 36) { *result = '\0'; return result; }
@@ -488,6 +489,39 @@ void introduce(char* type,int first)
 	clean();
 }
 
+void meetAircraft
+{
+	
+}
+void meetShip(int numbers,int haveEscort)
+{
+	
+}
+void meetConvoy()
+{
+	
+}
+void meetNAShip(int numbers,int haveEscort)
+{
+	
+}
+void meetNAConvoy()
+{
+	
+}
+void meetCapitalShip()
+{
+	
+}
+void ramdomEvent()
+{
+	
+}
+void nothingHappened()
+{
+	
+}
+
 void day(char* place,int times)
 {
 	int pl;                             
@@ -519,42 +553,117 @@ void day(char* place,int times)
 	{
 		case 10:
 			{
+				if(meet==2||meet==3)meetAircraft();
+				else if(meet==12&&firstTwelve==0)meetShip(1,0);
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 9:
 			{
+				if(meet==2||(meet==12&&firstTwelve=0))meetAircraft();
+				else if(meet==5)meetShip(1,1);
+				else if(meet==6||meet==7)meetShip(1,0);
+				else if(meet==10||meet==11)meetConvoy();
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 8:
 			{
+				if(meet==2||(meet==12&&firstTwelve=0))meetAircraft();
+				else if(meet==4||meet==9||meet==10)meetShip(1,1);
+				else if(meet==3||meet==11)meetCapitalShip();
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 7:
 			{
+				if(meet==2)meetAircraft();
+				else if(meet==4||meet==6)meetNAShip(1,0);
+				else if(meet==5)meetNAShip(2,1);
+				else if(meet==8)meetNAShip(2,0);
+				else if(meet==9||(meet==12&&firstTwelve=0))meetNATannker();
+				else if(meet==11)meetNAConvoy();
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 6:
 			{
+				else if(meet==12&&firstTwelve==1)//working...
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 5:
 			{
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 4:
 			{
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 3:
 			{
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 2:
 			{
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 		case 1:
 			{
+				else if(meet==12&&firstTwelve==1)
+				{
+					firstTwelve=0;
+					ramdomEvent();
+				}
+				else nothingHappened();
 				break;
 			}
 	}
@@ -610,47 +719,39 @@ void patrol()
 	int mNumber=roll(2);
 	int mName;
 	int mType;
+	firstTwelve=1；
 
 	if(year==1939||((year==1940)&&(month<4)))
 	{
-		switch(mNumber)
+		if(mNumber==2)
 		{
-			case 2:
-				{
-					mName=0;
-					mType=3;
-					break;
-				}
-			case 3:;
-			case 4:;
-			case 5:;
-			case 6:;
-			case 7:;
-			case 8:;
-			case 9:
-				{
-					mName=1;
-					mType=3;
-					break;
-				}
-			case 10:;
-			case 11:
-				{
-					mName=1;
-					mType=0;
-					break;
-				}
-			case 12:
-				{
-					mName=4;
-					mType=3;
-					break;
-				}
-			default:
-				{
-					printf("程序故障,报错");
-				}
+			mName=0;
+			mType=3;
+			break;
 		}
+		else if(mNuumber==3||mNuumber==4||mNuumber==6||mNuumber==7||mNuumber==8||mNuumber==10||mNuumber==11)
+		{
+			mName=1;
+			mType=3;
+			break;
+		}
+		else if(mNumber==5||mNuumber==9)
+		{
+			mName=1;
+			mType=0;
+			break;
+		}
+		else if(mNuumber==12)
+		{
+			mName=4;
+			mType=3;
+			break;
+		}
+		else	
+		{
+			printf("程序故障,报错");
+		}
+		
 	}
 	else
 	{
