@@ -379,8 +379,8 @@ void introduce(char* type,int first)
 					case 2:
 						{
 							print("VIIB是德军第一批潜艇型号，艇长66.5m，最高航速17.2节，艇重753t，有效射程6500nm，乘员44人，共被生产了24艘\n");
-							print("共携带鱼雷14发，前鱼雷管4发，前鱼雷装填区8发，后鱼雷管1发，后鱼雷装填区1发。\n")；
-								print("8.8cm甲板炮，10发容量，2cm防空炮\n");
+							print("共携带鱼雷14发，前鱼雷管4发，前鱼雷装填区8发，后鱼雷管1发，后鱼雷装填区1发\n");
+							print("8.8cm甲板炮，10发容量，2cm防空炮\n");
 							break;
 						}
 					case 3:
@@ -491,7 +491,7 @@ void introduce(char* type,int first)
 	clean();
 }
 
-void meetAircraft
+void meetAircraft()
 {
 
 }
@@ -562,7 +562,7 @@ void day(char* place,int times)
 	else printf("程序故障");
 	
 	clean();
-	print("————————%d年%d月%s的%s任务的第%d站—————————",year,month,mission[mName],missionType[mType]);
+	printf("————————%d年%d月%s的%s任务的第%d站—————————",year,month,mission[mName],missionType[mType]);
 	int meet=roll(2);
 	switch(pl)
 	{
@@ -580,7 +580,7 @@ void day(char* place,int times)
 			}
 		case 9:
 			{
-				if(meet==2||(meet==12&&firstTwelve=0))meetAircraft();
+				if(meet==2||(meet==12&&firstTwelve==0))meetAircraft();
 				else if(meet==5)meetShip(1,1);
 				else if(meet==6||meet==7)meetShip(1,0);
 				else if(meet==10||meet==11)meetConvoy();
@@ -594,7 +594,7 @@ void day(char* place,int times)
 			}
 		case 8:
 			{
-				if(meet==2||(meet==12&&firstTwelve=0))meetAircraft();
+				if(meet==2||(meet==12&&firstTwelve==0))meetAircraft();
 				else if(meet==4||meet==9||meet==10)meetShip(1,1);
 				else if(meet==3||meet==11)meetCapitalShip();
 				else if(meet==12&&firstTwelve==1)
@@ -611,7 +611,7 @@ void day(char* place,int times)
 				else if(meet==4||meet==6)meetNAShip(1,0);
 				else if(meet==5)meetNAShip(2,1);
 				else if(meet==8)meetNAShip(2,0);
-				else if(meet==9||(meet==12&&firstTwelve=0))meetNATanker();
+				else if(meet==9||(meet==12&&firstTwelve==0))meetNATanker();
 				else if(meet==11)meetNAConvoy();
 				else if(meet==12&&firstTwelve==1)
 				{
@@ -623,7 +623,7 @@ void day(char* place,int times)
 			}
 		case 6:
 			{
-				if(meet==2||meet==3||meet==11||(meet==12&&firstTwelve=0))meetAircraft();
+				if(meet==2||meet==3||meet==11||(meet==12&&firstTwelve==0))meetAircraft();
 				else if(meet==4)meetCapitalShip();
 				else if(meet==7)meetShip(1,0);
 				else if(meet==10)meetShip(2,1);
@@ -638,7 +638,7 @@ void day(char* place,int times)
 			}
 		case 5:
 			{
-				if(meet==12&&firstTwelve=0)meetAircraft();
+				if(meet==12&&firstTwelve==0)meetAircraft();
 				else if(meet==2)meetCapitalShip();
 				else if(meet==3||meet==7)meetShip(1,0);
 				else if(meet==6||meet==10)meetConvoy();
@@ -653,7 +653,7 @@ void day(char* place,int times)
 			}
 		case 4:
 			{
-				if(meet==2||(meet==12&&firstTwelve=0))meetAircraft();
+				if(meet==2||(meet==12&&firstTwelve==0))meetAircraft();
 				else if(meet==4||meet==8)meetShip(1,0);
 				else if(meet==6)meetShip(2,1);
 				else if(meet==9||meet==10)meetTanker();
@@ -667,7 +667,7 @@ void day(char* place,int times)
 			}
 		case 3:
 			{
-				if(meet==12&&firstTwelve=0)meetAircraft();
+				if(meet==12&&firstTwelve==0)meetAircraft();
 				else if(meet==2)meetCapitalShip();
 				else if(meet==5||meet==8)meetShip(1,0);
 				else if(meet==6)meetShip(1,1);
@@ -682,7 +682,7 @@ void day(char* place,int times)
 			}
 		case 2:
 			{
-				if((meet==12&&firstTwelve=0)||meet==6||meet==7||meet==9)meetConvoy();
+				if((meet==12&&firstTwelve==0)||meet==6||meet==7||meet==9)meetConvoy();
 				else if(meet==2)meetCapitalShip();
 				else if(meet==3)meetShip(1,0);
 				else if(meet==12&&firstTwelve==1)
@@ -695,7 +695,7 @@ void day(char* place,int times)
 			}
 		case 1:
 			{
-				if(meet==12&&firstTwelve=0)meetAircraft();
+				if(meet==12&&firstTwelve==0)meetAircraft();
 				else if(meet==2)meetCapitalShip();
 				else if(meet==3)meetShip(1,0);
 				else if(meet>5&&meet<9)meetConvoy();
@@ -766,7 +766,7 @@ void patrol()
 {		//working...
 	int mNumber=roll(2);
 	
-	firstTwelve=1；
+	firstTwelve=1;
 
 		if(year==1939||((year==1940)&&(month<4)))
 	{
