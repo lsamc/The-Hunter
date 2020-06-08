@@ -323,7 +323,7 @@ void introduce(char* type,int first)
 
 	helploop:clean();	
 
-	printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\n4.狼群战是什么\t5.综述\t6.关于军衔\n7.大型军舰名字后的*是什么意思\t8.获得勋章的好处\t9.没问题了\t更新中...");
+	printf("1.关于鱼雷\t2.关于CONVOY\t3.怎么攻击军舰\n4.狼群战是什么\t5.综述\t6.关于军衔\n7.大型军舰名字后的*是什么意思\t8.获得勋章的好处\n9.没问题了\t更新中...");
 	scanf("%d",&choose);
 	switch(choose)
 	{
@@ -465,9 +465,10 @@ void introduce(char* type,int first)
 			{
 				print("铁十字章炙手可热。历史上只有125 名潜艇指挥官获得过铁十字章.\n");
 				print("但是只要 29 位获得了橡树叶子，更少的人获得了剑，只有两位获得了带有橡树叶子、剑和钻石的潜艇指挥官。\n");
-				print("沉 100,000 吨 船 或 击 沉 一 些Capital 主要军舰 你才能获得骑士勋章。\n");
+				print("沉100000吨船或击沉一些Capital主要军舰你才能获得骑士勋章。\n");
 				print("有勋章的人可以获得一些骰子修正。你只能在在港的时候获得勋章。\n");
-				print("想获得铁十字你要沉 100,000吨或者沉了相应的主要军舰\n");
+				clean();
+    print("获得铁十字你要沉 100,000吨或者沉了相应的主要军舰\n");
 				print("获得橡树叶铁十字需要沉175000吨，或者获得KC后沉相应的Capital Ship或沉75000 吨\n");
 				print("获得橡树剑十字需要沉250000或者获得KCO后沉相应的 Capital ships 或沉75000吨\n");
 				print("获得橡剑钻骑士铁十字,你要沉300000或者获得剑后沉相应的主要军舰，或沉50000吨\n");
@@ -774,25 +775,21 @@ void patrol()
 		{
 			mName=0;
 			mType=3;
-			break;
 		}
-		else if(mNuumber==3||mNuumber==4||mNuumber==6||mNuumber==7||mNuumber==8||mNuumber==10||mNuumber==11)
+		else if(mNumber==3||mNumber==4||mNumber==6||mNumber==7||mNumber==8||mNumber==10||mNumber==11)
 		{
 			mName=1;
 			mType=3;
-			break;
 		}
-		else if(mNumber==5||mNuumber==9)
+		else if(mNumber==5||mNumber==9)
 		{
 			mName=1;
 			mType=0;
-			break;
 		}
-		else if(mNuumber==12)
+		else if(mNumber==12)
 		{
 			mName=4;
 			mType=3;
-			break;
 		}
 		else	
 		{
@@ -822,11 +819,11 @@ void main()
 	srand((unsigned)time(NULL));
 	print("————————————欢迎来到《潜杀猎航》————————————\n********************************************\n");
 	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明:\n");
-	print("(若你是第一次游玩，输入你的名字，若你是来继续游戏，输入'%'\n");
+	print("(若你是第一次游玩，输入你的名字，若你是来继续游戏，输入'%')\n");
 	scanf("%s",player);
-	if(strcmp(player,"%"))
+	if(player[0]=='%')
 	{
-		read_data();
+		//read_data();
 		printf("哨兵前台:你好,%s指挥官",player);sleep(1);
 		//working...
 
@@ -918,7 +915,7 @@ void main()
 		else if(month>9)printf("%d年%d个月后...\n",year-1939,month-9);
 		else if(month<9)printf("%d年%d个月后...\n",year-1940,month+3);
 		else if(year!=1939)printf("%d年后...\n",year-1939);
-		else printf("程序故障");
+		else printf("第二天\n");
 
 		if(year>1939||month>9)sleep(3);
 		if(0) loop2: print("(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");
