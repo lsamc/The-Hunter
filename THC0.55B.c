@@ -602,7 +602,8 @@ void day(char* place,int times)//times未处理
 	clean();
 	printf("————————%d年%d月%s的%s任务的第%d站—————————\n",year,month,mission[mName],missionType[mType],process[0]);
 	if(giveup==1)printf("(任务已放弃，向最近基地航行中。。。)\n");
-	loop4:int meet=roll(2);
+	int meet;
+	loop4:meet=roll(2);
 	switch(pl)
 	{
 		case 12:
