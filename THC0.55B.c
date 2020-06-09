@@ -520,11 +520,66 @@ void giveUpMission()
 }
 void meetAircraft()
 {
-
+	
 }
 void meetShip(int numbers,int haveEscort)
 {
-
+	int shipKind[numbers];//0是小船，1是大船，2是油轮
+	int time[2];
+	int kind;
+	if(roll(1)<4)time[0]=rand()%12+7;
+	else time[0]=rand()%12-5;
+	if(time[0]<0)time[0]+=24;
+	time[1]=rand()%60;
+	print("%d时%d分,",time[0],time[1]);
+	print("我们遭遇了盟军的");
+	for(int i=0;i<numbers;i++)
+	{
+		kind=roll(1);
+		if(kind<4)shipKind[i]=0;
+		else if(kind==4||kind==5)shipKind[i]=1;
+		else if(kind==6)shipKind[i]=2;
+		else printf("骰子有问题！\n");
+		
+		if(shipKind[i]==0)print("小货船，");
+		else if(shipKind[i]==1)print("大货船，");
+		else if(shipKind[i]==2)print("油轮，");
+	}
+	print("\n");
+	
+	int shipId;
+	print("分别是：");
+	
+	for(int i=0;i<numbers;i++)
+	{
+		shipId=rand()%100+1;
+		if(shipKind[i]==0)
+		{
+			print("%s,%d吨");
+		else if(shipKind[i]==1)print("大货船，");
+		else if(shipKind[i]==2)print("油轮，");
+	}
+	if(0){loop5:printf("如果这是第2次及以上问你，那应该是你之前输入了不合要求的选项\n");}
+	printf("请决定是否发动攻击:(1.是 2.否）\n");
+	scanf("%d",choose);
+	
+	clrscr();
+	printBuff();
+	if(choose==0)
+	{
+		print("我：算了吧，继续航行！\n");
+		print("Tommy：继续航行！\n");
+		print("Leo:伙计们，动起来！继续航行！\n");
+	}
+	else if(choose==1)
+	{
+		print("我：发起攻击！");
+		print("Gregson：发起攻击！\n");
+		print("Eric:伙计们，动起来！\n");
+		clean();
+		printf("Target1:");//working...
+	}
+	else goto loop5;
 }
 void meetConvoy()
 {
