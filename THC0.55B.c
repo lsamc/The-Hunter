@@ -597,7 +597,7 @@ void day(char* place,int times)//times未处理
 	else if(strcmp(place,"大西洋"))pl=2;
 	else if(strcmp(place,"北极"))pl=1;
 	else if(strcmp(place,"Mission"))pl=0;
-	elseprintf("程序故障");
+	else printf("程序故障");
 
 	clean();
 	printf("————————%d年%d月%s的%s任务的第%d站—————————\n",year,month,mission[mName],missionType[mType],process[0]);
@@ -616,7 +616,7 @@ void day(char* place,int times)//times未处理
 			}
 		case 11:
 			{
-				if(year==1942)meet-=3
+				if(year==1942)meet-=3;
 				else if(year==1943)meet-=4;
 				if(meet==4||meet==5)meetAircraft();
 				else if(meet<4)meetEscort();
@@ -2062,3 +2062,4 @@ void main()
 		theEnd();
 	}
 }
+    
