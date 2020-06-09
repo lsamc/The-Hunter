@@ -505,7 +505,7 @@ void backHome()
 	int stopPoint=process-1;//暂停点
 	for(int i=1;i<=stopPoint;i++)
 	{
-		day(missionStack[stopPoint-i],Time[stopPoint-i]);
+		day(missionStack[stopPoint-i],Times[stopPoint-i]);
 	}
 }
 
@@ -550,6 +550,10 @@ void meetCapitalShip()
 {
 
 }
+void meetEscort()
+{
+	
+}
 void ramdomEvent()
 {
 
@@ -580,7 +584,9 @@ void day(char* place,int times)//times未处理
     *9.西班牙海岸
     *10.途中
     */
-	if(strcmp(place,"比斯开湾")||strcmp(place,"路上"))pl=10;
+	if(strcmp(place,"比斯开湾"))pl=12;
+	else if(strcmp(place,"直布罗陀"))pl=11;
+	else if(strcmp(place,"路上"))pl=10;
 	else if(strcmp(place,"西班牙海岸"))pl=9;
 	else if(strcmp(place,"挪威"))pl=8;
 	else if(strcmp(place,"北美"))pl=7;
@@ -594,11 +600,28 @@ void day(char* place,int times)//times未处理
 	elseprintf("程序故障");
 
 	clean();
-	printf("————————%d年%d月%s的%s任务的第%d站—————————\n",year,month,mission[mName],missionType[mType]);
+	printf("————————%d年%d月%s的%s任务的第%d站—————————\n",year,month,mission[mName],missionType[mType],process[0]);
 	if(giveup==1)printf("(任务已放弃，向最近基地航行中。。。)\n");
-	int meet=roll(2);
+	loop4:int meet=roll(2);
 	switch(pl)
 	{
+		case 12:
+			{
+				if(year==1942)meet--;
+				else if(year==1943)meet-=2;
+				if(meet<5)meetAircraft();
+				else nothingHappened();
+				break;
+			}
+		case 11:
+			{
+				if(year==1942)meet-=3
+				else if(year==1943)meet-=4;
+				if(meet==4||meet==5)meetAircraft();
+				else if(meet<4)meetEscort();
+				else nothingHappened();
+				break;
+			}
 		case 10:
 			{
 				if(meet==2||meet==3)meetAircraft();
@@ -739,6 +762,17 @@ void day(char* place,int times)//times未处理
 				}
 				else nothingHappened();
 				break;
+			}
+		case 0:
+			{
+				if(meet<4)
+				{
+					meetAircraft();
+					printf("逃过了此劫后，你们继续进行%s任务",missionType[mType]);
+					goto loop4;
+				}
+				printf("任务顺利完成了，大家欢呼雀跃，决定今晚好好喝一杯！\n");
+				patrolSuccess=1;
 			}
 		default:
 			{
@@ -1497,7 +1531,7 @@ void execMission()
 							if(mType==3||mType==1)if(back==0)day("北美",1);
 							else if(back==0)day("Mission",1);
 							if(back==0)day("北美",2);
-							if(back==0)day("北美",2)
+							if(back==0)day("北美",2);
 							if(back==0)day("北美",1);
 							if(back==0)day("路上",1);
 							if(back==0)day("路上",1);
@@ -1509,7 +1543,7 @@ void execMission()
 					case 7:
 						{
 							process[0]=0;
-							process[1]12;
+							process[1]=12;
 							if(back==0)day("比斯开湾",1);
 							if(back==0)day("路上",1);
 							if(back==0)day("路上",1);
@@ -1692,7 +1726,7 @@ void execMission()
 							if(mType==3||mType==1)if(back==0)day("加勒比海",1);
 							else if(back==0)day("Mission",1);
 							if(back==0)day("加勒比海",2);
-							if(back==0)day("加勒比海",2)
+							if(back==0)day("加勒比海",2);
 							if(back==0)day("加勒比海",1);
 							if(back==0)day("路上",1);
 							if(back==0)day("路上",1);
