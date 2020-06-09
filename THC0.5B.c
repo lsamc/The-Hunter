@@ -1,13 +1,13 @@
 #include<conio.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+	#include<stdio.h>
+	#include<stdlib.h>
+	#include<string.h>
 
-#define LINE 20
-#define COLUMN 150
+	#define LINE 20
+	#define COLUMN 150
 
 
-struct shipSort
+	struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
@@ -413,7 +413,8 @@ void introduce(char* type,int first)
 						}
 					case 7:
 						{
-							print("VIID于1942年1月服役，艇长76.8m，最高航速16节，艇重965t，有效射程8100nm，乘员44人，共被生产了6艘\n");
+							print("VIID于1942年1月服役，是个执行特殊任务的型号，除了北美巡航以外，他每个任务都是布雷/护送\n");
+							print("艇长76.8m，最高航速16节，艇重965t，有效射程8100nm，乘员44人，共被生产了6艘\n");
 							print("共携带鱼雷14发，前鱼雷管4发，前鱼雷装填区8发，后鱼雷管1发，后鱼雷装填区1发。\n");
 							print("可携带15 SMA水雷，8.8cm甲板炮，10发容量，2cm防空炮\n");
 							break;
@@ -468,7 +469,7 @@ void introduce(char* type,int first)
 				print("沉100000吨船或击沉一些Capital主要军舰你才能获得骑士勋章。\n");
 				print("有勋章的人可以获得一些骰子修正。你只能在在港的时候获得勋章。\n");
 				clean();
-    print("获得铁十字你要沉 100,000吨或者沉了相应的主要军舰\n");
+				print("获得铁十字你要沉 100,000吨或者沉了相应的主要军舰\n");
 				print("获得橡树叶铁十字需要沉175000吨，或者获得KC后沉相应的Capital Ship或沉75000 吨\n");
 				print("获得橡树剑十字需要沉250000或者获得KCO后沉相应的 Capital ships 或沉75000吨\n");
 				print("获得橡剑钻骑士铁十字,你要沉300000或者获得剑后沉相应的主要军舰，或沉50000吨\n");
@@ -514,11 +515,11 @@ void meetNAConvoy()
 }
 void meetTanker()
 {
-	
+
 }
 void meetNATanker()
 {
-	
+
 }
 void meetCapitalShip()
 {
@@ -534,9 +535,9 @@ void nothingHappened()
 }
 void repairComponent()
 {
-	
+
 }
-void day(char* place,int times)
+void day(char* place,int times)//times未处理
 {
 	int pl;                             
 	/*1.北极
@@ -560,8 +561,9 @@ void day(char* place,int times)
 	else if(strcmp(place,"英吉利海峡"))pl=3;
 	else if(strcmp(place,"大西洋"))pl=2;
 	else if(strcmp(place,"北极"))pl=1;
-	else printf("程序故障");
-	
+	else if(strcmp(place,"Mission"))pl=0;
+	elseprintf("程序故障");
+
 	clean();
 	printf("————————%d年%d月%s的%s任务的第%d站—————————",year,month,mission[mName],missionType[mType]);
 	int meet=roll(2);
@@ -757,19 +759,268 @@ void execMission()
 							clean();
 							break;
 						}
+					case 2:
+						{
+							process[0]=0;
+							process[1]=8;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 3:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 4:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",2);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 5:
+						{
+							process[0]=0;
+							process[1]=8;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 6:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",3);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 7:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("Mission",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",2);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 8:
+						{
+							process[0]=0;
+							process[1]=8;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("西班牙海岸",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					default:
+						{
+							printf("程序故障");
+						}
+				}
+			}
+		case 1:
+			{
+				switch(typeNumber)
+				{
+					case 1:
+						{
+							process[0]=0;
+							process[1]=7;
+							day("比斯开湾",1);
+							day("路上",1);
+							if(mType==3||mType==1)day("英吉利海峡",1);
+							else day("Mission",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 2:
+						{
+							process[0]=0;
+							process[1]=8;
+							day("比斯开湾",1);
+							day("路上",1);
+							if(mType==3||mType==1)day("英吉利海峡",1);
+							else day("Mission",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 3:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							if(mType==3||mType==1)day("英吉利海峡",1);
+							else day("Mission",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 4:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",2);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 5:
+						{
+							process[0]=0;
+							process[1]=8;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 6:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",3);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 7:
+						{
+							process[0]=0;
+							process[1]=9;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("Mission",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",2);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 8:
+						{
+							process[0]=0;
+							process[1]=8;
+							day("比斯开湾",1);
+							day("路上",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("英吉利海峡",1);
+							day("路上",1);
+							day("比斯开湾",1);
+							clean();
+							break;
+						}
+					default:
+						{
+							printf("程序故障");
+						}
 				}
 			}
 	}
 	if(month==12){month=1;year++;}
 	else month++;
 }
-void patrol()
+int patrol()
 {		//working...
 	int mNumber=roll(2);
-	
+
 	firstTwelve=1;
 
-		if(year==1939||((year==1940)&&(month<4)))
+	if(year==1939||((year==1940)&&(month<4)))
 	{
 		if(mNumber==2)
 		{
@@ -804,13 +1055,30 @@ void patrol()
 
 
 
+	}//mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
+	if(typeNumber==3||typeNumber==4||typeNumber==6)
+	{
+		if(mName==5||mName==7)mName=4;
+	}
+	if(typeNumber==1||typeNumber==2||typeNumber==5||typeNumber==8)
+	{
+		if(mName==8||mName==4)mName=3;
+	}
+	if(typeNumber==8)
+	{
+		if(mName==5)return 0;
+	}
+	if(typeNumber==7)
+	{
+		if(mName==5||mName==4)return 0;
+		if(!(mType==2))mType=0;
 	}
 	printf("我：我们要去%s执行%s任务了！\n",mission[mName],missionType[mType]);
 	printf("Eric:是！（敬礼）\n");
 	clean();
 
 	execMission();
-	rest();
+	return 1;
 }
 
 void main() 
@@ -1032,7 +1300,12 @@ void main()
 		introduce(type,1);
 		print("我：好吧，我清楚了，起航！");
 
-		do{patrol();}while(year<1943||((year==1943)&&(month<7)));
+		do
+		{
+			paloop:if(patrol()==0)goto paloop;
+			if(year<1943||(year==1943&&month<7))rest();
+		}
+		while(year<1943||((year==1943)&&(month<7)));
 		theEnd();
 	}
 }
