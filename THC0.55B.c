@@ -524,6 +524,170 @@ void meetAircraft()
 }
 void meetShip(int numbers,int haveEscort)
 {
+	int shipkind[numbers];//0是小船，1是大船，2是油轮
+	int time[2];
+ int health[numbers][2];
+	int kind;
+	if(roll(1)<4)time[0]=rand()%12+7;
+	else time[0]=rand()%12-5;
+	if(time[0]<0)time[0]+=24;
+	time[1]=rand()%60;
+	print("%d时%d分,",time[0],time[1]);
+	print("我们遭遇了盟军的船");
+	for(int i=0;i<numbers;i++)
+	{
+		kind=roll(1);
+		if(kind<4)shipkind[i]=0;
+		else if(kind==4||kind==5)shipkind[i]=1;
+		else if(kind==6)shipkind[i]=2;
+		else printf("骰子有问题！\n");
+	}
+	print("\n");
+	
+	int shipID;
+	print("，分别是：\n");
+	
+	for(int i=0;i<numbers;i++)
+	{
+		shipID=rand()%100+1;
+		if(shipkind[i]==0)
+		{
+    health[i][0]=2;
+    health[i][1]=2;
+	   print("小货船：%s,%d吨\n",ship[0][shipID].shipName,ship[0][shipID].shipTons);
+		}
+  else if(shipkind[i]==1)
+  {
+    if(ship[1][shipID].shipTons<10000)
+    {
+    health[i][0]=3;
+    health[i][1]=3;
+    }
+    else 
+    {
+    health[i][0]=4;
+    health[i][1]=4;
+    }
+	   print("大货船,%s,%d吨\n",ship[1][shipID].shipName,ship[1][shipID].shipTons);
+		}
+		else if(shipkind[i]==2)
+    {
+    if(ship[1][shipID].shipTons<10000)
+    {
+    health[i][0]=3;
+    health[i][1]=3;
+    }
+    else
+    {
+    health[i][0]=4;
+    health[i][1]=4;
+    }
+	   print("油轮,%s,%d吨\n",ship[2][shipID].shipName,ship[2][shipID].shipTons);
+		  }
+	}
+  print("\n");
+	if(0){loop5:printf("如果这是第2次及以上问你，那应该是你之前输入了不合要求的选项\n");}
+	printf("请决定是否发动攻击:(1.是 2.否）\n");
+	scanf("%d",choose);
+	
+	clrscr();
+	printBuff();
+	if(choose==0)
+	{
+		print("我：算了吧，继续航行！\n");
+		print("Tommy：继续航行！\n");
+		print("Leo:伙计们，动起来！继续航行！\n");
+	}
+	else if(choose==1)
+	{
+		print("我：发起攻击！");
+		print("Gregson：发起攻击！\n");
+		print("Eric:伙计们，动起来！\n");
+		clean();
+  clrscr();
+  char describe[numbers][60];
+  
+		for(int i=0;i<numbers;i++)
+  {
+    if(shipkind[i]==0)
+    {
+        if(health[i][0]==2)strcpy(describe[i],"这艘小货船完好无损");
+        else if(health[i][0]==1)strcpy(describe[i],"小货船冒起了浓烟");
+        else strcpy(describe[i],"小货船沉了");
+    }
+    else if(shipkind[i]==1)
+    {
+        if(health[i][0]==4)strcpy(describe[i],"这艘巨货船完好无损");
+        else if(health[i][0]==3)strcpy(describe[i],"这艘大货船看起来还能再撑一百年");
+        else if(health[i][0]==2)strcpy(describe[i],"大货船船体收到了损伤");
+        else if(health[i][0]==1)strcpy(describe[i],"大货船冒起了浓烟");
+        else strcpy(describe[i],"大货船沉了");
+    }
+    else if(shipkind[i]==2)
+    {
+        if(health[i][0]==4)strcpy(describe[i],"这艘大油轮完好无损");
+        else if(health[i][0]==3)strcpy(describe[i],"油轮结构完好");
+        else if(health[i][0]==2)strcpy(describe[i],"油轮船体收到了损伤");
+        else if(health[i][0]==1)strcpy(describe[i],"油轮冒起了浓烟");
+        else strcpy(describe[i],"油轮沉了");
+    }
+    printf("Target%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
+    }
+	   
+printf("————————————————————————\n");
+printf("前鱼雷管:%s,%s,%s,%s\n");
+if(typeNumber==3||typeNumber==4||typeNumber==6)printf("后鱼雷管:%s,%s\n");
+else printf("后鱼雷管:%s\n");
+printf("甲板炮:");
+}
+	else goto loop5;
+}
+void meetConvoy()
+{
+
+}
+void meetNAShip(int numbers,int haveEscort)
+{
+
+}
+void meetNAConvoy()
+{
+
+}
+void meetTanker()
+{
+
+}
+void meetNATanker()
+{
+
+}
+void meetCapitalShip()
+{
+
+}
+void meetEscort()
+{
+	
+}
+void ramdomEvent()
+{
+
+}
+void nothingHappened()
+{
+
+}
+void repairComponent()
+{
+
+}
+void meetAircraft()
+{
+	
+}
+void meetShip(int numbers,int haveEscort)
+{
 	int shipKind[numbers];//0是小船，1是大船，2是油轮
 	int time[2];
 	int kind;
