@@ -1,13 +1,13 @@
 #include<conio.h>
-	#include<stdio.h>
-	#include<stdlib.h>
-	#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
-	#define LINE 20
-	#define COLUMN 150
+#define LINE 20
+#define COLUMN 150
 
 
-	struct shipSort
+struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
@@ -202,6 +202,8 @@ int tons=0,promotionMonth,damage_status,expert_level,Tingyuan_level,xunhang_proc
 char TextBuff[LINE][COLUMN],rank[20],player[50],type[6],data[200];
 char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
 char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
+char missionStack[12][20];
+int Times[12];
 int mName;
 int mType;
 
@@ -216,7 +218,7 @@ int line=0,choose,year,month,typeNumber,id,process[2];
  *7.VIID
  *8.VIICFk
 */
-int firstTwelve=1;
+int firstTwelve=1,back,giveup,patrolSuccess,stayInTheMed=0;
 char* itoa(int value, char* result, int base) {
 	// check that the base if valid
 	if (base < 2 || base > 36) { *result = '\0'; return result; }
@@ -493,6 +495,29 @@ void introduce(char* type,int first)
 	clean();
 }
 
+void backHome()
+{
+	clrscr();
+	printf("我：情况很严峻，再一意孤行继续执行巡航任务很可能导致艇毁人亡，各位，我们得放弃巡航了\n");
+	printf("人们长长的舒了一口气。至少现在，他们不需要再冒险了，他们开始想象回家的场景：\n");
+	if(patrolSuccess)printf("虽然他们没有进行完整的巡航，但毕竟他们还是完成了任务目标，回去时，肯定能得到欢迎和赞誉\n");
+	else printf("大家脸上都不大光彩，这次任务失败了，但是他们现在顾不了那么多，先活着回去再说！\n");
+	int stopPoint=process-1;//暂停点
+	for(int i=1;i<=stopPoint;i++)
+	{
+		day(missionStack[stopPoint-i],Time[stopPoint-i]);
+	}
+}
+
+void giveUpMission()
+{
+	giveup=1;
+	if(process[0]<=(process[1]/2))
+	{
+		backHome();
+		back=1;
+	} 
+}
 void meetAircraft()
 {
 
@@ -539,7 +564,11 @@ void repairComponent()
 }
 void day(char* place,int times)//times未处理
 {
-	int pl;                             
+	int pl;   
+	strcpy(missionStack[process[0]],place);
+	Times[process[0]]=times;
+	process[0]++;
+	
 	/*1.北极
     *2.大西洋
     *3.英吉利海峡
@@ -565,7 +594,8 @@ void day(char* place,int times)//times未处理
 	elseprintf("程序故障");
 
 	clean();
-	printf("————————%d年%d月%s的%s任务的第%d站—————————",year,month,mission[mName],missionType[mType]);
+	printf("————————%d年%d月%s的%s任务的第%d站—————————\n",year,month,mission[mName],missionType[mType]);
+	if(giveup==1)printf("(任务已放弃，向最近基地航行中。。。)\n");
 	int meet=roll(2);
 	switch(pl)
 	{
@@ -716,7 +746,7 @@ void day(char* place,int times)//times未处理
 			}
 	}
 	repairComponent();
-	process[0]++;
+	
 }
 
 void promotionKmdt()
@@ -729,16 +759,21 @@ void promotion()
 
 }
 
-void rest(){
+void rest()
+{
 
 }
 
-void theEnd(){
+void theEnd()
+{
 
 }
 
 void execMission()
 {
+	patrolSuccess=0;
+	back=0;
+	giveup=0;
 	switch(mName)
 	{
 		case 0:
@@ -749,13 +784,13 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=7;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -763,14 +798,14 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=8;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -778,15 +813,15 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -794,15 +829,15 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",2);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",2);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -810,14 +845,14 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=8;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -825,15 +860,15 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",3);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",3);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -841,15 +876,15 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("Mission",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",2);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("Mission",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",2);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -857,14 +892,14 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=8;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("西班牙海岸",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("西班牙海岸",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -873,6 +908,7 @@ void execMission()
 							printf("程序故障");
 						}
 				}
+				break;
 			}
 		case 1:
 			{
@@ -882,14 +918,14 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=7;
-							day("比斯开湾",1);
-							day("路上",1);
-							if(mType==3||mType==1)day("英吉利海峡",1);
-							else day("Mission",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("英吉利海峡",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -897,15 +933,15 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=8;
-							day("比斯开湾",1);
-							day("路上",1);
-							if(mType==3||mType==1)day("英吉利海峡",1);
-							else day("Mission",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("英吉利海峡",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -913,16 +949,16 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							if(mType==3||mType==1)day("英吉利海峡",1);
-							else day("Mission",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("英吉利海峡",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -930,15 +966,16 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",2);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("英吉利海峡",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",2);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -946,14 +983,15 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=8;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("英吉利海峡",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -961,15 +999,16 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",3);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("英吉利海峡",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",3);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -977,15 +1016,15 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=9;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("Mission",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",2);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",2);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -993,14 +1032,283 @@ void execMission()
 						{
 							process[0]=0;
 							process[1]=8;
-							day("比斯开湾",1);
-							day("路上",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("英吉利海峡",1);
-							day("路上",1);
-							day("比斯开湾",1);
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("英吉利海峡",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("英吉利海峡",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					default:
+						{
+							printf("程序故障");
+						}
+				}
+				break;
+			}
+		case 2:
+			{
+				switch(typeNumber)
+				{
+					case 1:
+						{
+							process[0]=0;
+							process[1]=7;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 2:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 3:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 4:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",2);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 5:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 6:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",3);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 7:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("Mission",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 8:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("挪威",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					default:
+						{
+							printf("程序故障");
+						}
+				}
+				break;
+			}
+		case 3:
+			{
+				switch(typeNumber)
+				{
+					case 1:
+						{
+							process[0]=0;
+							process[1]=7;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 2:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 3:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 4:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",2);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 5:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 6:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",3);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 7:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("Mission",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",2);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 8:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("大西洋",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
 							clean();
 							break;
 						}
@@ -1010,16 +1318,420 @@ void execMission()
 						}
 				}
 			}
+		case 4:
+			{
+				process[0]=0;
+				process[1]=10;
+				if(back==0)day("比斯开湾",1);
+				if(back==0)day("路上",1);
+				if(back==0)day("路上",1);
+				if(back==0)day("西非海岸",1);
+				if(back==0)day("西非海岸",2);
+				if(back==0)day("西非海岸",1);
+				if(back==0)day("西非海岸",1);
+				if(back==0)day("路上",1);
+				if(back==0)day("路上",1);
+				if(back==0)day("比斯开湾",1);
+				clean();
+				break;
+			}
+		case 5:
+			{
+				switch(typeNumber)
+				{
+					case 1:
+						{
+							process[0]=0;
+							process[1]=7;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("直布罗陀",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 2:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("直布罗陀",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+					case 5:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("直布罗陀",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("地中海",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							clean();
+							break;
+						}
+				}
+				stayInTheMed=1;
+				printf("可能你没有注意到，进入地中海真的不容易，\n");
+				printf("德军高层决定让你以后留在地中海执行任务，直到你换个别的潜艇。");
+			}
+		case 6:
+			{
+				switch(typeNumber)
+				{
+					case 1:
+						{
+							process[0]=0;
+							process[1]=10;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("北美",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 2:
+						{
+							process[0]=0;
+							process[1]=11;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("北美",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 3:
+						{
+							process[0]=0;
+							process[1]=12;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("北美",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("北美",2);
+							if(back==0)day("北美",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 4:
+						{
+							process[0]=0;
+							process[1]=12;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("北美",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("北美",2);
+							if(back==0)day("北美",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 5:
+						{
+							process[0]=0;
+							process[1]=11;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("北美",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);if(back==0)day("路上",1);if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 6:
+						{
+							process[0]=0;
+							process[1]=12;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("北美",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("北美",2);
+							if(back==0)day("北美",2)
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 7:
+						{
+							process[0]=0;
+							process[1]12;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("Mission",1);
+							if(back==0)day("北美",2);
+							if(back==0)day("北美",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 8:
+						{
+							process[0]=0;
+							process[1]=11;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("北美",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("北美",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					default:
+						{
+							printf("程序故障");
+						}
+				}
+				break;
+			}
+		case 7:
+			{
+				switch(typeNumber)
+				{
+					case 1:
+						{
+							process[0]=0;
+							process[1]=7;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 2:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 5:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 7:
+						{
+							process[0]=0;
+							process[1]=9;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("Mission",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",2);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 8:
+						{
+							process[0]=0;
+							process[1]=8;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("北极",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					default:
+						{
+							printf("程序故障");
+						}
+				}
+				break;
+			}
+		case 8:
+			{
+				switch(typeNumber)
+				{
+					case 3:
+						{
+							process[0]=0;
+							process[1]=12;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("加勒比海",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("加勒比海",2);
+							if(back==0)day("加勒比海",1);
+							if(back==0)day("加勒比海",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 4:
+						{
+							process[0]=0;
+							process[1]=12;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("加勒比海",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("加勒比海",2);
+							if(back==0)day("加勒比海",1);
+							if(back==0)day("加勒比海",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					case 6:
+						{
+							process[0]=0;
+							process[1]=12;
+							if(back==0)day("比斯开湾",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(mType==3||mType==1)if(back==0)day("加勒比海",1);
+							else if(back==0)day("Mission",1);
+							if(back==0)day("加勒比海",2);
+							if(back==0)day("加勒比海",2)
+							if(back==0)day("加勒比海",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("路上",1);
+							if(back==0)day("比斯开湾",1);
+							clean();
+							break;
+						}
+					default:
+						{
+							printf("程序故障");
+						}
+				}
+				break;
+			}
+		default:
+			{
+				printf("程序故障");
+			}
 	}
-	if(month==12){month=1;year++;}
-	else month++;
+	if(back==1)backHome();
+	if(typeNumber==1||typeNumber==2||typeNumber==5||typeNumber==8||back==1)
+	{
+		if(month==12){month=1;year++;}
+		else month++;
+	}
+	else if(typeNumber==3||typeNumber==4||typeNumber==6||typeNumber==7)
+	{
+		if(month==11){month=1;year++;}
+		else if(month==12){month=2;year++;}
+		else month+=2;
+	}
 }
 int patrol()
 {		//working...
 	int mNumber=roll(2);
 
 	firstTwelve=1;
-
+	
 	if(year==1939||((year==1940)&&(month<4)))
 	{
 		if(mNumber==2)
@@ -1070,9 +1782,15 @@ int patrol()
 	}
 	if(typeNumber==7)
 	{
-		if(mName==5||mName==4)return 0;
+		if(mName==5||mName==4||mName==8)return 0;
 		if(!(mType==2))mType=0;
 	}
+	if(stayInTheMed)
+	{
+		mName=5;
+		mType=3;
+	}
+	printf("————————————%d年%d月————————————",year,month);
 	printf("我：我们要去%s执行%s任务了！\n",mission[mName],missionType[mType]);
 	printf("Eric:是！（敬礼）\n");
 	clean();
