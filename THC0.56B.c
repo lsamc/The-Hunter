@@ -11,7 +11,7 @@ struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
-	unsigned int shipTons;
+	unsigned int shipTon;
 	char shipName[20];
 };
 
@@ -197,9 +197,7 @@ struct CapitalShipSort Cship[10]={
 	{0,10,11000,"CVE Audacity"}
 };
 
-int tons=0,promotionMonth,award=0,damage_status[14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-int expert_level[4]={0,0,0,0};
-int train_level=2,people_wound[10]={0,0,0,0,0,0,0,0,0,0};
+int tons=0,promotionMonth,award=0,damage_status[14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0},expert_level[4]={0,0,0,0},train_level=2，people_wound[10]={0,0,0,0,0,0,0,0,0,0};
 //训练等级:1新手  2受训  3老手 4精英
 //受损状态:0进水  1柴油 2电擎  3水听器  4潜水舵  5船体  6潜望镜  7防空炮  8甲板炮  9前鱼雷管  10后鱼雷管  11燃料箱  12无线电  13电池
 //人员受伤:0指挥官 1大副 2二副 3工程师 4医生 5艇员甲 6艇员乙 7艇员丙 8艇员丁 9特工
@@ -213,7 +211,7 @@ int FwTube[3],AftTube[3],FwLoad[2],AftLoad[2];//G7A,G7E,Mine
 int Times[12];
 int mName,mType;
 
-int line=0,choose,year,month,typeNumber,id,process[2],sunkID[80],sunkboats=0,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
+int line=0,choose,year,month,typeNumber,id,process[2],sunkID,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
 
 /*typrNumber
  *1.VIIA
@@ -546,7 +544,7 @@ void meetShip(int numbers,int haveEscort)
 
 	if(time[0]<0)time[0]+=24;
 	time[1]=rand()%60;
-	printf("%d时%d分,",time[0],time[1]);
+	print("%d时%d分,",time[0],time[1]);
 	print("我们遭遇了盟军的船");
 
 	for(int i=0;i<numbers;i++)
@@ -564,13 +562,13 @@ void meetShip(int numbers,int haveEscort)
 
 	for(int i=0;i<numbers;i++)
 	{
-		shipID=rand()%100+1;
+		shipID[i]=rand()%100+1;
 
 		if(shipkind[i]==0)
 		{
 			health[i][0]=2;
 			health[i][1]=2;
-			printf("小货船：%s,%d吨\n",ship[0][shipID[i]].shipName,ship[0][shipID[i]].shipTons);
+			print("小货船：%s,%d吨\n",ship[0][shipID[i]].shipName,ship[0][shipID[i]].shipTons);
 		}
 		else if(shipkind[i]==1)
 		{
@@ -584,7 +582,7 @@ void meetShip(int numbers,int haveEscort)
 				health[i][0]=4;
 				health[i][1]=4;
 			}
-			printf("大货船,%s,%d吨\n",ship[1][shipID[i]].shipName,ship[1][shipID[i]].shipTons);
+			print("大货船,%s,%d吨\n",ship[1][shipID[i]].shipName,ship[1][shipID[i]].shipTons);
 		}
 		else if(shipkind[i]==2)
 		{
@@ -598,7 +596,7 @@ void meetShip(int numbers,int haveEscort)
 				health[i][0]=4;
 				health[i][1]=4;
 			}
-			printf("油轮,%s,%d吨\n",ship[2][shipID[i]].shipName,ship[2][shipID[i]].shipTons);
+			print("油轮,%s,%d吨\n",ship[2][shipID[i]].shipName,ship[2][shipID[i]].shipTons);
 		}
 	}
 	print("\n");
@@ -674,7 +672,7 @@ void meetShip(int numbers,int haveEscort)
 				}
 			}
 
-			printf("目标%d:%s,%d tons,%s\n",(i+1),ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
+			printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
 		}
 
 		printf("————————————————————————\n");
@@ -707,7 +705,7 @@ void meetShip(int numbers,int haveEscort)
 				}
 				else
 				{
-					printf("————————————%d时%d分————————————",time[0],time[1]);
+					printf("————————————%d时%d分————————————,",time[0],time[1]);
 					printf("Tommy：对不起长官，我们跟丢了！\n");
 					printf("我：哦！真糟糕\n");
 					goto loop10;
@@ -839,7 +837,7 @@ void meetShip(int numbers,int haveEscort)
 						}
 					}
 
-					printf("目标%d:%s,%d tons,%s\n",(i+1),ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
+					printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
 				}
 				printf("————————————————————————\n");
 				printf("请选择攻击武器，一次只能选一个，结算完会让你再选(几次选择合起来是一次攻击)，一个武器只能用一次,(1.前鱼雷管  2.后鱼雷管  3.甲板炮  4.结束此轮战斗):");
@@ -852,14 +850,14 @@ void meetShip(int numbers,int haveEscort)
 
 							if(sumAmmo[0]!=0)
 							{
-								for(int x=0;x<sumAmmo[0];x++)
+								for(int x;x<sumAmmo[0];x++)
 								{
-									printf("第%d发G7A：（输入目标标号）Target",(x+1));
+									printf("第%d发G7A：（输入目标标号）Target");
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2)fireHit--;
-									if(train_level==1)fireHit++;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -883,12 +881,12 @@ void meetShip(int numbers,int haveEscort)
 							{
 								for(int x;x<sumAmmo[1];x++)
 								{
-									printf("第%d发G7E：（输入目标标号）Target",(x+1));
+									printf("第%d发G7E：（输入目标标号）Target");
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2)fireHit--;
-									if(train_level==1)fireHit++;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -922,12 +920,12 @@ void meetShip(int numbers,int haveEscort)
 							{
 								for(int x;x<AftSumAmmo[0];x++)
 								{
-									printf("第%d发G7A：（输入目标标号）Target",(x+1));
+									printf("第%d发G7A：（输入目标标号）Target");
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2)fireHit--;
-									if(train_level==1)fireHit++;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -951,12 +949,12 @@ void meetShip(int numbers,int haveEscort)
 							{
 								for(int x;x<AftSumAmmo[1];x++)
 								{
-									printf("第%d发G7E：（输入目标标号）Target",(x+1));
+									printf("第%d发G7E：（输入目标标号）Target");
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2)fireHit--;
-									if(train_level==1)fireHit++;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -970,7 +968,7 @@ void meetShip(int numbers,int haveEscort)
 										{
 											hit[0]++;
 											hitDamage=roll(1);
-											if(hitDamage==1)health[choose-1][0]-=4;
+											if(hitDamage==1)health[i][0]-=4;
 											else if(hitDamage==2)health[choose-1][0]-=3;
 											else if(hitDamage==3)health[choose-1][0]-=2;
 											else if(hitDamage>=4)health[choose-1][0]-=1;
@@ -987,13 +985,14 @@ void meetShip(int numbers,int haveEscort)
 						{
 							if(sumAmmo[3]!=0)
 							{
-								for(int x;x<AftSumAmmo[1];x++)
-								{
-								printf("第%d炮：（输入目标标号）Target",(x+1));
+								printf("第%d发G7E：（输入目标标号）Target");
 								scanf("%d",&choose);
+
+								for(int j=0;j<sumAmmo[3];j++)//DeckGun
+								{
 									int fireHit=roll(2);
-									if(award>=2)fireHit--;
-									if(train_level==1)fireHit++;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
