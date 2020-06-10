@@ -11,7 +11,7 @@ struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
-	unsigned int shipTon;
+	unsigned int shipTons;
 	char shipName[20];
 };
 
@@ -197,7 +197,7 @@ struct CapitalShipSort Cship[10]={
 	{0,10,11000,"CVE Audacity"}
 };
 
-int tons=0,promotionMonth,award=0,damage_status[14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0},expert_level[4]={0,0,0,0},train_level=2，people_wound[10]={0,0,0,0,0,0,0,0,0,0};
+int tons=0,promotionMonth,award=0,damage_status[14]={0,0,0,0,0,0,0,0,0,0,0,0,0,0},expert_level[4]={0,0,0,0},train_level=2,people_wound[10]={0,0,0,0,0,0,0,0,0,0};
 //训练等级:1新手  2受训  3老手 4精英
 //受损状态:0进水  1柴油 2电擎  3水听器  4潜水舵  5船体  6潜望镜  7防空炮  8甲板炮  9前鱼雷管  10后鱼雷管  11燃料箱  12无线电  13电池
 //人员受伤:0指挥官 1大副 2二副 3工程师 4医生 5艇员甲 6艇员乙 7艇员丙 8艇员丁 9特工
@@ -211,7 +211,7 @@ int FwTube[3],AftTube[3],FwLoad[2],AftLoad[2];//G7A,G7E,Mine
 int Times[12];
 int mName,mType;
 
-int line=0,choose,year,month,typeNumber,id,process[2],sunkID,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
+int line=0,choose,year,month,typeNumber,id,process[2],sunkID[80],sunkboats=0,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
 
 /*typrNumber
  *1.VIIA
@@ -544,7 +544,7 @@ void meetShip(int numbers,int haveEscort)
 
 	if(time[0]<0)time[0]+=24;
 	time[1]=rand()%60;
-	print("%d时%d分,",time[0],time[1]);
+	printf("%d时%d分,",time[0],time[1]);
 	print("我们遭遇了盟军的船");
 
 	for(int i=0;i<numbers;i++)
@@ -856,8 +856,8 @@ void meetShip(int numbers,int haveEscort)
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2))fireHit--;
-									if(train_level==1))fireHit++;
+									if(award>=2)fireHit--;
+									if(train_level==1)fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -885,8 +885,8 @@ void meetShip(int numbers,int haveEscort)
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2))fireHit--;
-									if(train_level==1))fireHit++;
+									if(award>=2)fireHit--;
+									if(train_level==1)fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -924,8 +924,8 @@ void meetShip(int numbers,int haveEscort)
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2))fireHit--;
-									if(train_level==1))fireHit++;
+									if(award>=2)fireHit--;
+									if(train_level==1)fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -953,8 +953,8 @@ void meetShip(int numbers,int haveEscort)
 									scanf("%d",&choose);
 
 									int fireHit=roll(2)-1;
-									if(award>=2))fireHit--;
-									if(train_level==1))fireHit++;
+									if(award>=2)fireHit--;
+									if(train_level==1)fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -991,8 +991,8 @@ void meetShip(int numbers,int haveEscort)
 								for(int j=0;j<sumAmmo[3];j++)//DeckGun
 								{
 									int fireHit=roll(2);
-									if(award>=2))fireHit--;
-									if(train_level==1))fireHit++;
+									if(award>=2)fireHit--;
+									if(train_level==1)fireHit++;
 									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 									if(people_wound[0]>1)fireHit++;
 									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -1034,8 +1034,8 @@ void meetShip(int numbers,int haveEscort)
 					{
 						int fireHit=roll(2);
 						if(surface==1&&(day_night>3||haveEscort==0))fireHit--;
-						if(award>=2))fireHit--;
-						if(train_level==1))fireHit++;
+						if(award>=2)fireHit--;
+						if(train_level==1)fireHit++;
 						if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 						if(people_wound[0]>1)fireHit++;
 						if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
@@ -1058,8 +1058,8 @@ void meetShip(int numbers,int haveEscort)
 					{
 						int fireHit=roll(2);
 						if(surface==1&&(day_night>3||haveEscort==0))fireHit--;
-						if(award>=2))fireHit--;
-						if(train_level==1))fireHit++;
+						if(award>=2)fireHit--;
+						if(train_level==1)fireHit++;
 						if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
 						if(people_wound[0]>1)fireHit++;
 						if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
