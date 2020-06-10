@@ -672,7 +672,7 @@ void meetShip(int numbers,int haveEscort)
 				}
 			}
 
-			printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
+			printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID[i]].shipName,ship[shipkind[i]][shipID[i]].shipTons,describe[i]);
 		}
 
 		printf("————————————————————————\n");
@@ -837,7 +837,7 @@ void meetShip(int numbers,int haveEscort)
 						}
 					}
 
-					printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
+					printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID[i]].shipName,ship[shipkind[i]][shipID[i]].shipTons,describe[i]);
 				}
 				printf("————————————————————————\n");
 				printf("请选择攻击武器，一次只能选一个，结算完会让你再选(几次选择合起来是一次攻击)，一个武器只能用一次,(1.前鱼雷管  2.后鱼雷管  3.甲板炮  4.结束此轮战斗):");
