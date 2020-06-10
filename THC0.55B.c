@@ -197,17 +197,18 @@ struct CapitalShipSort Cship[10]={
 	{0,10,11000,"CVE Audacity"}
 };
 
-int tons=0,promotionMonth,damage_status,expert_level,Tingyuan_level,xunhang_process;
+int tons=0,promotionMonth,damage_status,expert_level[4],Train_level;
 
 char TextBuff[LINE][COLUMN],rank[20],player[50],type[6],data[200];
 char mission[9][20]={"西班牙海岸","英吉利海峡","挪威","大西洋","西非海岸","地中海","北美","北极","加勒比海"};
 char missionType[4][20]={"布置海雷","狼群行动","护送特工","水域巡航"};
 char missionStack[12][20];
+int FwTube[3],AftTube[3];
 int Times[12];
-int mName;
-int mType;
+int mName,mType;
 
-int line=0,choose,year,month,typeNumber,id,process[2];
+int line=0,choose,year,month,typeNumber,id,process[2],sunkID,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
+
 /*typrNumber
  *1.VIIA
  *2.VIIB
@@ -544,21 +545,22 @@ void meetShip(int numbers,int haveEscort)
 	}
 	print("\n");
 
-	int shipID;
+	int shipID[numbers];
 	print("，分别是：\n");
 
 	for(int i=0;i<numbers;i++)
 	{
 		shipID=rand()%100+1;
+		
 		if(shipkind[i]==0)
 		{
 			health[i][0]=2;
 			health[i][1]=2;
-			print("小货船：%s,%d吨\n",ship[0][shipID].shipName,ship[0][shipID].shipTons);
+			print("小货船：%s,%d吨\n",ship[0][shipID[i]].shipName,ship[0][shipID[i]].shipTons);
 		}
 		else if(shipkind[i]==1)
 		{
-			if(ship[1][shipID].shipTons<10000)
+			if(ship[1][shipID[i]].shipTons<10000)
 			{
 				health[i][0]=3;
 				health[i][1]=3;
@@ -568,11 +570,11 @@ void meetShip(int numbers,int haveEscort)
 				health[i][0]=4;
 				health[i][1]=4;
 			}
-			print("大货船,%s,%d吨\n",ship[1][shipID].shipName,ship[1][shipID].shipTons);
+			print("大货船,%s,%d吨\n",ship[1][shipID[i]].shipName,ship[1][shipID[i]].shipTons);
 		}
 		else if(shipkind[i]==2)
 		{
-			if(ship[1][shipID].shipTons<10000)
+			if(ship[1][shipID[i]].shipTons<10000)
 			{
 				health[i][0]=3;
 				health[i][1]=3;
@@ -582,7 +584,7 @@ void meetShip(int numbers,int haveEscort)
 				health[i][0]=4;
 				health[i][1]=4;
 			}
-			print("油轮,%s,%d吨\n",ship[2][shipID].shipName,ship[2][shipID].shipTons);
+			print("油轮,%s,%d吨\n",ship[2][shipID[i]].shipName,ship[2][shipID[i]].shipTons);
 		}
 	}
 	print("\n");
@@ -595,7 +597,7 @@ void meetShip(int numbers,int haveEscort)
 	if(choose==0)
 	{
 		print("我：算了吧，继续航行！\n");
-		print("Tommy：继续航行！\n");
+	loop8:	print("Tommy：继续航行！\n");
 		print("Leo:伙计们，动起来！继续航行！\n");
 	}
 	else if(choose==1)
@@ -607,6 +609,14 @@ void meetShip(int numbers,int haveEscort)
 		clrscr();
 		char describe[numbers][60];
 		int range;//1.近距   2.中距   3.远距
+		int surface;//1.上浮  2.下沉
+		
+		if(0){loop6:clrscr();printf("如果这是第2次及以上问你，那应该是你之前输入了不合要求的选项\n");}
+		if(0)loop7:clrscr();
+		if(time[1]==59){time[0]++;time[1]=0;}
+		else time[1]++;
+		printf("————————————%d时%d分————————————,",time[0],time[1]);
+		if(haveEscort)printf("有护航舰队\n");
 		
 		for(int i=0;i<numbers;i++)
 		{
@@ -614,7 +624,12 @@ void meetShip(int numbers,int haveEscort)
 			{
 				if(health[i][0]==2)strcpy(describe[i],"这艘小货船完好无损");
 				else if(health[i][0]==1)strcpy(describe[i],"小货船冒起了浓烟");
-				else strcpy(describe[i],"小货船沉了");
+				else 
+				{
+						strcpy(describe[i],"小货船沉了");
+						sunkID[sunkboats]=shipID[i];
+					if(mType>1)patrolSuccess=1;
+				}
 			}
 			else if(shipkind[i]==1)
 			{
@@ -622,7 +637,12 @@ void meetShip(int numbers,int haveEscort)
 				else if(health[i][0]==3)strcpy(describe[i],"这艘大货船看起来还能再撑一百年");
 				else if(health[i][0]==2)strcpy(describe[i],"大货船船体收到了损伤");
 				else if(health[i][0]==1)strcpy(describe[i],"大货船冒起了浓烟");
-				else strcpy(describe[i],"大货船沉了");
+				else 
+				{
+						strcpy(describe[i],"大货船沉了");
+						sunkID[sunkboats]=shipID[i]+100;
+					if(mType>1)patrolSuccess=1;
+				}
 			}
 			else if(shipkind[i]==2)
 			{
@@ -630,25 +650,39 @@ void meetShip(int numbers,int haveEscort)
 				else if(health[i][0]==3)strcpy(describe[i],"油轮结构完好");
 				else if(health[i][0]==2)strcpy(describe[i],"油轮船体收到了损伤");
 				else if(health[i][0]==1)strcpy(describe[i],"油轮冒起了浓烟");
-				else strcpy(describe[i],"油轮沉了");
+				else 
+				{
+					strcpy(describe[i],"油轮沉了");
+					sunkID[sunkboats]=shipID[i]+200;
+					if(mType>1)patrolSuccess=1;
+				}
 			}
 			
-			if(time[1]==59){time[0]++;time[1]=0;}
-			else time[1]++;
-			printf("————————————%d时%d分————————————,",time[0],time[1]);
-			if(haveEscort)printf("有护航舰队\n");
 			printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
 		}
 
 		printf("————————————————————————\n");
-		printf("前鱼雷管:%s,%s,%s,%s\n",FwTube[0],FwTube[1],FwTube[2],FwTube[3]);
-		if(typeNumber==3||typeNumber==4||typeNumber==6)printf("后鱼雷管:%s,%s\n",AftTube[0],AftTube[1]);
-		else printf("后鱼雷管:%s\n",AftTube[0]);
+		
+		printf("前鱼雷管:G7A:%d发，G7E:%d发，水雷：%d枚\n",FwTube[1],FwTube[2],FwTube[3]);
+		printf("后鱼雷管:G7A:%d发，G7E:%d发，水雷：%d枚\n",FwTube[1],FwTube[2],FwTube[3]);
 		printf("甲板炮:%d发弹药（一次最多2发）\n\n",DeckAmmo);
-		print("请指定攻击距离：（1.近距      2.中距      3.远距）");
+		
+		printf("是否结束战斗：（1.是 2.否）");
 		scanf("%d",&choose);
+		if(choose!=1&&choose!=2)goto loop6;
+		else if(choose==1)goto loop8;
 		
+		printf("请指定攻击距离：（1.近距      2.中距      3.远距）");
+		scanf("%d",&range);
+		if(range!=1&&range!=2&&range!=3)goto loop6;
 		
+		printf("请指定攻击方式：（1.上浮  2.下潜）");
+		scanf("%d",&surface);
+		if(surface!=1&&surface!=2)goto loop6;
+		
+		printf("请指定攻击方式：（1.上浮  2.下潜）");
+		scanf("%d",&surface);
+		if(surface!=1&&surface!=2)goto loop6;
 	}
 	else goto loop5;
 }
@@ -1890,7 +1924,7 @@ void execMission()
 int patrol()
 {		//working...
 	int mNumber=roll(2);
-
+	
 	firstTwelve=1;
 
 	if(year==1939||((year==1940)&&(month<4)))
