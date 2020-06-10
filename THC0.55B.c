@@ -680,9 +680,21 @@ void meetShip(int numbers,int haveEscort)
 		scanf("%d",&surface);
 		if(surface!=1&&surface!=2)goto loop6;
 		
-		printf("请指定攻击方式：（1.上浮  2.下潜）");
+if(!(range==1&&haveEscort==1)){
+		printf("请指定攻击弹药使用量:G7A,G7E");
+if(haveEscort==0&&surface==1)printf(",Deckgun(甲板炮一次战斗至多2炮)");
+printf("(格式:如1,2,2)\n");
+int usedAmmo[numbers][3];
+for(int i=0;i<numbers;i++)
+{
+    printf("Target%d:",i+1);
+    scanf("%d,%d,%d",usedAmmo[i][0],usedAmmo[i][1],usedAmmo[i][2]);
+}
+
 		scanf("%d",&surface);
 		if(surface!=1&&surface!=2)goto loop6;
+}
+else //detect();
 	}
 	else goto loop5;
 }
@@ -726,6 +738,7 @@ void repairComponent()
 {
 
 }
+    
 void day(char* place,int times)//times未处理
 {
 	int pl;   
