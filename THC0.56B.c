@@ -1,13 +1,13 @@
 #include<conio.h>
-	#include<stdio.h>
-	#include<stdlib.h>
-	#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
-	#define LINE 20
-	#define COLUMN 150
+#define LINE 20
+#define COLUMN 150
 
 
-	struct shipSort
+struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
@@ -686,6 +686,32 @@ void meetShip(int numbers,int haveEscort)
 		if(choose!=1&&choose!=2)goto loop6;
 		else if(choose==1)goto loop8;
 
+		if(day_night<4)
+		{
+			printf("是否跟踪船只直到天黑(1.是  2.否)");
+			scanf("%d",&choose);
+			if(choose==1)
+			{
+				printf("我：跟踪他们！\n");
+				printf("Leo：是！\n");
+				day_night=6;
+				clean();
+				if(roll(1)<5)
+				{
+					time[0]=rand()%12-5;
+					if(time[0]<0)time[0]+=24;
+					time[1]=rand()%60;
+					goto loop7;
+				}
+				else
+				{
+					printf("————————————%d时%d分————————————,",time[0],time[1]);
+					printf("Tommy：对不起长官，我们跟丢了！\n");
+					printf("我：哦！真糟糕\n");
+					goto loop10;
+				}
+			}	
+		}
 
 		printf("请指定攻击距离：（1.近距      2.中距      3.远距）");
 		scanf("%d",&range);
@@ -701,7 +727,7 @@ void meetShip(int numbers,int haveEscort)
 			int sumAmmo[3];//仅算前部与甲板炮
 			int AftSumAmmo[2];
 			int AftUsedAmmo[2];
-			
+
 			if(0)
 			{
 				loop9:clrscr();
@@ -717,23 +743,34 @@ void meetShip(int numbers,int haveEscort)
 			AftSumAmmo[1]=0;
 			AftUsedAmmo[0]=0;
 			AftUsedAmmo[1]=0;
-			
-			printf("请指定攻击弹药使用量（不包括后鱼雷管）:G7A,G7E");
-			if(haveEscort==0&&surface==1)printf(",Deckgun(甲板炮一次战斗至多2炮)\n");
-			printf("(格式:如2,1或1,2,2)\n");
-			for(int i=0;i<numbers;i++)
+
+			if(haveEscort==0&&surface==1)
 			{
-				printf("Target%d:",i+1);
-				usedAmmo[i][2]=0;
-				if(haveEscort==0&&surface==1)scanf("%d,%d,%d",&usedAmmo[i][0],&usedAmmo[i][1],&usedAmmo[i][2]);
-				else scanf("%d,%d",&usedAmmo[i][0],&usedAmmo[i][1]);
-				printf("其中后鱼雷管用雷量：G7A，G7E:");
-				scanf("%d,%d",AftUsedAmmo[0],AftUsedAmmo[1]);
-				sumAmmo[0]+=usedAmmo[i][0];
-				sumAmmo[1]+=usedAmmo[i][1];
-				sumAmmo[2]+=usedAmmo[i][2];
-				AftSumAmmo[0]=AftUsedAmmo[0];
-				AftSumAmmo[1]=AftUsedAmmo[1];
+				printf("请指定攻击弹药使用量(甲板炮一次战斗至多2炮)(G7A,G7E)或(DeckGun)\n");
+				printf("前鱼雷管(如 2，1)：");
+				scanf("%d,%d",&sumAmmo[0],&sumAmmo[1]);
+				printf("后鱼雷管(如 2，1)：");
+				scanf("%d,%d",&AftSumAmmo[0],&AftSumAmmo[1]);
+				printf("甲板炮(如 2)：");
+				scanf("%d",&sumAmmo[3]);
+			}
+			else
+			{
+				printf("请对每艘船指定攻击弹药使用量（不包括后鱼雷管）:G7A,G7E（如:2，1）\n");		
+				for(int i=0;i<numbers;i++)
+				{
+					printf("Target%d:",i+1);
+					usedAmmo[i][2]=0;
+					if(haveEscort==0&&surface==1)scanf("%d,%d,%d",&usedAmmo[i][0],&usedAmmo[i][1],&usedAmmo[i][2]);
+					else scanf("%d,%d",&usedAmmo[i][0],&usedAmmo[i][1]);
+					printf("其中后鱼雷管用雷量：G7A，G7E:");
+					scanf("%d,%d",AftUsedAmmo[0],AftUsedAmmo[1]);
+					sumAmmo[0]+=usedAmmo[i][0];
+					sumAmmo[1]+=usedAmmo[i][1];
+					sumAmmo[2]+=usedAmmo[i][2];
+					AftSumAmmo[0]=AftUsedAmmo[0];
+					AftSumAmmo[1]=AftUsedAmmo[1];
+				}
 			}
 			if(sumAmmo[0]>FwTube[0]||sumAmmo[1]>FwTube[1]||AftSumAmmo[0]>AftTube[0]||AftSumAmmo[1]>AftTube[1]||sumAmmo[2]>2||sumAmmo[2]>DeckAmmo)goto loop9;
 			else 
@@ -744,78 +781,329 @@ void meetShip(int numbers,int haveEscort)
 				AftTube[1]-=AftSumAmmo[1];
 				DeckAmmo-=sumAmmo[2];
 			}
-			
-			
-			for(int i=0;i<numbers;i++)
+
+
+
+			if(haveEscort==0&&surface==1)
 			{
 				int hit[2]={0,0};//鱼雷，甲板炮
 				int junkT;
 				int hitDamage;
-				for(int j=0;j<usedAmmo[i][0];j++)//G7A
+
+				loop11:clean();
+
+				if(time[1]==59){time[0]++;time[1]=0;}
+				else time[1]++;
+				printf("————————————%d时%d分————————————,",time[0],time[1]);
+				if(haveEscort)printf("有护航舰队\n");
+
+				for(int i=0;i<numbers;i++)
 				{
-					int fireHit=roll(2);
-					if(surface==1||day_night>3)fireHit--;
-					if(award>=2))fireHit--;
-					if(train_level==1))fireHit++;
-					if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
-					if(people_wound[0]>1)fireHit++;
-					if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
-					//第二轮雷击+1DRM
-					if(fireHit<9)
+					if(shipkind[i]==0)
 					{
-						junkT=roll(1);
-						if((year<1941&&junkT>2)||(year>=1941&&junkT>1))
+						if(health[i][0]==2)strcpy(describe[i],"这艘小货船完好无损");
+						else if(health[i][0]==1)strcpy(describe[i],"小货船冒起了浓烟");
+						else 
 						{
-							hitDamage=roll(1);
-							if(hitDamage==1)health[i][0]-=1;
-							else if(hitDamage==2)health[i][0]-=2;
-							
+							strcpy(describe[i],"小货船沉了");
+							sunkID[sunkboats]=shipID[i];
+							if(mType>1)patrolSuccess=1;
 						}
 					}
-				}
-				for(int j=0;j<usedAmmo[i][1];j++)//G7E
-				{
-					int fireHit=roll(2);
-					if(surface==1||day_night>3)fireHit--;
-					if(award>=2))fireHit--;
-					if(train_level==1))fireHit++;
-					if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
-					if(people_wound[0]>1)fireHit++;
-					if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
-					if(range>=2)fireHit++;
-					if(range==3)fireHit++;
-					//第二轮雷击+1DRM
-					if(fireHit<9)
+					else if(shipkind[i]==1)
 					{
-						junkT=roll(1);
-						if(year<=1940&&month<=6&&junkT>3)hit[0]++;
-						if(year==1940&&month>=7&&junkT>2)hit[0]++;q
-						if(year>=1941&&junkT>1)hit[0]++;
+						if(health[i][0]==4)strcpy(describe[i],"这艘巨货船完好无损");
+						else if(health[i][0]==3)strcpy(describe[i],"这艘大货船看起来还能再撑一百年");
+						else if(health[i][0]==2)strcpy(describe[i],"大货船船体收到了损伤");
+						else if(health[i][0]==1)strcpy(describe[i],"大货船冒起了浓烟");
+						else 
+						{
+							strcpy(describe[i],"大货船沉了");
+							sunkID[sunkboats]=shipID[i]+100;
+							if(mType>1)patrolSuccess=1;
+						}
 					}
-				}
-				for(int j=0;j<usedAmmo[i][2];j++)//DeckGun
-				{
-					int fireHit=roll(2);
-					if(award>=2))fireHit--;
-					if(train_level==1))fireHit++;
-					if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
-					if(people_wound[0]>1)fireHit++;
-					if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
-					if(fireHit<9)hit[1]++;
-				}
-				//造成伤害
-				
-				
-			}
-			if(haveEscort==0&&surface==1)
+					else if(shipkind[i]==2)
+					{
+						if(health[i][0]==4)strcpy(describe[i],"这艘大油轮完好无损");
+						else if(health[i][0]==3)strcpy(describe[i],"油轮结构完好");
+						else if(health[i][0]==2)strcpy(describe[i],"油轮船体收到了损伤");
+						else if(health[i][0]==1)strcpy(describe[i],"油轮冒起了浓烟");
+						else 
+						{
+							strcpy(describe[i],"油轮沉了");
+							sunkID[sunkboats]=shipID[i]+200;
+							if(mType>1)patrolSuccess=1;
+						}
+					}
 
+					printf("目标%d:%s,%d tons,%s\n",i+1,ship[shipkind[i]][shipID].shipName,ship[shipkind[i]][shipID].shipTons,describe[i]);
+				}
+				printf("————————————————————————\n");
+				printf("请选择攻击武器，一次只能选一个，结算完会让你再选(几次选择合起来是一次攻击)，一个武器只能用一次,(1.前鱼雷管  2.后鱼雷管  3.甲板炮  4.结束此轮战斗):");
+				scanf("%d",&choose);
+
+				switch(choose)
+				{
+					case 1:
+						{
+
+							if(sumAmmo[0]!=0)
+							{
+								for(int x;x<sumAmmo[0];x++)
+								{
+									printf("第%d发G7A：（输入目标标号）Target");
+									scanf("%d",&choose);
+
+									int fireHit=roll(2)-1;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
+									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
+									if(people_wound[0]>1)fireHit++;
+									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
+									//第二轮雷击+1DRM
+									if(fireHit<9)
+									{
+										junkT=roll(1);
+										if((year<1941&&junkT>2)||(year>=1941&&junkT>1))
+										{
+											hit[0]++;
+											hitDamage=roll(1);
+											if(hitDamage==1)health[choose-1][0]-=4;
+											else if(hitDamage==2)health[choose-1][0]-=3;
+											else if(hitDamage==3)health[choose-1][0]-=2;
+											else if(hitDamage>=4)health[choose-1][0]-=1;
+										}
+									}
+								}
+							}
+							if(sumAmmo[1]!=0)
+							{
+								for(int x;x<sumAmmo[1];x++)
+								{
+									printf("第%d发G7E：（输入目标标号）Target");
+									scanf("%d",&choose);
+
+									int fireHit=roll(2)-1;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
+									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
+									if(people_wound[0]>1)fireHit++;
+									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
+									if(range>=2)fireHit++;
+									if(range==3)fireHit++;
+									//第二轮雷击+1DRM
+									if(fireHit<9)
+									{
+										junkT=roll(1);
+										if((year<=1940&&month<=6&&junkT>3)||(year==1940&&month>=7&&junkT>2)||(year>=1941&&junkT>1))
+										{
+											hit[0]++;
+											hitDamage=roll(1);
+											if(hitDamage==1)health[choose-1][0]-=4;
+											else if(hitDamage==2)health[choose-1][0]-=3;
+											else if(hitDamage==3)health[choose-1][0]-=2;
+											else if(hitDamage>=4)health[choose-1][0]-=1;
+										}
+
+									}
+
+								}
+							}
+							if(hit[0]!=0)printf("你们看到你们的目标上共喷出了%d束火焰，大家都连声叫好\n",hit[0]);
+							else printf("貌似什么事情都没有发生。。。\n");
+							goto loop11;
+						}
+					case 2:
+						{
+							if(AftSumAmmo[0]!=0)
+							{
+								for(int x;x<AftSumAmmo[0];x++)
+								{
+									printf("第%d发G7A：（输入目标标号）Target");
+									scanf("%d",&choose);
+
+									int fireHit=roll(2)-1;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
+									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
+									if(people_wound[0]>1)fireHit++;
+									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
+									//第二轮雷击+1DRM
+									if(fireHit<9)
+									{
+										junkT=roll(1);
+										if((year<1941&&junkT>2)||(year>=1941&&junkT>1))
+										{
+											hit[0]++;
+											hitDamage=roll(1);
+											if(hitDamage==1)health[choose-1][0]-=4;
+											else if(hitDamage==2)health[choose-1][0]-=3;
+											else if(hitDamage==3)health[choose-1][0]-=2;
+											else if(hitDamage>=4)health[choose-1][0]-=1;
+										}
+									}
+								}
+							}
+							if(AftSumAmmo[1]!=0)
+							{
+								for(int x;x<AftSumAmmo[1];x++)
+								{
+									printf("第%d发G7E：（输入目标标号）Target");
+									scanf("%d",&choose);
+
+									int fireHit=roll(2)-1;
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
+									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
+									if(people_wound[0]>1)fireHit++;
+									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
+									if(range>=2)fireHit++;
+									if(range==3)fireHit++;
+									//第二轮雷击+1DRM
+									if(fireHit<9)
+									{
+										junkT=roll(1);
+										if((year<=1940&&month<=6&&junkT>3)||(year==1940&&month>=7&&junkT>2)||(year>=1941&&junkT>1))
+										{
+											hit[0]++;
+											hitDamage=roll(1);
+											if(hitDamage==1)health[i][0]-=4;
+											else if(hitDamage==2)health[choose-1][0]-=3;
+											else if(hitDamage==3)health[choose-1][0]-=2;
+											else if(hitDamage>=4)health[choose-1][0]-=1;
+										}
+
+									}
+								}
+							}
+							if(hit[0]!=0)printf("你们看到你们的目标上共喷出了%d束火焰，大家都连声叫好\n",hit[0]);
+							else printf("貌似什么事情都没有发生。。。\n");
+							goto loop11;				
+						}
+					case 3:
+						{
+							if(sumAmmo[3]!=0)
+							{
+								printf("第%d发G7E：（输入目标标号）Target");
+								scanf("%d",&choose);
+
+								for(int j=0;j<sumAmmo[3];j++)//DeckGun
+								{
+									int fireHit=roll(2);
+									if(award>=2))fireHit--;
+									if(train_level==1))fireHit++;
+									if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
+									if(people_wound[0]>1)fireHit++;
+									if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
+									if(fireHit<9)
+									{
+										hit[1]++;
+										hitDamage=roll(1);
+										if(typeNumber==3||typeNumber==4||typeNumber==6)hitDamage--;
+										if(hitDamage<=1)health[choose-1][0]-=2;
+										else if(hitDamage>=4)health[choose-1][0]-=1;
+									}
+								}
+
+							}
+							if(hit[1]!=0)printf("中了，中了！好！%d下！\n",hit[0]);
+							else printf("哦。。偏了。。\n");
+							goto loop11;
+						}
+					case 4:
+						{
+							break;
+						}
+					default:
+						{
+							printf("输入有误");
+							goto loop11;
+						}
+
+				}
+			}
+			else
+			{
+				for(int i=0;i<numbers;i++)
+				{
+					int hit[2]={0,0};//鱼雷，甲板炮
+					int junkT;
+					int hitDamage;
+					for(int j=0;j<usedAmmo[i][0];j++)//G7A
+					{
+						int fireHit=roll(2);
+						if(surface==1&&(day_night>3||haveEscort==0))fireHit--;
+						if(award>=2))fireHit--;
+						if(train_level==1))fireHit++;
+						if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
+						if(people_wound[0]>1)fireHit++;
+						if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
+						//第二轮雷击+1DRM
+						if(fireHit<9)
+						{
+							junkT=roll(1);
+							if((year<1941&&junkT>2)||(year>=1941&&junkT>1))
+							{
+								hit[0]++;
+								hitDamage=roll(1);
+								if(hitDamage==1)health[i][0]-=4;
+								else if(hitDamage==2)health[i][0]-=3;
+								else if(hitDamage==3)health[i][0]-=2;
+								else if(hitDamage>=4)health[i][0]-=1;
+							}
+						}
+					}
+					for(int j=0;j<usedAmmo[i][1];j++)//G7E
+					{
+						int fireHit=roll(2);
+						if(surface==1&&(day_night>3||haveEscort==0))fireHit--;
+						if(award>=2))fireHit--;
+						if(train_level==1))fireHit++;
+						if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)fireHit++;
+						if(people_wound[0]>1)fireHit++;
+						if(people_wound[0]>1&&people_wound[1]>1)fireHit++;
+						if(range>=2)fireHit++;
+						if(range==3)fireHit++;
+						//第二轮雷击+1DRM
+						if(fireHit<9)
+						{
+							junkT=roll(1);
+							if((year<=1940&&month<=6&&junkT>3)||(year==1940&&month>=7&&junkT>2)||(year>=1941&&junkT>1))
+							{
+								hit[0]++;
+								hitDamage=roll(1);
+								if(hitDamage==1)health[i][0]-=4;
+								else if(hitDamage==2)health[i][0]-=3;
+								else if(hitDamage==3)health[i][0]-=2;
+								else if(hitDamage>=4)health[i][0]-=1;
+							}
+
+						}
+					}
+
+
+
+				}
+			}
+
+			if(haveEscort)//准备被侦测
+			{
+
+			}
+			else//考虑追击，换弹
+			{
+
+			}
 
 
 		}
 		else if(!detect()) goto loop7;
 	}
 	else goto loop5;
+	loop10:;
 }
+
 void meetConvoy()
 {
 
