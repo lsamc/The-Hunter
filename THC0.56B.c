@@ -642,7 +642,7 @@ void meetShip(int numbers,int haveEscort)
 				{
 					strcpy(describe[i],"小货船沉了");
 					sunkID[sunkboats]=shipID[i];
-					sunkboatss++;
+					sunkboats++;
 					if(mType>1)patrolSuccess=1;
 				}
 			}
