@@ -641,7 +641,7 @@ void meetShip(int numbers,int haveEscort)
 				else 
 				{
 					strcpy(describe[i],"小货船沉了");
-					sunkID[sunkboatss]=shipID[i];
+					sunkID[sunkboats]=shipID[i];
 					sunkboatss++;
 					if(mType>1)patrolSuccess=1;
 				}
@@ -655,7 +655,7 @@ void meetShip(int numbers,int haveEscort)
 				else 
 				{
 					strcpy(describe[i],"大货船沉了");
-					sunkID[sunkboatss]=shipID[i]+100;
+					sunkID[sunkboats]=shipID[i]+100;
 					sunkboats++;
 					if(mType>1)patrolSuccess=1;
 				}
@@ -669,7 +669,7 @@ void meetShip(int numbers,int haveEscort)
 				else 
 				{
 					strcpy(describe[i],"油轮沉了");
-					sunkID[sunkboatss]=shipID[i]+200;
+					sunkID[sunkboats]=shipID[i]+200;
 					sunkboats++;
 					if(mType>1)patrolSuccess=1;
 				}
@@ -1273,6 +1273,7 @@ void meetShip(int numbers,int haveEscort)
 						print("我：给我再打！，别让他们跑了！\n");
 						print("Gregson:动起来！继续打！");
 						clean();
+						int meet=roll(2);
 						if(year==1942)meet-=1;
 						else if(year==1943)meet-=2;
 						
@@ -1281,7 +1282,7 @@ void meetShip(int numbers,int haveEscort)
 						{
 							haveEscort=1;
 							print("护航船只赶来了...\n");
-							if(!detect(0,0,0,2,0,0,0)goto loop7;
+							if(!detect(0,0,0,2,0,0,0))goto loop7;
 							else goto loop14;
 						}
 						else 
