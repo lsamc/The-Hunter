@@ -1107,7 +1107,7 @@ void meetShip(int numbers,int haveEscort)
 						print("PANG...");
 						sleep(rand()%4+1);
 					}
-					if(hit!=0)printtf("\n大家连声叫好\n");
+					if(hit!=0)printf("\n大家连声叫好\n");
 				}
 			}
 
