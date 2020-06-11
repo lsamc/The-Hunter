@@ -1,13 +1,13 @@
 #include<conio.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+	#include<stdio.h>
+	#include<stdlib.h>
+	#include<string.h>
 
-#define LINE 20
-#define COLUMN 150
+	#define LINE 20
+	#define COLUMN 150
 
 
-struct shipSort
+	struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
@@ -211,7 +211,7 @@ int FwTube[3],AftTube[3],FwLoad[2],AftLoad[2];//G7A,G7E,Mine
 int Times[12];
 int mName,mType;
 
-int line=0,choose,year,month,typeNumber,id,process[2],sunkID[80],sunkboats=0,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
+int line=0,choose,year,month,typeNumber,id,process[2],sunkID[80],sunkboatss=0,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
 
 /*typrNumber
  *1.VIIA
@@ -301,7 +301,7 @@ void decreaseLine()
 
 void clean()
 {
-	printf("press any key to continue.(Maybe two times)");
+	printf("press any key to continue.(Maybe two timenows)");
 	getch();
 	getch();
 	clrscr();
@@ -534,17 +534,17 @@ int detect(int isCapital,int G7AinDay,int preDetecte,int range,int nightSurface,
 void meetShip(int numbers,int haveEscort)
 {
 	int shipkind[numbers];//0是小船，1是大船，2是油轮
-	int time[2];
+	int timenow[2];
 	int health[numbers][2];
 	int kind;
 
 	int day_night=roll(1);
-	if(day_night<4)time[0]=rand()%12+7;
-	else time[0]=rand()%12-5;
+	if(day_night<4)timenow[0]=rand()%12+7;
+	else timenow[0]=rand()%12-5;
 
-	if(time[0]<0)time[0]+=24;
-	time[1]=rand()%60;
-	printf("%d时%d分,",time[0],time[1]);
+	if(timenow[0]<0)timenow[0]+=24;
+	timenow[1]=rand()%60;
+	printf("%d时%d分,",timenow[0],timenow[1]);
 	print("我们遭遇了盟军的船");
 
 	for(int i=0;i<numbers;i++)
@@ -568,7 +568,7 @@ void meetShip(int numbers,int haveEscort)
 		{
 			health[i][0]=2;
 			health[i][1]=2;
-			print("小货船：%s,%d吨\n",ship[0][shipID[i]].shipName,ship[0][shipID[i]].shipTons);
+			printf("小货船：%s,%d吨\n",ship[0][shipID[i]].shipName,ship[0][shipID[i]].shipTons);
 		}
 		else if(shipkind[i]==1)
 		{
@@ -582,7 +582,7 @@ void meetShip(int numbers,int haveEscort)
 				health[i][0]=4;
 				health[i][1]=4;
 			}
-			print("大货船,%s,%d吨\n",ship[1][shipID[i]].shipName,ship[1][shipID[i]].shipTons);
+			printf("大货船,%s,%d吨\n",ship[1][shipID[i]].shipName,ship[1][shipID[i]].shipTons);
 		}
 		else if(shipkind[i]==2)
 		{
@@ -596,7 +596,7 @@ void meetShip(int numbers,int haveEscort)
 				health[i][0]=4;
 				health[i][1]=4;
 			}
-			print("油轮,%s,%d吨\n",ship[2][shipID[i]].shipName,ship[2][shipID[i]].shipTons);
+			printf("油轮,%s,%d吨\n",ship[2][shipID[i]].shipName,ship[2][shipID[i]].shipTons);
 		}
 	}
 	print("\n");
@@ -627,9 +627,9 @@ void meetShip(int numbers,int haveEscort)
 		if(0){loop6:clrscr();printf("如果这是第2次及以上问你，那应该是你之前输入了不合要求的选项\n");}
 		if(0)loop7:clrscr();
 
-		if(time[1]==59){time[0]++;time[1]=0;}
-		else time[1]++;
-		printf("————————————%d时%d分————————————,",time[0],time[1]);
+		if(timenow[1]==59){timenow[0]++;timenow[1]=0;}
+		else timenow[1]++;
+		printf("————————————%d时%d分————————————,",timenow[0],timenow[1]);
 		if(haveEscort)printf("有护航舰队\n");
 
 		for(int i=0;i<numbers;i++)
@@ -641,8 +641,8 @@ void meetShip(int numbers,int haveEscort)
 				else 
 				{
 					strcpy(describe[i],"小货船沉了");
-					sunkID[sunkboats]=shipID[i];
-					sunkboat++;
+					sunkID[sunkboatss]=shipID[i];
+					sunkboatss++;
 					if(mType>1)patrolSuccess=1;
 				}
 			}
@@ -655,8 +655,8 @@ void meetShip(int numbers,int haveEscort)
 				else 
 				{
 					strcpy(describe[i],"大货船沉了");
-					sunkID[sunkboats]=shipID[i]+100;
-					sunkboat++;
+					sunkID[sunkboatss]=shipID[i]+100;
+					sunkboats++;
 					if(mType>1)patrolSuccess=1;
 				}
 			}
@@ -669,8 +669,8 @@ void meetShip(int numbers,int haveEscort)
 				else 
 				{
 					strcpy(describe[i],"油轮沉了");
-					sunkID[sunkboats]=shipID[i]+200;
-					sunkboat++;
+					sunkID[sunkboatss]=shipID[i]+200;
+					sunkboats++;
 					if(mType>1)patrolSuccess=1;
 				}
 			}
@@ -701,14 +701,14 @@ void meetShip(int numbers,int haveEscort)
 				printf("我：跟踪他们！\n");
 				printf("Leo：是！\n");
 				day_night=6;
-				time[0]=rand()%12-5;
-				if(time[0]<0)time[0]+=24;
-				time[1]=rand()%60;
+				timenow[0]=rand()%12-5;
+				if(timenow[0]<0)timenow[0]+=24;
+				timenow[1]=rand()%60;
 				clean();
 				if(roll(1)<5)goto loop7;
 				else
 				{
-					printf("————————————%d时%d分————————————,",time[0],time[1]);
+					printf("————————————%d时%d分————————————,",timenow[0],timenow[1]);
 					printf("Tommy：对不起长官，我们跟丢了！\n");
 					printf("我：哦！真糟糕\n");
 					goto loop10;
@@ -806,9 +806,9 @@ void meetShip(int numbers,int haveEscort)
 
 				loop11:clean();
 
-				if(time[1]==59){time[0]++;time[1]=0;}
-				else time[1]++;
-				printf("————————————%d时%d分————————————,",time[0],time[1]);
+				if(timenow[1]==59){timenow[0]++;timenow[1]=0;}
+				else timenow[1]++;
+				printf("————————————%d时%d分————————————,",timenow[0],timenow[1]);
 				if(haveEscort)printf("有护航舰队\n");
 
 				for(int i=0;i<numbers;i++)
@@ -821,7 +821,7 @@ void meetShip(int numbers,int haveEscort)
 						{
 							strcpy(describe[i],"小货船沉了");
 							sunkID[sunkboats]=shipID[i];
-							sunkboat++;
+							sunkboats++;
 							if(mType>1)patrolSuccess=1;
 						}
 					}
@@ -835,7 +835,7 @@ void meetShip(int numbers,int haveEscort)
 						{
 							strcpy(describe[i],"大货船沉了");
 							sunkID[sunkboats]=shipID[i]+100;
-							sunkboat++;
+							sunkboats++;
 							if(mType>1)patrolSuccess=1;
 						}
 					}
@@ -849,7 +849,7 @@ void meetShip(int numbers,int haveEscort)
 						{
 							strcpy(describe[i],"油轮沉了");
 							sunkID[sunkboats]=shipID[i]+200;
-							sunkboat++;
+							sunkboats++;
 							if(mType>1)patrolSuccess=1;
 						}
 					}
@@ -985,7 +985,7 @@ void meetShip(int numbers,int haveEscort)
 										{
 											hit[0]++;
 											hitDamage=roll(1);
-											if(hitDamage==1)health[i][0]-=4;
+											if(hitDamage==1)health[choose-1][0]-=4;
 											else if(hitDamage==2)health[choose-1][0]-=3;
 											else if(hitDamage==3)health[choose-1][0]-=2;
 											else if(hitDamage>=4)health[choose-1][0]-=1;
@@ -1113,9 +1113,9 @@ void meetShip(int numbers,int haveEscort)
 
 			clean();
 
-			if(time[1]==59){time[0]++;time[1]=0;}
-			else time[1]++;
-			printf("————————————%d时%d分————————————,",time[0],time[1]);
+			if(timenow[1]==59){timenow[0]++;timenow[1]=0;}
+			else timenow[1]++;
+			printf("————————————%d时%d分————————————,",timenow[0],timenow[1]);
 			if(haveEscort)printf("有护航舰队\n");
 
 			for(int i=0;i<numbers;i++)
@@ -1128,7 +1128,7 @@ void meetShip(int numbers,int haveEscort)
 					{
 						strcpy(describe[i],"小货船沉了");
 						sunkID[sunkboats]=shipID[i];
-						sunkboat++;
+						sunkboats++;
 						if(mType>1)patrolSuccess=1;
 					}
 				}
@@ -1142,7 +1142,7 @@ void meetShip(int numbers,int haveEscort)
 					{
 						strcpy(describe[i],"大货船沉了");
 						sunkID[sunkboats]=shipID[i]+100;
-						sunkboat++;
+						sunkboats++;
 						if(mType>1)patrolSuccess=1;
 					}
 				}
@@ -1156,7 +1156,7 @@ void meetShip(int numbers,int haveEscort)
 					{
 						strcpy(describe[i],"油轮沉了");
 						sunkID[sunkboats]=shipID[i]+200;
-						sunkboat++;
+						sunkboats++;
 						if(mType>1)patrolSuccess=1;
 					}
 				}
@@ -1169,7 +1169,7 @@ void meetShip(int numbers,int haveEscort)
 			if(haveEscort)//准备被侦测
 			{
 				printf("海底重回寂静\n");
-				if(!detect(0，(day_night<=3&&(sumAmmo[0]!=0||AftsumAmmo[0]!=0)),0,range,(year>1940&&surface==1),((sumAmmo[0]!=0||sumAmmo[1]!=0)&&(AftSumAmmo[0]!=0||AftSumAmmo[1]!=0)),0))
+				if(!detect(0,(day_night<=3&&(sumAmmo[0]!=0||AftSumAmmo[0]!=0)),0,range,(year>1940&&surface==1),((sumAmmo[0]!=0||sumAmmo[1]!=0)&&(AftSumAmmo[0]!=0||AftSumAmmo[1]!=0)),0))
 				{
 					printf("2WO:看样子我们摆脱侦测了\n");
 					printf("众：(小声）太好啦！\n");
@@ -1201,14 +1201,14 @@ void meetShip(int numbers,int haveEscort)
 						print("Tommy:动起来！跟踪他们！");
 						clean();
 						day_night=roll(1);
-						if(day_night<4)time[0]=rand()%12+7;
-						else time[0]=rand()%12-5;
+						if(day_night<4)timenow[0]=rand()%12+7;
+						else timenow[0]=rand()%12-5;
 
-						if(time[0]<0)time[0]+=24;
-						time[1]=rand()%60;
+						if(timenow[0]<0)timenow[0]+=24;
+						timenow[1]=rand()%60;
 						if(roll(1)>4&&sumTotalHealth==sumHealth)//追踪受伤目标不用判定
 						{
-							printf("————————————%d时%d分————————————,",time[0],time[1]);
+							printf("————————————%d时%d分————————————,",timenow[0],timenow[1]);
 							printf("Tommy：对不起长官，我们跟丢了！\n");
 							printf("我：哦！真糟糕\n");
 						}
@@ -1261,7 +1261,7 @@ void meetShip(int numbers,int haveEscort)
 				}
 				if(sumHealth!=0)
 				{
-					printf("1WO:需要再次攻击吗，长官？(1.要 2.算了）\n"
+					printf("1WO:需要再次攻击吗，长官？(1.要 2.算了）\n");
 					scanf("%d",&choose);
 					if(choose!=1)
 					{
@@ -1345,11 +1345,11 @@ void repairComponent()//此处决定返航
 
 }
 
-void day(char* place,int times)//times未处理
+void day(char* place,int timenows)//timenows未处理
 {
 	int pl;   
 	strcpy(missionStack[process[0]],place);
-	Times[process[0]]=times;
+	Times[process[0]]=timenows;
 	process[0]++;
 
 	/*1.北极
@@ -2622,7 +2622,6 @@ int patrol()
 
 void main() 
 {
-
 	srand((unsigned)time(NULL));
 	print("————————————欢迎来到《潜杀猎航》————————————\n********************************************\n");
 	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明:\n");
