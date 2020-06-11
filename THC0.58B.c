@@ -211,7 +211,7 @@ int FwTube[3],AftTube[3],FwLoad[2],AftLoad[2];//G7A,G7E,Mine
 int Times[12];
 int mName,mType;
 
-int line=0,choose,year,month,typeNumber,id,process[2],sunkID[80],sunkboatss=0,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
+int line=0,choose,year,month,typeNumber,id,process[2],sunkID[80],sunkboats=0,DeckAmmo;//sunkID:1-100小货船 101-200大货船 201-300油轮
 
 /*typrNumber
  *1.VIIA
