@@ -1,13 +1,13 @@
 #include<conio.h>
-	#include<stdio.h>
-	#include<stdlib.h>
-	#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
-	#define LINE 20
-	#define COLUMN 150
+#define LINE 20
+#define COLUMN 150
 
 
-	struct shipSort
+struct shipSort
 {
 	int shipKind;//1.Small Ship,2.Large Ship,3.Tanker
 	int shipId;
