@@ -523,10 +523,68 @@ void giveUpMission()
 		back=1;
 	} 
 }
-void meetAircraft()
+int meetAircraft()
 {
+	print("——————潜艇正在海面自由自在的航行——————\n");
+	print("1WO:该死！空袭！快下潜！\n");
+	if(typeNumber==8)
+	{
+		printf("Leo:飞机来了！长官，我们是下潜还是？(1.和他们对着干！ 2.下潜吧)\n");
+		scanf("%d",&choose);
 
+		if(choose==1)//干！
+		{
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			repairComponent();
+			return 1;
+		}
+	}
+	print("Tommy：哦！天啊，飞机！Gregson!启动电力引擎！\n");
+	
+	int meet=roll(2);
+	if(people_wound[5]>1&&people_wound[6]>1&&people_wound[7]>1&&people_wound[8]>1)meet--;//DRM
+	if(train_level==1)meet--;
+	if(train_level==4)meet++;
+	if(damage_status[4]!=0)meet--;
+	if(typeNumber==3||typeNumber==4||typeNumber==6||typeNumber==7)meet--;
+	if(year==1939)meet++;
+	if(year==1942)meet--;
+	if(year==1943)meet-=2;
+	
+	
+	if(meet>=6)printf("Tommy:还好我们下潜快,我们逃离空袭了！\n");
+	else id(meet>1)
+	{
+		printf("哦！他们太快了！防空炮！反击！\n");
+		
+		
+		
+		
+		
+		
+		
+	}
+	return 0;
 }
+
+
+
+
+
+
+
+
+
 int detect(int isCapital,int G7AinDay,int preDetecte,int range,int nightSurface,int FwAftBoth,int wolf)
 {
 
@@ -1251,7 +1309,7 @@ void meetShip(int numbers,int haveEscort)
 			if(damage_status[8]==0)printf("甲板炮:%d发弹药（一次最多2发）\n",DeckAmmo);
 			else printf("甲板炮坏了\n");
 			printf("Gregson:装填完毕\n");
-			
+
 			if(!haveEscort)//考虑额外轮攻击
 			{
 				int sumHealth=0;
@@ -1276,8 +1334,17 @@ void meetShip(int numbers,int haveEscort)
 						int meet=roll(2);
 						if(year==1942)meet-=1;
 						else if(year==1943)meet-=2;
-						
-						if(meet==4||meet==5)meetAircraft();
+
+						if(meet==4||meet==5)
+						{
+							if(meetAircraft())
+							{
+								printf("2WO：太棒了！我们可以继续打击猎物了\n");
+								goto loop7;//1代表VIICFk打飞机成功
+							}
+							else printf("2WO:哦，，，到手的天鹅飞了。。:(\n");
+
+						}
 						else if(meet<4)
 						{
 							haveEscort=1;
@@ -1292,7 +1359,7 @@ void meetShip(int numbers,int haveEscort)
 					}
 				}
 			}
-			
+
 
 		}
 		else if(!detect(0,0,0,1,0,0,0))
@@ -1339,7 +1406,7 @@ void ramdomEvent()
 }
 void nothingHappened()
 {
-
+	printf("我：这几天海上没有好的猎物啊。。\n");
 }
 void repairComponent()//此处决定返航
 {
@@ -1380,7 +1447,7 @@ void day(char* place,int timenows)//timenows未处理
 	else printf("程序故障");
 
 	clean();
-	printf("————————%d年%d月%s的%s任务的第%d站—————————\n",year,month,mission[mName],missionType[mType],process[0]);
+	printf("————————%d年%d月%s的%s任务的第%d站：%s—————————\n",year,month,mission[mName],missionType[mType],process[0],place);
 	if(giveup==1)printf("(任务已放弃，向最近基地航行中。。。)\n");
 	int meet;
 	loop4:meet=roll(2);
@@ -1390,6 +1457,7 @@ void day(char* place,int timenows)//timenows未处理
 			{
 				if(year==1942)meet--;
 				else if(year==1943)meet-=2;
+
 				if(meet<5)meetAircraft();
 				else nothingHappened();
 				break;
