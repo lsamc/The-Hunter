@@ -1,146 +1,213 @@
-#include<conio.h>
-#include<stdio.h>
-int isID(char *s) {
-	int flag=0;
-	int i=0;
-	for (i=0;s[i];i++) {
-		if(!isdigit(s[i])) return 0;
-	}
-	return 1;
-}
+import java.util.Scanner;
 
 
-void print(char* s) {
-	int i=0;
-	for (;s[i];i++) {
-		printf("%c",s[i]);
-		sleep(0.5);
+public class Main
+{
+
+	static public void main(String []args)
+	{
+		//源码&密码
+		String str[]=
+		{
+			" qwertyuiopasdfghjklzxcvbnmASDFGHJKLQWETRYUIOPZXCVBNM1234567890.,:!?"
+			,"dMqQzDb5L0hEFtnPNAiWuvXKBOJlm.wCjsS1H aVR6:Ux!y9GZr2IcY8gfpT4o?,3ek7",
+			"9uqTl4Qy8WFH?ERBn3CNDS.fpOVXx5Zw,JUP6gLYGz AIK1cMh7bm2js!dvt0ik:aero",
+			"uPq8nOt1YoM!jNdx,SH6EsgBwVXAW2yZmR v0I5Tk7:ifUCGKe3rQFh.9JLbp4l?cDza",
+			"HqaQzKAXGsw3VeNdTDxRcfrYZB51WP.FM62t!yuSiU8o,:Ip?lL4CO7kjhEgvbJ9n0 m",
+			"qCsDazxAXdI!NFOVKweYrSf3Lc:PBv4gJUGR,t5WTyhZjuEi7kH l29op86?mnM01.bQ"
+		};
+		int key[]=new int[6];
+		Scanner cin1=new Scanner(System.in);
+		System.out.println("欢迎来到恩尼格码密码站！");
+		System.out.println("调整转轮...(0-67)");
+		key[0] = 0;
+		key[1] = 0;
+		key[2] = 0;
+		key[3] = 0;
+		key[4] = 0;
+		key[5] = 0;
+
+		for (int i=1;i < 5;i++)
+		{
+			System.out.print("轮" + i + ":");
+			if (cin1.hasNext())key[i] = cin1.nextInt();
+			if (key[i] > 67 || key[i] < 0)
+			{
+				System.out.println("输入错误，使用默认值");
+				key[i] = 0;
+				break;
+			}
+		}
+		System.out.println("转轮：(" + key[1] + "," + key[2] + "," + key[3] + "," + key[4] + ")");
+		//设置完成
+
+		String board="";
+		char t;
+		System.out.println("请输入接线板的接入方式:(*表示停止接线)(a-z,A-Z,空格，英文逗，点，问，叹，冒");
+		for(int i=0;i<10;i++)
+		{
+			System.out.println("线"+(i+1)+"左端:");
+			t=(cin1.next().charAt(0));
+			if(board.indexOf(t)!=-1)
+			{
+				System.out.println("输入重复，已撤销接线");
+				break;
+			}
+			if(t!='*')board+=t;
+			else break;
+			System.out.println("线"+(i+1)+"右端:");
+			t=(cin1.next().charAt(0));
+			if(board.indexOf(t)!=-1)
+			{
+				System.out.println("输入重复，已撤销接线");
+				board+=(board.charAt(i*2));
+				break;
+			}
+			if(t!='*')board+=t;
+			else 
+			{
+				System.out.println("先写完右端才能停止，默认使用原字符");
+				board+=(board.charAt(i*2));
+				break;
+			}
+		}
+		
+		
+		System.out.println("解密还是加密?(0为加密，1为加解密)");
+		if (cin1.nextInt() == 0)
+		{
+			encode(key, str,board);
+		}
+
+		else 
+		{
+			decode(key, str,board);
+		}
+		System.out.println("欢迎下次使用!");
+		cin1.close();
 	}
-}
-void main() {
-	print("————————欢迎来到《潜杀猎航》————————\n*********************************\n");
-	print("哨兵前台:这里是大德意志大西洋海军司令部，请出示身份证明(姓名或ID):\n");
-	char player[50];
-	scanf("%s",&player);
-	if(isID(player)) {
-		print("哨兵前台:你好,");
-		print(player);
-		print("指挥官");
-	} else {
-		print("哨兵前台:哦！是");
-		print(player);
-		print("先生啊，你终于来了，Wilson部长在等你!\n");
-		print("        进门左转，将会有人带你去见部长先生\n");
-		getch();
-		getch();
-		clrscr();
-		print("咚咚咚...\n");
-		sleep(3);
-		print("Wilson:请进\n");
-		sleep(1);
-		print(player);
-		print("前来报道!\n");
-		print("press any key to continue.(Maybe two times)");
-		getch();
-		getch();
-		clrscr();
-		print("————————部长办公室————————\n");
-		print("Wilson:哦？是");
-		print(player);
-		print("先生啊，欢迎欢迎，请坐。\n");
-		sleep(1);
-		print("Wilson:元首向我提到过你，一名优秀的海军军官，现在想做一名U艇指挥官了？\n");
-		sleep(1);
-		print("\n你想什么时间加入我们潜艇计划？（1939.09-1943.06）\n");
-		int year,month;
-		if(0)loop1: print("(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");
-		print("年份？（1939-1943）:");
-		scanf("%d",&year);
-		print("\n月份？（1-12,注意从1939年9月开始，至1943年6月结束）:");
-		scanf("%d",&month);
-		//while(year<1939||year>1943||(year==1939&&month<9)||(year==1943&&month>6))
-		switch(year) {
-			case 1939: {
-				if(month<9||month>12)goto loop1;
-				print("Wilson:这么心急？好！帝国正需要你这样的热心人才！\n");
-				sleep(1);
-				print("Wilson:你正是我所期盼的那样！那么，稍作休整，就出征吧。帝国以你为傲！\n");
-				sleep(1);
-				print(player);
-				print(":Heil Hitler!（高举左手）\n");
-				print("press any key to continue.(Maybe two times)");
-				getch();
-				getch();
-				clrscr();
-				if(month>9) {
-					printf("%d",month-9);
-					sleep(1);
-					print("个月后...");
-					sleep(1);
+
+	static void encode(int key[], String[] str,String board)
+	{
+		Scanner cin =new Scanner(System.in);
+
+		String s="";
+		String encodemsg="";
+
+		while (true)
+		{
+			
+			encodemsg = "";
+
+			System.out.println("请输入原文:(注意，只能用英文，符号也是)(含有*代表结束)");
+			s = cin.nextLine();
+			char c;
+			for (int i=0;i < s.length();i++)
+			{
+				if (s.charAt(i) == '*'){cin.close();return;}
+				c = s.charAt(i);
+				
+				if(board.indexOf(c)!=-1)
+				{
+					if(board.indexOf(c)%2==0)c=board.charAt(board.indexOf(c)+1);
+					else c=board.charAt(board.indexOf(c)-1);
 				}
-				if(0) loop2: print("(如果这是第2次及以上问你，那应该是你之前输入了不合要求的时间)\n");
-				print("————————（难得的晴天）船坞里————————");
-				print("Wilson：准备好了，我的朋友？选一艘你喜欢的潜艇吧！\n");
-				print("船坞里有三种型号的潜艇：VIIA，VIIB，IXA\n");
-				sleep(1);
-				print("(1.VIIA	2.VIIB	3.IXA)\n");
-				int choose;
-				char type[6];
-				scanf("%d",&choose);
-				switch(choose) {
-					case 1: {
-						type[0]='V';
-						type[1]='I';
-						type[2]='I';
-						type[3]='A';
-						break;
-					}
-					case 2: {
-						type[0]='V';
-						type[1]='I';
-						type[2]='I';
-						type[3]='B';
-						break;
-					}
-					case 3: {
-						type[0]='I';
-						type[1]='X';
-						type[2]='A';
-						break;
-					}
-					default: {
-						goto loop2;
-					}
+				
+				for (int j=0;j < 5;j++)
+				{
+					c = str[j + 1].charAt((str[0].indexOf(c) + (key[j + 1] - key[j]) + 68) % 68);
 				}
-				clrscr();
-				print("————————（难得的晴天）船坞里————————");
-				print("Wilson：准备好了，我的朋友？选一艘你喜欢的潜艇吧！\n");
-				print(player);
-				print("：我要Type ");
-				print(type);
-				print("的！这艘怎么样？(指向旁边的一艘U艇）\n");
-				print("Wilson:好嘛我的朋友，你挺有眼光的嘛，我也很喜欢Type ");
-				print(type);
-				print("的艇。这艘船归你了我的艇长\n");
-				break;
+				key[4]++;
+				if (key[4] > 67)
+				{
+					key[4] -= 68;
+					key[3]++;
+				}
+				if (key[3] > 67)
+				{
+					key[3] -= 68;
+					key[2]++;
+				}
+				if (key[2] > 67)
+				{
+					key[2] -= 68;
+					key[1]++;
+				}
+				if (key[1] > 67)
+				{
+					key[1] -= 68;
+				}
+				encodemsg += c;
 			}
-			case 1940: {
-				if(month<1||month>12)goto loop1;
-				break;
+
+			System.out.println(encodemsg);
+		}
+		
+	}
+
+	static void decode(int key[], String[] str,String board)
+	{
+		Scanner cin =new Scanner(System.in);
+		String s="";
+		String encodemsg="";
+
+
+		while (true)
+		{
+
+			encodemsg = "";
+
+
+			System.out.println("请输入密文:(注意，不要带箭头号)(含有*代表结束)");
+			s = cin.nextLine();
+
+			char c;
+			for (int i=0;i < s.length();i++)
+			{
+				if (s.charAt(i) == '*'){cin.close();return;}
+				c = s.charAt(i);
+				
+				for (int j=0;j < 5;j++)
+				{
+					c = str[0].charAt((str[0].indexOf(str[0].charAt(str[5 - j].indexOf(c))) - (key[5-j] - key[4-j]) + 68) % 68);
+				}
+				if(board.indexOf(c)!=-1)
+				{
+					if(board.indexOf(c)%2==0)c=board.charAt(board.indexOf(c)+1);
+					else c=board.charAt(board.indexOf(c)-1);
+				}
+				encodemsg += c;
+				key[4]++;
+				if (key[4] > 67)
+				{
+					key[4] -= 68;
+					key[3]++;
+				}
+				if (key[3] > 67)
+				{
+					key[3] -= 68;
+					key[2]++;
+				}
+				if (key[2] > 67)
+				{
+					key[2] -= 68;
+					key[1]++;
+				}
+				if (key[1] > 67)
+				{
+					key[1] -= 68;
+				}
+
+
+
+
+
+
 			}
-			case 1941: {
-				if(month<1||month>12)goto loop1;
-				break;
-			}
-			case 1942: {
-				if(month<1||month>12)goto loop1;
-				break;
-			}
-			case 1943: {
-				if(month>6||month>12)goto loop1;
-				break;
-			}
-			default: goto loop1;
+
+			System.out.println("-->" + encodemsg);
 		}
 	}
+
+
 }
